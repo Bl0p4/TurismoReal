@@ -1,0 +1,50 @@
+﻿@using TurismoRealWeb.BLL;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de usuarios</h2>
+
+@{ List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;}
+@Html.ActionLink("Crear Usuario", "Create")
+<table id="tabla">
+    <tr>
+        <th>Nombre</th>
+        <th>Paterno</th>
+        <th>Materno</th>
+        <th>Rut</th>
+        <th>Dv</th>
+        <th>Direccion</th>
+        <th>Ciudad</th>
+        <th>Telefono</th>
+        <th>Email</th>
+        <th>Area</th>
+        @*<th>Username</th>
+        <th>Password</th>*@
+        <th>Tipo Usuario</th>
+    </tr>
+    @foreach (var usuario in usuarios)
+    {
+        <tr>
+            <td>@usuario.Nombre</td>
+            <td>@usuario.Paterno</td>
+            <td>@usuario.Materno</td>
+            <td>@usuario.Rut</td>
+            <td>@usuario.Dv</td>
+            <td>@usuario.Direccion</td>
+            <td>@usuario.Ciudad</td>
+            <td>@usuario.Telefono</td>
+            <td>@usuario.Email</td>
+            <td>@usuario.Area</td>
+            @*<td>@usuario.Username</td>
+            <td>@usuario.Password</td>*@
+            <td>@usuario.Tipo.Descripcion</td>
+        </tr>
+    }
+
+</table>
+
+
+@TempData["mensaje"]
+

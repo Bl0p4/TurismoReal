@@ -1,0 +1,56 @@
+﻿@model TurismoRealWeb.BLL.Usuario
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Agregar Nuevo Usuario</h2>
+@Html.ActionLink("Listado de Usuarios", "Index")
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(p => p.Nombre)
+    @Html.TextBoxFor(p => p.Nombre)
+    <br />
+    @*@Html.LabelFor(p => p.Nombre)
+    @Html.CheckBoxFor(p => p.Nombre)
+    <br />*@
+    @Html.LabelFor(p => p.Paterno)
+    @Html.TextBoxFor(p => p.Paterno)
+    <br />
+    @Html.LabelFor(p => p.Materno)
+    @Html.TextBoxFor(p => p.Materno)
+    <br />
+    @Html.LabelFor(p => p.Rut)
+    @Html.TextBoxFor(p => p.Rut)
+    <br />
+    @Html.LabelFor(p => p.Dv)
+    @Html.TextBoxFor(p => p.Dv)
+    <br />
+    @Html.LabelFor(p => p.Direccion)
+    @Html.TextBoxFor(p => p.Direccion)
+    <br />
+    @Html.LabelFor(p => p.Ciudad)
+    @Html.TextBoxFor(p => p.Ciudad)
+    <br />
+    @Html.LabelFor(p => p.Telefono)
+    @Html.TextBoxFor(p => p.Telefono)
+    <br />
+    @Html.LabelFor(p => p.Email)
+    @Html.TextBoxFor(p => p.Email)
+    <br />
+    @Html.LabelFor(p => p.Area)
+    @Html.TextBoxFor(p => p.Area)
+    <br />
+    @Html.LabelFor(p => p.Username)
+    @Html.TextBoxFor(p => p.Username)
+    <br />
+    @Html.LabelFor(p => p.Password)
+    @Html.TextBoxFor(p => p.Password)
+    <br />
+    @Html.LabelFor(p => p.Id_tipo, "Tipo de Usuario")
+    @Html.DropDownListFor(p => p.Id_tipo, new SelectList(ViewBag.tipos_user, "Id", "Descripcion"))
+    <br />
+    <button>Guardar</button>
+
+}
+

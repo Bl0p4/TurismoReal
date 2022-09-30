@@ -1,0 +1,40 @@
+﻿@using TurismoRealWeb.BLL;
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Inventario de Departamentos</h2>
+
+@{ List<Inventario> inventarios = (List<Inventario>)ViewBag.inventario;}
+@Html.ActionLink("Nuevo Inventario", "Create")
+
+<table id="tabla">
+    <tr>
+        <th>Item</th>
+        <th>Valor</th>
+        <th>Departamento</th>
+        <th>Disponible</th>        
+        <th>Opciones</th>
+
+    </tr>
+    @foreach (var inventario in inventarios)
+    {
+        <tr>
+            <td>@inventario.Item</td>
+            <td>@inventario.Valor</td>
+            <td>@inventario.Dpto.Nombre</td>
+            <td>@inventario.Disponible</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = inventario.Id })
+                <span> || </span>
+                @Html.ActionLink("Modificar", "Edit", new { id = inventario.Id })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+@TempData["mensaje"]

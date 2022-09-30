@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<br />
+@Html.ActionLink("Listado de Usuarios", "Index", "Usuario"@*, new { btnl = "list", @class = "btn btn-success" }*@)
+@Html.ActionLink("Crear Usuario", "Create", "Usuario"@*, new { btnc = "crea", @class = "btn btn-success" }*@)
+@Html.ActionLink("Listado de Departamentos", "Index", "Departamento"@*, new { btnl = "list", @class = "btn btn-success" }*@)
+@Html.ActionLink("Crear Departamento", "Create", "Departamento"@*, new { btnc = "crea", @class = "btn btn-success" }*@)
+@Html.ActionLink("Inventario de Departamentos", "Index", "Inventario"@*, new { btnl = "list", @class = "btn btn-success" }*@)
+@Html.ActionLink("Crear Inventario", "Create", "Inventario"@*, new { btnc = "crea", @class = "btn btn-success" }*@)
+<div class="jumbotron" style="background-color: #04aba3">
+    <h1>Turismo Real</h1>
+    <p class="lead">Los mejores departamentos al mejor precio.</p>
+    @*<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+</div>
+
+<div class="row" style="background-color: #fe7a4a">
+    <div class="col-md-4">
+        <h2>Dedicados a ti</h2>
+        <p>
+            Elige los mejores departamentos para tus vacaciones.
+        </p>
+        <br />
+        <br />
+        <p><a class="btn btn-default" href="">Revisa Nuestros Departamentos &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Experimenta Zonas de Chile</h2>
+        <p>Contamos con hospedajes en principales puntos turísticos del país.</p>
+        <p><a class="btn btn-default" href="">Revisa Zonas de Servicio &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Tours a tu medida</h2>
+        <p>Cada Departamento ofrece tours pensados para tu disfute.</p>
+        <br />
+        <br />
+        <p><a class="btn btn-default" href="">Oferta de Tours &raquo;</a></p>
+    </div>
+</div>

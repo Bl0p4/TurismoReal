@@ -1,0 +1,45 @@
+﻿@using TurismoRealWeb.BLL;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de Departamentos</h2>
+
+@{ List<Departamento> departamentos = (List<Departamento>)ViewBag.departamentos;}
+@Html.ActionLink("Crear Departamento","Create", new { btnc = "crea", @class = "btn btn-success" })
+
+<table id="tabla">
+    <tr>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Ciudad</th>
+        <th>Superficie</th>
+        <th>Precio</th>
+        <th>Disponible</th>
+        <th>Condicion</th>
+        <th>Opciones</th>
+
+    </tr>
+    @foreach (var departamento in departamentos)
+    {
+<tr>
+    <td>@departamento.Nombre</td>
+    <td>@departamento.Direccion</td>
+    <td>@departamento.Ciudad.Nombre</td>
+    <td>@departamento.Superficie</td>
+    <td>@departamento.Precio</td>
+    <td>@departamento.Disponible</td>
+    <td>@departamento.Condicion</td>
+    <td>
+        @Html.ActionLink("Modificar", "Edit", new { id = departamento.Id }, new { btn1 = "edit", @class = "btn btn-success" })        
+        @Html.ActionLink("Eliminar", "Delete", new { id = departamento.Id },
+                         new { onclick = "return confirm('¿Está seguro que desea eliminar este registro?');", btn2 = "del", @class = "btn btn-danger" })
+    </td>
+
+</tr>
+    }
+
+</table>
+
+
+@TempData["mensaje"]
