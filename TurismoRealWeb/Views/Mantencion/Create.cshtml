@@ -1,8 +1,73 @@
-﻿@using TurismoRealWeb.BLL;
+﻿@model TurismoRealWeb.BLL.Mantencion
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+@Html.ActionLink("Listado de Mantenciones", "Index")
+
+<div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
+    @using (Html.BeginForm())
+    {
+        <h3 style="text-align:center;">Nueva Mantención</h3>
+        <div style="width:60%; margin:0 auto;padding:20px;">
+            @Html.ValidationSummary()
+
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(i => i.Dpto)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.DropDownListFor(i => i.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"))
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(i => i.Descripcion)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(i => i.Descripcion)
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(i => i.Fech_ini)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(i => i.Fech_term)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(i => i.Costo)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(i => i.Costo)
+                </div>
+            </div>
+            @*<div class="row">
+            <div class="col-md-6" style="padding:10px">
+                @Html.LabelFor(i => i.Disponible)
+            </div>
+            <div class="col-md-6" style="padding:10px">
+                @Html.TextBoxFor(i => i.Disponible)
+            </div>
+        </div>*@
+
+            <br />
+            <div class="row" style="margin-top:12px;text-align:center;">
+                <button type="submit" value="Guardar" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    }
+</div>
+
 

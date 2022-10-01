@@ -4,5 +4,37 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Listado de Mantenciones</h2>
+
+@{ List<Mantencion> mantenciones = (List<Mantencion>)ViewBag.mantencion;}
+@Html.ActionLink("Nueva Mantención", "Create")
+
+<table id="tabla">
+    <tr>
+        <th>Descripción</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Término</th>
+        <th>Costo</th>
+
+    </tr>
+    @foreach (var mantencion in mantenciones)
+    {
+        <tr>
+            <td>@mantencion.Descripcion</td>
+            <td>@mantencion.Fech_ini</td>
+            <td>@mantencion.Fech_term</td>
+            <td>@mantencion.Costo</td>
+            <td>
+                @Html.ActionLink("Eliminar", "Delete", new { id = mantencion.Id })
+                <span> || </span>
+                @Html.ActionLink("Modificar", "Edit", new { id = mantencion.Id })
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
+@TempData["mensaje"]
 

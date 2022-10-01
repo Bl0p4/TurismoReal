@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Arriendo.cs" />
     <Compile Include="Ciudad.cs" />
+    <Compile Include="Datepicker.cs" />
     <Compile Include="Departamento.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Mantencion.cs" />
