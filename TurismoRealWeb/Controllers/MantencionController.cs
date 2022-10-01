@@ -7,12 +7,13 @@ using TurismoRealWeb.BLL;
 
 namespace TurismoRealWeb.Controllers
 {
+    [Authorize]
     public class MantencionController : Controller
     {
         // GET: Mantencion
         public ActionResult Index()
         {
-            Viewbag.mantencion = new Mantencion().ReadAll();
+            ViewBag.mantencion = new Mantencion().ReadAll();
             return View();
         }
 
@@ -47,7 +48,7 @@ namespace TurismoRealWeb.Controllers
                     return View(mantencion);
                 }
 
-                inventario.Save();
+                mantencion.Save();
                 TempData["mensaje"] = "Guardado Correctamente";
 
                 return RedirectToAction("Index");
@@ -61,12 +62,12 @@ namespace TurismoRealWeb.Controllers
         // GET: Mantencion/Edit/5
         public ActionResult Edit(int id)
         {
-            Mantencion man = new Mantencion().Find(id)
+            Mantencion man = new Mantencion().Find(id);
 
             if (man == null)
             {
                 TempData["mensaje"] = "El Objeto no existe";
-                return RedirectoToAction("Index");
+                return RedirectToAction("Index");
             }
 
             EnviarDptos();
