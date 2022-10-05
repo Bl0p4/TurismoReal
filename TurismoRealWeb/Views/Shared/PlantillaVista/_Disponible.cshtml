@@ -1,0 +1,11 @@
+﻿@model string
+
+@if (Model == "1")
+{
+    @Html.Encode("Disponible")
+}
+@if (Model == "0")
+{
+    @Html.Encode("No Disponible")
+}
+

@@ -12,13 +12,20 @@
     <h3 style="text-align:center;">Nuevo Departamento</h3>
     <div style="width:60%; margin:0 auto;padding:20px;">
         @Html.ValidationSummary()
-        @Html.HiddenFor(d => d.Disponible)
         <div class="row">
             <div class="col-md-6" style="padding:10px">
                 @Html.LabelFor(d => d.Nombre)
             </div>
             <div class="col-md-6" style="padding:10px">
                 @Html.TextBoxFor(d => d.Nombre)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6" style="padding:10px">
+                @Html.LabelFor(d => d.NumDpto)
+            </div>
+            <div class="col-md-6" style="padding:10px">
+                @Html.TextBoxFor(d => d.NumDpto)
             </div>
         </div>
         <div class="row">
@@ -53,14 +60,14 @@
                 @Html.TextBoxFor(d => d.Precio)
             </div>
         </div>
-        @*<div class="row">
+        <div class="row">
             <div class="col-md-6" style="padding:10px">
                 @Html.LabelFor(d => d.Disponible)
             </div>
             <div class="col-md-6" style="padding:10px">
-
+                @Html.CheckBoxFor(d => d.IsDisp)
             </div>
-        </div>*@
+        </div>
         <div class="row">
             <div class="col-md-6" style="padding:10px">
                 @Html.LabelFor(d => d.Condicion)

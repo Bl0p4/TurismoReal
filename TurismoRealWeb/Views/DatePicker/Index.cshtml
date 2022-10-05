@@ -1,0 +1,30 @@
+﻿@model TurismoRealWeb.BLL.Datepicker
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Elige Fecha</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.EditorFor(model => model.Datedata, new { HtmlAttributes = new { @class = "datepicker" } })
+}
+
+
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section scripts
+{
+<script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "dd-mm-yy",
+                changemonth: true,
+                changeyear: true
+            });
+        });
+    </script>
+}

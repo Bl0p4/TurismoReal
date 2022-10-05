@@ -37,7 +37,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Departamento/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "CiudadId, Nombre, Direccion, Superficie, Precio, Condicion")] Departamento departamento)
+        public ActionResult Create([Bind(Include = "CiudadId, Nombre, Direccion, Superficie, Precio, Disponible, Condicion, NumDpto, Estado, IsDisp")] Departamento departamento)
         {
             try
             {
@@ -69,13 +69,22 @@ namespace TurismoRealWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (d.Disponible == "1")
+            {
+                d.IsDisp = true;
+            }
+            else
+            {
+                d.IsDisp = false;
+            }
+            
             EnviarCiudades();
             return View(d);
         }
 
         // POST: Departamento/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id, CiudadId, Nombre, Direccion, Superficie, Precio, Disponible, Condicion")] Departamento departamento)
+        public ActionResult Edit([Bind(Include = "Id, CiudadId, Nombre, Direccion, Superficie, Precio, IsDisp, Condicion, NumDpto, Estado")] Departamento departamento)
         {
             try
             {

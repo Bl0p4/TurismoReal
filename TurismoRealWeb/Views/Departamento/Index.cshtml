@@ -11,12 +11,14 @@
 <table id="tabla">
     <tr>
         <th>Nombre</th>
+        <th>N° Dpto</th>
         <th>Direccion</th>
         <th>Ciudad</th>
         <th>Superficie</th>
         <th>Precio</th>
-        <th>Disponible</th>
         <th>Condicion</th>
+        <th>Disponible</th>
+        <th>Estado</th>
         <th>Opciones</th>
 
     </tr>
@@ -24,14 +26,16 @@
     {
 <tr>
     <td>@departamento.Nombre</td>
+    <td>@departamento.NumDpto</td>
     <td>@departamento.Direccion</td>
     <td>@departamento.Ciudad.Nombre</td>
     <td>@departamento.Superficie</td>
     <td>@departamento.Precio</td>
-    <td>@departamento.Disponible</td>
     <td>@departamento.Condicion</td>
+    <td>@departamento.Disponible</td>
+    <td>@departamento.Estado</td>
     <td>
-        @Html.ActionLink("Modificar", "Edit", new { id = departamento.Id }, new { btn1 = "edit", @class = "btn btn-success" })        
+        @Html.ActionLink("Modificar", "Edit", new { id = departamento.Id }, new { btn1 = "edit", @class = "btn btn-success" })
         @Html.ActionLink("Eliminar", "Delete", new { id = departamento.Id },
                          new { onclick = "return confirm('¿Está seguro que desea eliminar este registro?');", btn2 = "del", @class = "btn btn-danger" })
     </td>

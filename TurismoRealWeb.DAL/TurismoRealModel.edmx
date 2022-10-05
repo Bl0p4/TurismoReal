@@ -69,8 +69,10 @@
           <Property Name="DIRECCION" Type="varchar2" MaxLength="80" Nullable="false" />
           <Property Name="SUPERFICIE_DPTO" Type="varchar2" MaxLength="25" Nullable="false" />
           <Property Name="PRECIO_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DISPONIBLE" Type="varchar2" MaxLength="2" Nullable="false" />
-          <Property Name="CONDICION" Type="varchar2" MaxLength="25" Nullable="false" />
+          <Property Name="DISPONIBLE" Type="char" MaxLength="1" />
+          <Property Name="CONDICION" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="NRO_DPTO" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="ESTADO" Type="varchar2" MaxLength="20" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIOS">
           <Key>
@@ -349,7 +351,10 @@
           <Parameter Name="DIR" Type="varchar2" Mode="In" />
           <Parameter Name="M2" Type="varchar2" Mode="In" />
           <Parameter Name="PRECIO" Type="number" Mode="In" />
+          <Parameter Name="DISP" Type="char" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="ESTADO" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="SP_CREA_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
@@ -439,6 +444,8 @@
           <Parameter Name="PRECIO" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="EST" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -622,6 +629,8 @@
           <NavigationProperty Name="CIUDADES" Relationship="Model.CIUDADESDEPARTAMENTOS" FromRole="DEPARTAMENTOS" ToRole="CIUDADES" />
           <NavigationProperty Name="INVENTARIO" Relationship="Model.INVENTARIODEPARTAMENTOS" FromRole="DEPARTAMENTOS" ToRole="INVENTARIO" />
           <NavigationProperty Name="MANTENCIONES" Relationship="Model.MANTENCIONESDEPARTAMENTOS" FromRole="DEPARTAMENTOS" ToRole="MANTENCIONES" />
+          <Property Name="NRO_DPTO" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIOS">
           <Key>
@@ -973,7 +982,10 @@
             <Parameter Name="DIR" Mode="In" Type="String" />
             <Parameter Name="M2" Mode="In" Type="String" />
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CREATE_ARRIENDO">
             <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
@@ -1045,6 +1057,8 @@
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
+            <Parameter Name="EST" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_RESERVA">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
@@ -1104,7 +1118,7 @@
             <Parameter Name="COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_MANTEN">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_MANTEN">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
@@ -1219,6 +1233,8 @@
           <EntitySetMapping Name="DEPARTAMENTOS">
             <EntityTypeMapping TypeName="Model.DEPARTAMENTOS">
               <MappingFragment StoreEntitySet="DEPARTAMENTOS">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="NRO_DPTO" ColumnName="NRO_DPTO" />
                 <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
                 <ScalarProperty Name="ID_CIUDAD" ColumnName="ID_CIUDAD" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
