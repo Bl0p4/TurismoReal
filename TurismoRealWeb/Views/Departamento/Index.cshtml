@@ -14,10 +14,6 @@
         <th>N° Dpto</th>
         <th>Direccion</th>
         <th>Ciudad</th>
-        <th>Superficie</th>
-        <th>Precio</th>
-        <th>Condicion</th>
-        <th>Disponible</th>
         <th>Estado</th>
         <th>Opciones</th>
 
@@ -29,10 +25,6 @@
     <td>@departamento.NumDpto</td>
     <td>@departamento.Direccion</td>
     <td>@departamento.Ciudad.Nombre</td>
-    <td>@departamento.Superficie</td>
-    <td>@departamento.Precio</td>
-    <td>@departamento.Condicion</td>
-    <td>@departamento.Disponible</td>
     <td>@departamento.Estado</td>
     <td>
         @Html.ActionLink("Modificar", "Edit", new { id = departamento.Id }, new { btn1 = "edit", @class = "btn btn-success" })
