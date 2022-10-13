@@ -1,0 +1,90 @@
+﻿@model TurismoRealWeb.BLL.Departamento
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Departamento</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ciudad.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Direccion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NumDpto)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NumDpto)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Superficie)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Superficie)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Precio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Precio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Condicion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Condicion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modificar", "Edit", new { id = Model.Id}, new { btn1 = "edit", @class = "btn btn-secondary" })
+        @Html.ActionLink("Volver", "Index", null,new { btn5 = "back", @class = "btn btn-danger" })
+    </p>
+</body>
+</html>

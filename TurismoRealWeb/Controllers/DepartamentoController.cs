@@ -20,7 +20,9 @@ namespace TurismoRealWeb.Controllers
         // GET: Departamento/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Departamento dpto = new Departamento().Find(id);
+            EnviarCiudades();
+            return View(dpto);
         }
 
         // GET: Departamento/Create
