@@ -25,6 +25,17 @@ namespace TurismoRealWeb.Controllers
             return View(dpto);
         }
 
+        [HttpGet]
+        public JsonResult ListarDptos()
+        {
+            List<Departamento> oList = new List<Departamento>();
+
+            oList = new Departamento().ReadAll();
+
+            return Json(new { data = oList }, JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: Departamento/Create
         public ActionResult Create()
         {

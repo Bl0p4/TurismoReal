@@ -23,7 +23,7 @@
 
         <hr />
 
-        <table id="tabla" class="display cell-border" style="width: 100%">
+        <table id="Dptos" class="display cell-border" style="width: 100%">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -35,7 +35,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var departamento in departamentos)
+                @*@foreach (var departamento in departamentos)
                 {
                     <tr>
                         <td>@departamento.Nombre</td>
@@ -51,7 +51,7 @@
                         </td>
 
                     </tr>
-                }
+                }*@
             </tbody>
         </table>
 
@@ -62,6 +62,51 @@
 @section scripts{
     <script>
 
+        var tabladata;
+
+        jQuery.ajax({
+            url: '@Url.Action("ListarDptos", "Departamento")',
+            type: "GET",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log(data)
+            }
+        })
+
+        tabladata = $("#Dptos").DataTable({
+            responsive: true,
+            ordering: false,
+            "ajax": {
+                url: '@Url.Action("ListarDptos", "Departamento")',
+                type: "GET",
+                dataType: "json"
+            },
+            "columns": [
+                { "data": "Nombre" },
+                { "data": "NumDpto" },
+                { "data": "Direccion" },
+                { "data": "Ciudad.Nombre" },
+                {
+                    "data": "Disponible", "render": function (valor) {
+                        if (valor == 1) {
+                            return '<span class="badge bg-success">Disponible</span>'
+                        } else {
+                            return '<span class="badge bg-danger">No Disponible</span>'
+                        }
+                    }
+
+                },
+                {
+                    "defaultContent": '<button type="button" class="btn btn-warning btn-sm"><i class="fas fa-file"></i></button>' +
+                                      '<button type="button" class="btn btn-primary btn-sm ms-2"><i class="fas fa-pen"></i></button>' +
+                                      '<button type="button" class="btn btn-danger btn-sm ms-2"><i class="fas fa-trash"></i></button>',
+                    "orderable": false,
+                    "searchable": false,
+                    "width": "100px"
+                }
+            ]
+        });
 
     </script>
 
