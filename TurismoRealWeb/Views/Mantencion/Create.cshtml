@@ -34,7 +34,7 @@
                     @Html.LabelFor(i => i.Fech_ini)
                 </div>
                 <div class="col-md-6" style="padding:10px">
-
+                    @Html.EditorFor(i => i.Fech_ini, new { HtmlAttributes = new { @class = "datepicker" } })
                 </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                     @Html.LabelFor(i => i.Fech_term)
                 </div>
                 <div class="col-md-6" style="padding:10px">
-
+                    @Html.EditorFor(i => i.Fech_term, new { HtmlAttributes = new { @class = "datepicker" } })
                 </div>
             </div>
             <div class="row">
@@ -53,21 +53,33 @@
                     @Html.TextBoxFor(i => i.Costo)
                 </div>
             </div>
-            @*<div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(i => i.Disponible)
-            </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(i => i.Disponible)
-            </div>
-        </div>*@
-
             <br />
             <div class="row" style="margin-top:12px;text-align:center;">
                 <button type="submit" value="Guardar" class="btn btn-primary">Submit</button>
             </div>
         </div>
-    }
+     }
 </div>
 
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+@section scripts
+{
+    <script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.datepicker.setDefaults($.datepicker.regional["es"]);
+            $('.datepicker').datepicker({
+                firstDay: 1,
+                dateFormat: 'dd/mm/yy',
+                changemonth: true,
+                changeyear: true,
+                showOn: "button",
+                buttonText: 'Seleccione..',
+                minDate: new Date()                
+            });
+        });
+    </script>
+}
 
