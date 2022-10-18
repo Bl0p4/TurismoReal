@@ -14,6 +14,7 @@ namespace TurismoRealWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.departamentos = new Departamento().ReadAll();
+            EnviarCiudades();
             return View();
         }
 

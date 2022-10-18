@@ -16,7 +16,7 @@ namespace TurismoRealWeb.BLL
 
         public List<Ciudad> ReadAll()
         {
-            return db.CIUDADES.Select(c => new Ciudad()
+            return db.CIUDAD.Select(c => new Ciudad()
             {
                 Id = c.ID_CIUDAD,
                 Nombre = c.NOMBRE 

@@ -12,16 +12,20 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class CIUDADES
+    public partial class CONDUCTOR
     {
-        public CIUDADES()
+        public CONDUCTOR()
         {
-            this.DEPARTAMENTOS = new HashSet<DEPARTAMENTOS>();
+            this.TRANSPORTE_REALIZADO = new HashSet<TRANSPORTE_REALIZADO>();
         }
     
-        public decimal ID_CIUDAD { get; set; }
+        public int ID_CONDUCTOR { get; set; }
         public string NOMBRE { get; set; }
+        public string APE_PAT { get; set; }
+        public string APE_MAT { get; set; }
+        public string TIPO_LICENCIA { get; set; }
+        public System.DateTime FEC_NAC { get; set; }
     
-        public virtual ICollection<DEPARTAMENTOS> DEPARTAMENTOS { get; set; }
+        public virtual ICollection<TRANSPORTE_REALIZADO> TRANSPORTE_REALIZADO { get; set; }
     }
 }

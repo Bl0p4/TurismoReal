@@ -12,13 +12,17 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class DISPONIBILIDAD_SERVICIOS
+    public partial class TRANSPORTE_REALIZADO
     {
-        public decimal ID { get; set; }
-        public decimal ID_DPTO { get; set; }
-        public decimal ID_SERVICIO { get; set; }
-        public string ACTUALMENTE_DISPONIBLE { get; set; }
+        public decimal ID_TRANSPORTE { get; set; }
+        public int ID_CONDUCTOR { get; set; }
+        public decimal ID_ARRIENDO { get; set; }
+        public string DESC_VEHICULO { get; set; }
+        public string PATENTE { get; set; }
+        public System.DateTime FECHA_INICIO { get; set; }
+        public decimal COSTO { get; set; }
     
-        public virtual SERVICIOS_EXTRA SERVICIOS_EXTRA { get; set; }
+        public virtual ARRIENDO ARRIENDO { get; set; }
+        public virtual CONDUCTOR CONDUCTOR { get; set; }
     }
 }

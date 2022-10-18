@@ -12,11 +12,11 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class USUARIOS
+    public partial class USUARIO
     {
-        public USUARIOS()
+        public USUARIO()
         {
-            this.ARRIENDOS = new HashSet<ARRIENDOS>();
+            this.ARRIENDO = new HashSet<ARRIENDO>();
         }
     
         public decimal ID_USUARIO { get; set; }
@@ -34,7 +34,7 @@ namespace TurismoRealWeb.DAL
         public string USERNAME { get; set; }
         public string PASSWORD { get; set; }
     
-        public virtual ICollection<ARRIENDOS> ARRIENDOS { get; set; }
+        public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
         public virtual TIPO_USUARIO TIPO_USUARIO { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace TurismoRealWeb.BLL
         public string Item { get; set; }
         public decimal Valor { get; set; }
         public string Disponible { get; set; }
+        public DateTime FechComp { get; set; }
 
         public Departamento Dpto { get; set; }
 
@@ -32,15 +33,14 @@ namespace TurismoRealWeb.BLL
                 Dpto = new Departamento()
                 {
                     Id = i.ID_DPTO,
-                    CiudadId = i.DEPARTAMENTOS.ID_CIUDAD,
-                    Nombre = i.DEPARTAMENTOS.NOMBRE,
-                    Direccion = i.DEPARTAMENTOS.DIRECCION,
-                    Superficie = i.DEPARTAMENTOS.SUPERFICIE_DPTO,
-                    Precio = i.DEPARTAMENTOS.PRECIO_DPTO,
-                    Disponible = i.DEPARTAMENTOS.DISPONIBLE,
-                    Condicion = i.DEPARTAMENTOS.CONDICION,
-                    NumDpto = i.DEPARTAMENTOS.NRO_DPTO,
-                    Estado = i.DEPARTAMENTOS.ESTADO
+                    CiudadId = i.DEPARTAMENTO.ID_CIUDAD,
+                    Nombre = i.DEPARTAMENTO.NOMBRE,
+                    Direccion = i.DEPARTAMENTO.DIRECCION,
+                    Superficie = i.DEPARTAMENTO.SUPERFICIE_DPTO,
+                    Precio = i.DEPARTAMENTO.PRECIO_DPTO,
+                    Disponible = i.DEPARTAMENTO.DISPONIBLE,
+                    Condicion = i.DEPARTAMENTO.CONDICION,
+                    NumDpto = i.DEPARTAMENTO.NRO_DPTO
                 }
             }).ToList();
         }
@@ -50,7 +50,7 @@ namespace TurismoRealWeb.BLL
             try
             {
                 //Procedimiento almacenado
-                db.SP_CREA_ITEM(this.DptoId, this.Item, this.Valor);
+                db.SP_CREA_ITEM(this.DptoId, this.Item, this.Valor, this.Disponible, this.FechComp);
                 return true;
             }
             catch (Exception)
@@ -72,13 +72,13 @@ namespace TurismoRealWeb.BLL
                 Dpto = new Departamento()
                 {
                     Id = i.ID_DPTO,
-                    CiudadId = i.DEPARTAMENTOS.ID_CIUDAD,
-                    Nombre = i.DEPARTAMENTOS.NOMBRE,
-                    Direccion = i.DEPARTAMENTOS.DIRECCION,
-                    Superficie = i.DEPARTAMENTOS.SUPERFICIE_DPTO,
-                    Precio = i.DEPARTAMENTOS.PRECIO_DPTO,
-                    Disponible = i.DEPARTAMENTOS.DISPONIBLE,
-                    Condicion = i.DEPARTAMENTOS.CONDICION
+                    CiudadId = i.DEPARTAMENTO.ID_CIUDAD,
+                    Nombre = i.DEPARTAMENTO.NOMBRE,
+                    Direccion = i.DEPARTAMENTO.DIRECCION,
+                    Superficie = i.DEPARTAMENTO.SUPERFICIE_DPTO,
+                    Precio = i.DEPARTAMENTO.PRECIO_DPTO,
+                    Disponible = i.DEPARTAMENTO.DISPONIBLE,
+                    Condicion = i.DEPARTAMENTO.CONDICION
                 }
 
 
@@ -89,7 +89,7 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                db.SP_UPDATE_ITEM(this.Id, this.DptoId, this.Item, this.Valor, this.Disponible);                
+                db.SP_UPDATE_ITEM(this.Id, this.DptoId, this.Item, this.Valor, this.Disponible, this.FechComp);                
                 return true;
             }
             catch (Exception)

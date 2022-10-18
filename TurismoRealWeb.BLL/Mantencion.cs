@@ -22,7 +22,7 @@ namespace TurismoRealWeb.BLL
 
         public List<Mantencion> ReadAll()
         {
-            return this.db.MANTENCIONES.Select(m => new Mantencion()
+            return this.db.MANTENCION.Select(m => new Mantencion()
             {
                 Id = m.ID_MANTENCION,
                 DptoId = m.ID_DPTO,
@@ -34,15 +34,14 @@ namespace TurismoRealWeb.BLL
                 Dpto = new Departamento()
                 {
                     Id = m.ID_DPTO,
-                    CiudadId = m.DEPARTAMENTOS.ID_CIUDAD,
-                    Nombre = m.DEPARTAMENTOS.NOMBRE,
-                    Direccion = m.DEPARTAMENTOS.DIRECCION,
-                    Superficie = m.DEPARTAMENTOS.SUPERFICIE_DPTO,
-                    Precio = m.DEPARTAMENTOS.PRECIO_DPTO,
-                    Disponible = m.DEPARTAMENTOS.DISPONIBLE,
-                    Condicion = m.DEPARTAMENTOS.CONDICION,
-                    NumDpto = m.DEPARTAMENTOS.NRO_DPTO,
-                    Estado = m.DEPARTAMENTOS.ESTADO
+                    CiudadId = m.DEPARTAMENTO.ID_CIUDAD,
+                    Nombre = m.DEPARTAMENTO.NOMBRE,
+                    Direccion = m.DEPARTAMENTO.DIRECCION,
+                    Superficie = m.DEPARTAMENTO.SUPERFICIE_DPTO,
+                    Precio = m.DEPARTAMENTO.PRECIO_DPTO,
+                    Disponible = m.DEPARTAMENTO.DISPONIBLE,
+                    Condicion = m.DEPARTAMENTO.CONDICION,
+                    NumDpto = m.DEPARTAMENTO.NRO_DPTO
                 }
 
             }).ToList();
@@ -66,7 +65,7 @@ namespace TurismoRealWeb.BLL
 
         public Mantencion Find(int id)
         {
-            return this.db.MANTENCIONES.Select(m => new Mantencion()
+            return this.db.MANTENCION.Select(m => new Mantencion()
             {
                 Id = m.ID_MANTENCION,
                 DptoId = m.ID_DPTO,
@@ -78,13 +77,13 @@ namespace TurismoRealWeb.BLL
                 Dpto = new Departamento()
                 {
                     Id = m.ID_DPTO,
-                    CiudadId = m.DEPARTAMENTOS.ID_CIUDAD,
-                    Nombre = m.DEPARTAMENTOS.NOMBRE,
-                    Direccion = m.DEPARTAMENTOS.DIRECCION,
-                    Superficie = m.DEPARTAMENTOS.SUPERFICIE_DPTO,
-                    Precio = m.DEPARTAMENTOS.PRECIO_DPTO,
-                    Disponible = m.DEPARTAMENTOS.DISPONIBLE,
-                    Condicion = m.DEPARTAMENTOS.CONDICION
+                    CiudadId = m.DEPARTAMENTO.ID_CIUDAD,
+                    Nombre = m.DEPARTAMENTO.NOMBRE,
+                    Direccion = m.DEPARTAMENTO.DIRECCION,
+                    Superficie = m.DEPARTAMENTO.SUPERFICIE_DPTO,
+                    Precio = m.DEPARTAMENTO.PRECIO_DPTO,
+                    Disponible = m.DEPARTAMENTO.DISPONIBLE,
+                    Condicion = m.DEPARTAMENTO.CONDICION
                 }
 
 

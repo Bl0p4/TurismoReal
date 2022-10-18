@@ -48,104 +48,104 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AMIGOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="AMIGO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ARRIENDOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="ARRIENDO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ARRIENDOS_AMIGOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="ARRIENDO_AMIGO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="CIUDADES.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="CIUDAD.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="CONDUCTORES.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="CONDUCTOR.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DEPARTAMENTOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="DEPARTAMENTO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="DISPONIBILIDAD_SERVICIOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="DISPONIBILIDAD_SERVICIO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ERRORES.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="ERROR.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="HISTORICO_ARRIENDOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="HISTORICO_ARRIENDO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="HISTORICO_INGRESOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="HISTORICO_INGRESO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="INVENTARIO.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="MANTENCIONES.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="MANTENCION.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="MULTAS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="MULTA.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RESERVA.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICIOS_CONTRATADOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="SERVICIO_CONTRATADO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="SERVICIOS_EXTRA.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="SERVICIO_EXTRA.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TIPO_USUARIO.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TRANSPORTES_REALIZADOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="TRANSPORTE_REALIZADO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TurismoRealModel.Context.cs">
+    <Compile Include="TurismoRealEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TurismoRealModel.Context.tt</DependentUpon>
+      <DependentUpon>TurismoRealEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="TurismoRealModel.cs">
+    <Compile Include="TurismoRealEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="TurismoRealModel.Designer.cs">
+    <Compile Include="TurismoRealEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TurismoRealModel.edmx</DependentUpon>
+      <DependentUpon>TurismoRealEntities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="USUARIOS.cs">
-      <DependentUpon>TurismoRealModel.tt</DependentUpon>
+    <Compile Include="USUARIO.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="TurismoRealModel.edmx">
+    <EntityDeploy Include="TurismoRealEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TurismoRealModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TurismoRealEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="TurismoRealModel.edmx.diagram">
-      <DependentUpon>TurismoRealModel.edmx</DependentUpon>
+    <None Include="TurismoRealEntities.edmx.diagram">
+      <DependentUpon>TurismoRealEntities.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TurismoRealModel.Context.tt">
+    <Content Include="TurismoRealEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TurismoRealModel.edmx</DependentUpon>
-      <LastGenOutput>TurismoRealModel.Context.cs</LastGenOutput>
+      <DependentUpon>TurismoRealEntities.edmx</DependentUpon>
+      <LastGenOutput>TurismoRealEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TurismoRealModel.tt">
+    <Content Include="TurismoRealEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TurismoRealModel.edmx</DependentUpon>
-      <LastGenOutput>TurismoRealModel.cs</LastGenOutput>
+      <DependentUpon>TurismoRealEntities.edmx</DependentUpon>
+      <LastGenOutput>TurismoRealEntities.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

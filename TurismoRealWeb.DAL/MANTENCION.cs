@@ -12,13 +12,15 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class HISTORICO_INGRESOS
+    public partial class MANTENCION
     {
-        public decimal ID_DETALLE { get; set; }
+        public decimal ID_MANTENCION { get; set; }
         public decimal ID_DPTO { get; set; }
-        public string DEPARTAMENTO { get; set; }
-        public System.DateTime FECHA { get; set; }
-        public decimal MONTO_ARRIENDO { get; set; }
-        public decimal MONTO_MULTAS { get; set; }
+        public System.DateTime FECHA_INICIO { get; set; }
+        public System.DateTime FECHA_FIN { get; set; }
+        public string DESCRIPCION { get; set; }
+        public decimal COSTO { get; set; }
+    
+        public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
     }
 }

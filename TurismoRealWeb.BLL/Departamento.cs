@@ -26,7 +26,6 @@ namespace TurismoRealWeb.BLL
         public string NumDpto { get; set; }
         [Required, MaxLength(100)]
         public string Condicion { get; set; }
-        public string Estado { get; set; }
 
         public Ciudad Ciudad { get; set; }
 
@@ -35,7 +34,7 @@ namespace TurismoRealWeb.BLL
 
         public List<Departamento> ReadAll()
         {
-            return this.db.DEPARTAMENTOS.Select(d => new Departamento() {
+            return this.db.DEPARTAMENTO.Select(d => new Departamento() {
                 Id = d.ID_DPTO,
                 CiudadId = d.ID_CIUDAD,
                 Nombre = d.NOMBRE,
@@ -45,11 +44,10 @@ namespace TurismoRealWeb.BLL
                 Disponible = d.DISPONIBLE,
                 Condicion = d.CONDICION,
                 NumDpto = d.NRO_DPTO,
-                Estado = d.ESTADO,
                 Ciudad = new Ciudad()
                 {
                     Id = d.ID_CIUDAD,
-                    Nombre = d.CIUDADES.NOMBRE
+                    Nombre = d.CIUDAD.NOMBRE
                 }                     
             }).ToList();
         }
@@ -61,16 +59,14 @@ namespace TurismoRealWeb.BLL
                 if (IsDisp == true)
                 {
                     Disponible = "1";
-                    Estado = "Disponible";
                 }
                 else if(IsDisp == false)
                 {
                     Disponible = "0";
-                    Estado = "No Disponible";
                 }
                 //Procedimiento almacenado
                 db.SP_CREA_DPTO(this.CiudadId, this.Nombre, this.Direccion, 
-                                this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NumDpto, this.Estado);
+                                this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NumDpto);
                 return true;
             }
             catch (Exception)
@@ -82,7 +78,7 @@ namespace TurismoRealWeb.BLL
 
         public Departamento Find(int id)
         {            
-            return this.db.DEPARTAMENTOS.Select(d => new Departamento()
+            return this.db.DEPARTAMENTO.Select(d => new Departamento()
             {
                 Id = d.ID_DPTO,
                 CiudadId = d.ID_CIUDAD,
@@ -93,11 +89,10 @@ namespace TurismoRealWeb.BLL
                 Disponible = d.DISPONIBLE,
                 Condicion = d.CONDICION,
                 NumDpto = d.NRO_DPTO,
-                Estado = d.ESTADO,
                 Ciudad = new Ciudad()
                 {
                     Id = d.ID_CIUDAD,
-                    Nombre = d.CIUDADES.NOMBRE
+                    Nombre = d.CIUDAD.NOMBRE
                 }
 
 
@@ -111,16 +106,14 @@ namespace TurismoRealWeb.BLL
                 if (IsDisp == true)
                 {
                     Disponible = "1";
-                    Estado = "Disponible";
                 }
                 else 
                 {
                     Disponible = "0";
-                    Estado = "No Disponible";
                 }
 
                 db.SP_UPDATE_DPTO(this.Id, this.CiudadId, this.Nombre, this.Direccion,
-                                this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NumDpto, this.Estado);
+                                this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NumDpto);
                 return true;
             }
             catch (Exception)

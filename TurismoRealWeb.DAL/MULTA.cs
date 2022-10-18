@@ -12,13 +12,13 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class MULTAS
+    public partial class MULTA
     {
         public decimal ID_MULTA { get; set; }
         public decimal ID_ARRIENDO { get; set; }
         public decimal MONTO_MULTA { get; set; }
         public string DESCRIPCION { get; set; }
     
-        public virtual ARRIENDOS ARRIENDOS { get; set; }
+        public virtual ARRIENDO ARRIENDO { get; set; }
     }
 }

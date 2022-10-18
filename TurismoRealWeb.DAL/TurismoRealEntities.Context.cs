@@ -28,25 +28,25 @@ namespace TurismoRealWeb.DAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<AMIGOS> AMIGOS { get; set; }
-        public DbSet<ARRIENDOS> ARRIENDOS { get; set; }
-        public DbSet<ARRIENDOS_AMIGOS> ARRIENDOS_AMIGOS { get; set; }
-        public DbSet<CIUDADES> CIUDADES { get; set; }
-        public DbSet<CONDUCTORES> CONDUCTORES { get; set; }
-        public DbSet<DEPARTAMENTOS> DEPARTAMENTOS { get; set; }
-        public DbSet<DISPONIBILIDAD_SERVICIOS> DISPONIBILIDAD_SERVICIOS { get; set; }
-        public DbSet<ERRORES> ERRORES { get; set; }
-        public DbSet<HISTORICO_ARRIENDOS> HISTORICO_ARRIENDOS { get; set; }
-        public DbSet<HISTORICO_INGRESOS> HISTORICO_INGRESOS { get; set; }
+        public DbSet<AMIGO> AMIGO { get; set; }
+        public DbSet<ARRIENDO> ARRIENDO { get; set; }
+        public DbSet<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
+        public DbSet<CIUDAD> CIUDAD { get; set; }
+        public DbSet<CONDUCTOR> CONDUCTOR { get; set; }
+        public DbSet<DEPARTAMENTO> DEPARTAMENTO { get; set; }
+        public DbSet<DISPONIBILIDAD_SERVICIO> DISPONIBILIDAD_SERVICIO { get; set; }
+        public DbSet<ERROR> ERROR { get; set; }
+        public DbSet<HISTORICO_ARRIENDO> HISTORICO_ARRIENDO { get; set; }
+        public DbSet<HISTORICO_INGRESO> HISTORICO_INGRESO { get; set; }
         public DbSet<INVENTARIO> INVENTARIO { get; set; }
-        public DbSet<MANTENCIONES> MANTENCIONES { get; set; }
-        public DbSet<MULTAS> MULTAS { get; set; }
+        public DbSet<MANTENCION> MANTENCION { get; set; }
+        public DbSet<MULTA> MULTA { get; set; }
         public DbSet<RESERVA> RESERVA { get; set; }
-        public DbSet<SERVICIOS_CONTRATADOS> SERVICIOS_CONTRATADOS { get; set; }
-        public DbSet<SERVICIOS_EXTRA> SERVICIOS_EXTRA { get; set; }
+        public DbSet<SERVICIO_CONTRATADO> SERVICIO_CONTRATADO { get; set; }
+        public DbSet<SERVICIO_EXTRA> SERVICIO_EXTRA { get; set; }
         public DbSet<TIPO_USUARIO> TIPO_USUARIO { get; set; }
-        public DbSet<TRANSPORTES_REALIZADOS> TRANSPORTES_REALIZADOS { get; set; }
-        public DbSet<USUARIOS> USUARIOS { get; set; }
+        public DbSet<TRANSPORTE_REALIZADO> TRANSPORTE_REALIZADO { get; set; }
+        public DbSet<USUARIO> USUARIO { get; set; }
     
         public virtual int SP_CANCEL_RESERVA(Nullable<decimal> iD)
         {
@@ -75,7 +75,7 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_CLIParameter);
         }
     
-        public virtual int SP_CREA_DPTO(Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, string nRO_DPTO, string eSTADO)
+        public virtual int SP_CREA_DPTO(Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, string nRO_DPTO)
         {
             var iD_CIUDADParameter = iD_CIUDAD.HasValue ?
                 new ObjectParameter("ID_CIUDAD", iD_CIUDAD) :
@@ -109,11 +109,57 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("NRO_DPTO", nRO_DPTO) :
                 new ObjectParameter("NRO_DPTO", typeof(string));
     
-            var eSTADOParameter = eSTADO != null ?
-                new ObjectParameter("ESTADO", eSTADO) :
-                new ObjectParameter("ESTADO", typeof(string));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_DPTO", iD_CIUDADParameter, nOMBREParameter, dIRParameter, m2Parameter, pRECIOParameter, dISPParameter, cONDParameter, nRO_DPTOParameter);
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_DPTO", iD_CIUDADParameter, nOMBREParameter, dIRParameter, m2Parameter, pRECIOParameter, dISPParameter, cONDParameter, nRO_DPTOParameter, eSTADOParameter);
+        public virtual int SP_CREA_ITEM(Nullable<decimal> iD_DPTO, string iTEM, Nullable<decimal> vALOR, string dISP, Nullable<System.DateTime> fEC_COMP)
+        {
+            var iD_DPTOParameter = iD_DPTO.HasValue ?
+                new ObjectParameter("ID_DPTO", iD_DPTO) :
+                new ObjectParameter("ID_DPTO", typeof(decimal));
+    
+            var iTEMParameter = iTEM != null ?
+                new ObjectParameter("ITEM", iTEM) :
+                new ObjectParameter("ITEM", typeof(string));
+    
+            var vALORParameter = vALOR.HasValue ?
+                new ObjectParameter("VALOR", vALOR) :
+                new ObjectParameter("VALOR", typeof(decimal));
+    
+            var dISPParameter = dISP != null ?
+                new ObjectParameter("DISP", dISP) :
+                new ObjectParameter("DISP", typeof(string));
+    
+            var fEC_COMPParameter = fEC_COMP.HasValue ?
+                new ObjectParameter("FEC_COMP", fEC_COMP) :
+                new ObjectParameter("FEC_COMP", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_ITEM", iD_DPTOParameter, iTEMParameter, vALORParameter, dISPParameter, fEC_COMPParameter);
+        }
+    
+        public virtual int SP_CREA_MANTEN(Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_TERM, string dESCRIPCION, Nullable<decimal> cOSTO)
+        {
+            var iD_DPTOParameter = iD_DPTO.HasValue ?
+                new ObjectParameter("ID_DPTO", iD_DPTO) :
+                new ObjectParameter("ID_DPTO", typeof(decimal));
+    
+            var fEC_INIParameter = fEC_INI.HasValue ?
+                new ObjectParameter("FEC_INI", fEC_INI) :
+                new ObjectParameter("FEC_INI", typeof(System.DateTime));
+    
+            var fEC_TERMParameter = fEC_TERM.HasValue ?
+                new ObjectParameter("FEC_TERM", fEC_TERM) :
+                new ObjectParameter("FEC_TERM", typeof(System.DateTime));
+    
+            var dESCRIPCIONParameter = dESCRIPCION != null ?
+                new ObjectParameter("DESCRIPCION", dESCRIPCION) :
+                new ObjectParameter("DESCRIPCION", typeof(string));
+    
+            var cOSTOParameter = cOSTO.HasValue ?
+                new ObjectParameter("COSTO", cOSTO) :
+                new ObjectParameter("COSTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_MANTEN", iD_DPTOParameter, fEC_INIParameter, fEC_TERMParameter, dESCRIPCIONParameter, cOSTOParameter);
         }
     
         public virtual int SP_CREATE_ARRIENDO(Nullable<decimal> iD_CLI, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_RESERVA, Nullable<decimal> vALOR_RESERVA, string pAGADA, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_FIN, Nullable<decimal> tOTAL)
@@ -274,6 +320,24 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_DPTO", iDParameter);
         }
     
+        public virtual int SP_DELETE_ITEM(Nullable<decimal> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_ITEM", iDParameter);
+        }
+    
+        public virtual int SP_DELETE_MANTEN(Nullable<decimal> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_MANTEN", iDParameter);
+        }
+    
         public virtual int SP_DELETE_MULTA(Nullable<decimal> iD)
         {
             var iDParameter = iD.HasValue ?
@@ -333,7 +397,7 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ARRIENDO", iDParameter, iD_CLIParameter, iD_DPTOParameter, fEC_RESERVAParameter, vALOR_RESERVAParameter, pAGADAParameter, fEC_INIParameter, fEC_FINParameter, tOTALParameter);
         }
     
-        public virtual int SP_UPDATE_DPTO(Nullable<decimal> iD, Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, string nRO_DPTO, string eST)
+        public virtual int SP_UPDATE_DPTO(Nullable<decimal> iD, Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, string nRO_DPTO)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
@@ -371,14 +435,68 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("NRO_DPTO", nRO_DPTO) :
                 new ObjectParameter("NRO_DPTO", typeof(string));
     
-            var eSTParameter = eST != null ?
-                new ObjectParameter("EST", eST) :
-                new ObjectParameter("EST", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_DPTO", iDParameter, iD_CIUDADParameter, nOMBREParameter, dIRParameter, m2Parameter, pRECIOParameter, dISPParameter, cONDParameter, nRO_DPTOParameter, eSTParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_DPTO", iDParameter, iD_CIUDADParameter, nOMBREParameter, dIRParameter, m2Parameter, pRECIOParameter, dISPParameter, cONDParameter, nRO_DPTOParameter);
         }
     
-        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> iD, string nOMBRE, Nullable<System.DateTime> fECH, Nullable<decimal> iD_ARRIENDO, Nullable<decimal> aCOMP)
+        public virtual int SP_UPDATE_ITEM(Nullable<decimal> iD, Nullable<decimal> iD_DPTO, string iTEM, Nullable<decimal> vALOR, string dISP, Nullable<System.DateTime> fEC)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            var iD_DPTOParameter = iD_DPTO.HasValue ?
+                new ObjectParameter("ID_DPTO", iD_DPTO) :
+                new ObjectParameter("ID_DPTO", typeof(decimal));
+    
+            var iTEMParameter = iTEM != null ?
+                new ObjectParameter("ITEM", iTEM) :
+                new ObjectParameter("ITEM", typeof(string));
+    
+            var vALORParameter = vALOR.HasValue ?
+                new ObjectParameter("VALOR", vALOR) :
+                new ObjectParameter("VALOR", typeof(decimal));
+    
+            var dISPParameter = dISP != null ?
+                new ObjectParameter("DISP", dISP) :
+                new ObjectParameter("DISP", typeof(string));
+    
+            var fECParameter = fEC.HasValue ?
+                new ObjectParameter("FEC", fEC) :
+                new ObjectParameter("FEC", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ITEM", iDParameter, iD_DPTOParameter, iTEMParameter, vALORParameter, dISPParameter, fECParameter);
+        }
+    
+        public virtual int SP_UPDATE_MANTEN(Nullable<decimal> iD, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_TERM, string dESCRIPCION, Nullable<decimal> cOSTO)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            var iD_DPTOParameter = iD_DPTO.HasValue ?
+                new ObjectParameter("ID_DPTO", iD_DPTO) :
+                new ObjectParameter("ID_DPTO", typeof(decimal));
+    
+            var fEC_INIParameter = fEC_INI.HasValue ?
+                new ObjectParameter("FEC_INI", fEC_INI) :
+                new ObjectParameter("FEC_INI", typeof(System.DateTime));
+    
+            var fEC_TERMParameter = fEC_TERM.HasValue ?
+                new ObjectParameter("FEC_TERM", fEC_TERM) :
+                new ObjectParameter("FEC_TERM", typeof(System.DateTime));
+    
+            var dESCRIPCIONParameter = dESCRIPCION != null ?
+                new ObjectParameter("DESCRIPCION", dESCRIPCION) :
+                new ObjectParameter("DESCRIPCION", typeof(string));
+    
+            var cOSTOParameter = cOSTO.HasValue ?
+                new ObjectParameter("COSTO", cOSTO) :
+                new ObjectParameter("COSTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_MANTEN", iDParameter, iD_DPTOParameter, fEC_INIParameter, fEC_TERMParameter, dESCRIPCIONParameter, cOSTOParameter);
+        }
+    
+        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> iD, string nOMBRE, Nullable<System.DateTime> fECH, Nullable<decimal> iD_ARRIENDO, Nullable<decimal> aCOMP, string vIG)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
@@ -400,7 +518,11 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("ACOMP", aCOMP) :
                 new ObjectParameter("ACOMP", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", iDParameter, nOMBREParameter, fECHParameter, iD_ARRIENDOParameter, aCOMPParameter);
+            var vIGParameter = vIG != null ?
+                new ObjectParameter("VIG", vIG) :
+                new ObjectParameter("VIG", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", iDParameter, nOMBREParameter, fECHParameter, iD_ARRIENDOParameter, aCOMPParameter, vIGParameter);
         }
     
         public virtual int SP_UPDATE_USUARIO(Nullable<decimal> iD, Nullable<decimal> iD_TIPO, string nOMBRE, string pATERNO, string mATERNO, Nullable<decimal> rUT, string dV, string dIRECCION, string cIUDAD, string tELEFONO, string eMAIL, string aREA, string uSUARIO, string pASS)
@@ -462,120 +584,6 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("PASS", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_USUARIO", iDParameter, iD_TIPOParameter, nOMBREParameter, pATERNOParameter, mATERNOParameter, rUTParameter, dVParameter, dIRECCIONParameter, cIUDADParameter, tELEFONOParameter, eMAILParameter, aREAParameter, uSUARIOParameter, pASSParameter);
-        }
-    
-        public virtual int SP_CREA_ITEM(Nullable<decimal> iD_DPTO, string iTEM, Nullable<decimal> vALOR)
-        {
-            var iD_DPTOParameter = iD_DPTO.HasValue ?
-                new ObjectParameter("ID_DPTO", iD_DPTO) :
-                new ObjectParameter("ID_DPTO", typeof(decimal));
-    
-            var iTEMParameter = iTEM != null ?
-                new ObjectParameter("ITEM", iTEM) :
-                new ObjectParameter("ITEM", typeof(string));
-    
-            var vALORParameter = vALOR.HasValue ?
-                new ObjectParameter("VALOR", vALOR) :
-                new ObjectParameter("VALOR", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_ITEM", iD_DPTOParameter, iTEMParameter, vALORParameter);
-        }
-    
-        public virtual int SP_UPDATE_ITEM(Nullable<decimal> iD, Nullable<decimal> iD_DPTO, string iTEM, Nullable<decimal> vALOR, string dISP)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(decimal));
-    
-            var iD_DPTOParameter = iD_DPTO.HasValue ?
-                new ObjectParameter("ID_DPTO", iD_DPTO) :
-                new ObjectParameter("ID_DPTO", typeof(decimal));
-    
-            var iTEMParameter = iTEM != null ?
-                new ObjectParameter("ITEM", iTEM) :
-                new ObjectParameter("ITEM", typeof(string));
-    
-            var vALORParameter = vALOR.HasValue ?
-                new ObjectParameter("VALOR", vALOR) :
-                new ObjectParameter("VALOR", typeof(decimal));
-    
-            var dISPParameter = dISP != null ?
-                new ObjectParameter("DISP", dISP) :
-                new ObjectParameter("DISP", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ITEM", iDParameter, iD_DPTOParameter, iTEMParameter, vALORParameter, dISPParameter);
-        }
-    
-        public virtual int SP_DELETE_ITEM(Nullable<decimal> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_ITEM", iDParameter);
-        }
-    
-        public virtual int SP_CREA_MANTEN(Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_TERM, string dESCRIPCION, Nullable<decimal> cOSTO)
-        {
-            var iD_DPTOParameter = iD_DPTO.HasValue ?
-                new ObjectParameter("ID_DPTO", iD_DPTO) :
-                new ObjectParameter("ID_DPTO", typeof(decimal));
-    
-            var fEC_INIParameter = fEC_INI.HasValue ?
-                new ObjectParameter("FEC_INI", fEC_INI) :
-                new ObjectParameter("FEC_INI", typeof(System.DateTime));
-    
-            var fEC_TERMParameter = fEC_TERM.HasValue ?
-                new ObjectParameter("FEC_TERM", fEC_TERM) :
-                new ObjectParameter("FEC_TERM", typeof(System.DateTime));
-    
-            var dESCRIPCIONParameter = dESCRIPCION != null ?
-                new ObjectParameter("DESCRIPCION", dESCRIPCION) :
-                new ObjectParameter("DESCRIPCION", typeof(string));
-    
-            var cOSTOParameter = cOSTO.HasValue ?
-                new ObjectParameter("COSTO", cOSTO) :
-                new ObjectParameter("COSTO", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_MANTEN", iD_DPTOParameter, fEC_INIParameter, fEC_TERMParameter, dESCRIPCIONParameter, cOSTOParameter);
-        }
-    
-        public virtual int SP_DELETE_MANTEN(Nullable<decimal> iD)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_MANTEN", iDParameter);
-        }
-    
-        public virtual int SP_UPDATE_MANTEN(Nullable<decimal> iD, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_TERM, string dESCRIPCION, Nullable<decimal> cOSTO)
-        {
-            var iDParameter = iD.HasValue ?
-                new ObjectParameter("ID", iD) :
-                new ObjectParameter("ID", typeof(decimal));
-    
-            var iD_DPTOParameter = iD_DPTO.HasValue ?
-                new ObjectParameter("ID_DPTO", iD_DPTO) :
-                new ObjectParameter("ID_DPTO", typeof(decimal));
-    
-            var fEC_INIParameter = fEC_INI.HasValue ?
-                new ObjectParameter("FEC_INI", fEC_INI) :
-                new ObjectParameter("FEC_INI", typeof(System.DateTime));
-    
-            var fEC_TERMParameter = fEC_TERM.HasValue ?
-                new ObjectParameter("FEC_TERM", fEC_TERM) :
-                new ObjectParameter("FEC_TERM", typeof(System.DateTime));
-    
-            var dESCRIPCIONParameter = dESCRIPCION != null ?
-                new ObjectParameter("DESCRIPCION", dESCRIPCION) :
-                new ObjectParameter("DESCRIPCION", typeof(string));
-    
-            var cOSTOParameter = cOSTO.HasValue ?
-                new ObjectParameter("COSTO", cOSTO) :
-                new ObjectParameter("COSTO", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_MANTEN", iDParameter, iD_DPTOParameter, fEC_INIParameter, fEC_TERMParameter, dESCRIPCIONParameter, cOSTOParameter);
         }
     }
 }

@@ -19,7 +19,8 @@ namespace TurismoRealWeb.DAL
         public string NOMBRE { get; set; }
         public decimal VALOR { get; set; }
         public string DISPONIBLE { get; set; }
+        public System.DateTime FECHA_COMPRA { get; set; }
     
-        public virtual DEPARTAMENTOS DEPARTAMENTOS { get; set; }
+        public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
     }
 }

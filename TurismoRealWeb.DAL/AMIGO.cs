@@ -12,20 +12,21 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class CONDUCTORES
+    public partial class AMIGO
     {
-        public CONDUCTORES()
+        public AMIGO()
         {
-            this.TRANSPORTES_REALIZADOS = new HashSet<TRANSPORTES_REALIZADOS>();
+            this.ARRIENDO_AMIGO = new HashSet<ARRIENDO_AMIGO>();
         }
     
-        public int ID_CONDUCTOR { get; set; }
-        public string NOMBRE { get; set; }
-        public string APE_PAT { get; set; }
-        public string APE_MAT { get; set; }
-        public string TIPO_LICENCIA { get; set; }
+        public decimal ID_AMIGO { get; set; }
+        public int RUT { get; set; }
+        public string DV { get; set; }
+        public string NOMBRE_COMPLETO { get; set; }
         public System.DateTime FEC_NAC { get; set; }
+        public string TELEFONO { get; set; }
+        public string EMAIL { get; set; }
     
-        public virtual ICollection<TRANSPORTES_REALIZADOS> TRANSPORTES_REALIZADOS { get; set; }
+        public virtual ICollection<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
     }
 }

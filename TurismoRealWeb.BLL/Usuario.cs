@@ -31,7 +31,7 @@ namespace TurismoRealWeb.BLL
 
         public bool Autenticar()
         {
-            return db.USUARIOS
+            return db.USUARIO
                 .Where(u => u.USERNAME == this.Username
                 && u.PASSWORD == this.Password)
                 .FirstOrDefault() != null;
@@ -42,7 +42,7 @@ namespace TurismoRealWeb.BLL
 
         public List<Usuario> ReadAll()
         {
-            return this.db.USUARIOS.Select(p => new Usuario()
+            return this.db.USUARIO.Select(p => new Usuario()
             {
                 Id = p.ID_USUARIO,
                 Nombre = p.NOMBRE,

@@ -12,11 +12,13 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class ERRORES
+    public partial class ARRIENDO_AMIGO
     {
-        public decimal ID_ERROR { get; set; }
-        public string ERROR_PROCESO { get; set; }
-        public string ERROR_MSG { get; set; }
-        public System.DateTime ERROR_FECHA { get; set; }
+        public decimal ID { get; set; }
+        public decimal ID_ARRIENDO { get; set; }
+        public decimal ID_AMIGOS { get; set; }
+    
+        public virtual AMIGO AMIGO { get; set; }
+        public virtual ARRIENDO ARRIENDO { get; set; }
     }
 }

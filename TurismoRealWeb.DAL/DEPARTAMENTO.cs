@@ -12,12 +12,12 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class DEPARTAMENTOS
+    public partial class DEPARTAMENTO
     {
-        public DEPARTAMENTOS()
+        public DEPARTAMENTO()
         {
             this.INVENTARIO = new HashSet<INVENTARIO>();
-            this.MANTENCIONES = new HashSet<MANTENCIONES>();
+            this.MANTENCION = new HashSet<MANTENCION>();
         }
     
         public decimal ID_DPTO { get; set; }
@@ -29,10 +29,9 @@ namespace TurismoRealWeb.DAL
         public string DISPONIBLE { get; set; }
         public string CONDICION { get; set; }
         public string NRO_DPTO { get; set; }
-        public string ESTADO { get; set; }
     
-        public virtual CIUDADES CIUDADES { get; set; }
+        public virtual CIUDAD CIUDAD { get; set; }
         public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
-        public virtual ICollection<MANTENCIONES> MANTENCIONES { get; set; }
+        public virtual ICollection<MANTENCION> MANTENCION { get; set; }
     }
 }

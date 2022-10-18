@@ -1,4 +1,5 @@
 ﻿@using TurismoRealWeb.BLL;
+@model TurismoRealWeb.BLL.Departamento
 @{
     ViewBag.Title = "Index";
 }
@@ -6,7 +7,7 @@
 @{ List<Departamento> departamentos = (List<Departamento>)ViewBag.departamentos;}
 
 <ol class="breadcrumb mb-4 mt-4">
-    <li class="breadcrumb-item"><a href="index.html">Mantenimiento</a></li>
+    <li class="breadcrumb-item"><a href="index.html">Mantenedores</a></li>
     <li class="breadcrumb-item active">Departamentos</li>
 </ol>
 
@@ -17,7 +18,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-12">
-                <button type="button" class="btn btn-success">Crear Nuevo</button>
+                <button type="button" class="btn btn-success" onclick="abrirModal()">Crear Nuevo</button>
             </div>
         </div>
 
@@ -35,23 +36,6 @@
                 </tr>
             </thead>
             <tbody>
-                @*@foreach (var departamento in departamentos)
-                {
-                    <tr>
-                        <td>@departamento.Nombre</td>
-                        <td>@departamento.NumDpto</td>
-                        <td>@departamento.Direccion</td>
-                        <td>@departamento.Ciudad.Nombre</td>
-                        <td>@departamento.Estado</td>
-                        <td>
-                            @Html.ActionLink("Detalles", "Details", new { id = departamento.Id }, new { btn1 = "details", @class = "btn btn-warning" })
-                            @Html.ActionLink("Modificar", "Edit", new { id = departamento.Id }, new { btn1 = "edit", @class = "btn btn-success" })
-                            @Html.ActionLink("Eliminar", "Delete", new { id = departamento.Id },
-                                             new { onclick = "return confirm('¿Está seguro que desea eliminar este registro?');", btn2 = "del", @class = "btn btn-danger" })
-                        </td>
-
-                    </tr>
-                }*@
             </tbody>
         </table>
 
@@ -59,20 +43,71 @@
     </div>
 </div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Departamento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body g-2">
+
+                <div class="row">
+
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtNombre" placeholder="name@example.com">
+                        <label for="txtNombre">Departamento</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtNumDpto" placeholder="name@example.com">
+                        <label for="txtNumDpto" class="form-label">Nro. Dpto</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="txtDireccion" placeholder="name@example.com">
+                        <label for="txtDireccion" class="form-label">Dirección</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" aria-label="Select Ciudad">
+                            @Html.DropDownListFor(d => d.CiudadId, new SelectList(ViewBag.ciudades, "Id", "Nombre"))
+                        </select>
+                        <label for="exampleFormControlInput1" class="form-label">Ciudad</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <label for="exampleFormControlInput1" class="form-label">Superficie</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <label for="exampleFormControlInput1" class="form-label">Precio</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="txtCondicion" style="height: 100px"></textarea>
+                        <label for="exampleFormControlInput1" class="form-label">Condición</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                        <label for="exampleFormControlInput1" class="form-label">Disponible</label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @section scripts{
     <script>
 
         var tabladata;
 
-        jQuery.ajax({
-            url: '@Url.Action("ListarDptos", "Departamento")',
-            type: "GET",
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (data) {
-                console.log(data)
-            }
-        })
 
         tabladata = $("#Dptos").DataTable({
             responsive: true,
@@ -105,13 +140,22 @@
                     "searchable": false,
                     "width": "100px"
                 }
-            ]
+            ],
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-ES.json"
+            }
         });
+
+
+        function abrirModal() {
+
+            $("#FormModal").modal("show");
+        }
+
 
     </script>
 
-
-    }
+}
 
 
 

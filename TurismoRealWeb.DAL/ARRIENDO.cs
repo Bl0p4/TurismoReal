@@ -12,14 +12,15 @@ namespace TurismoRealWeb.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class ARRIENDOS
+    public partial class ARRIENDO
     {
-        public ARRIENDOS()
+        public ARRIENDO()
         {
-            this.ARRIENDOS_AMIGOS = new HashSet<ARRIENDOS_AMIGOS>();
-            this.MULTAS = new HashSet<MULTAS>();
-            this.SERVICIOS_CONTRATADOS = new HashSet<SERVICIOS_CONTRATADOS>();
-            this.TRANSPORTES_REALIZADOS = new HashSet<TRANSPORTES_REALIZADOS>();
+            this.ARRIENDO_AMIGO = new HashSet<ARRIENDO_AMIGO>();
+            this.MULTA = new HashSet<MULTA>();
+            this.SERVICIO_CONTRATADO = new HashSet<SERVICIO_CONTRATADO>();
+            this.TRANSPORTE_REALIZADO = new HashSet<TRANSPORTE_REALIZADO>();
+            this.RESERVA = new HashSet<RESERVA>();
         }
     
         public decimal ID_ARRIENDO { get; set; }
@@ -34,10 +35,11 @@ namespace TurismoRealWeb.DAL
         public string CHECK_OUT { get; set; }
         public decimal TOTAL_ARRIENDO { get; set; }
     
-        public virtual USUARIOS USUARIOS { get; set; }
-        public virtual ICollection<ARRIENDOS_AMIGOS> ARRIENDOS_AMIGOS { get; set; }
-        public virtual ICollection<MULTAS> MULTAS { get; set; }
-        public virtual ICollection<SERVICIOS_CONTRATADOS> SERVICIOS_CONTRATADOS { get; set; }
-        public virtual ICollection<TRANSPORTES_REALIZADOS> TRANSPORTES_REALIZADOS { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
+        public virtual ICollection<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
+        public virtual ICollection<MULTA> MULTA { get; set; }
+        public virtual ICollection<SERVICIO_CONTRATADO> SERVICIO_CONTRATADO { get; set; }
+        public virtual ICollection<TRANSPORTE_REALIZADO> TRANSPORTE_REALIZADO { get; set; }
+        public virtual ICollection<RESERVA> RESERVA { get; set; }
     }
 }

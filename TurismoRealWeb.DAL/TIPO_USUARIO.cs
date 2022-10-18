@@ -16,12 +16,12 @@ namespace TurismoRealWeb.DAL
     {
         public TIPO_USUARIO()
         {
-            this.USUARIOS = new HashSet<USUARIOS>();
+            this.USUARIO = new HashSet<USUARIO>();
         }
     
         public short ID_TIPOUSUARIO { get; set; }
         public string DESCRIPCION { get; set; }
     
-        public virtual ICollection<USUARIOS> USUARIOS { get; set; }
+        public virtual ICollection<USUARIO> USUARIO { get; set; }
     }
 }
