@@ -14,11 +14,11 @@
             @Html.ValidationSummary()
             @Html.HiddenFor(d => d.Id)
             <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(d => d.Nombre)
-                </div>
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.TextBoxFor(d => d.Nombre)
+                </div>
+                <div class="form-floating mb-3">
+                    @Html.LabelFor(d => d.Nombre)
                 </div>
             </div>
             <div class="row">
@@ -76,5 +76,8 @@
             </div>
         </div>
     }
+
 </div>
+
+
 

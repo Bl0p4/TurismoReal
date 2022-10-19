@@ -14,7 +14,7 @@
         <th>Item</th>
         <th>Valor</th>
         <th>Departamento</th>
-        <th>Disponible</th>        
+        <th>Disponible</th>
         <th>Opciones</th>
 
     </tr>
@@ -36,5 +36,24 @@
 
 </table>
 
+@section scripts{
+    <script type="text/javascript">
 
-@TempData["mensaje"]
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("myModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+
+            $('#myModalSuccess').modal("show");
+        }
+
+
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        });
+
+
+
+    </script>
+}

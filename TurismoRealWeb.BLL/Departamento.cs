@@ -23,6 +23,7 @@ namespace TurismoRealWeb.BLL
         public decimal Precio { get; set; }        
         public Boolean IsDisp { get; set; }
         public string Disponible { get; set; }
+        public string Disp { get; set; }
         public string NumDpto { get; set; }
         [Required, MaxLength(100)]
         public string Condicion { get; set; }

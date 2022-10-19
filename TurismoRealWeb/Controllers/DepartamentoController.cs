@@ -14,8 +14,14 @@ namespace TurismoRealWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.departamentos = new Departamento().ReadAll();
+
             EnviarCiudades();
             return View();
+        }
+
+        private void Disp()
+        {
+
         }
 
         // GET: Departamento/Details/5
@@ -35,7 +41,6 @@ namespace TurismoRealWeb.Controllers
 
             return Json(new { data = oList }, JsonRequestBehavior.AllowGet);
         }
-
 
         // GET: Departamento/Create
         public ActionResult Create()
@@ -63,7 +68,7 @@ namespace TurismoRealWeb.Controllers
                 }
 
                 departamento.Save();
-                TempData["mensaje"] = "Guardado Correctamente";
+                TempData["SuccessMessage"] = departamento.Nombre + "  Guardado Correctamente";
                 return RedirectToAction("Index");
             }
             catch
@@ -84,7 +89,7 @@ namespace TurismoRealWeb.Controllers
             }
 
             if (d.Disponible == "1")
-            {
+            {                
                 d.IsDisp = true;
             }
             else
@@ -108,8 +113,8 @@ namespace TurismoRealWeb.Controllers
                     return View(departamento);
                 }
                 // TODO: Add update logic here
-                departamento.Update();
-                TempData["mensaje"] = "Modificado Correctamente";
+                departamento.Update();                                               
+                TempData["SuccessMessage"] = departamento.Nombre + "  Guardado Correctamente";
                 return RedirectToAction("Index");
             }
             catch

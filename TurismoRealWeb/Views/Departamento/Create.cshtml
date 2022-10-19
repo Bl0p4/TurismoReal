@@ -9,80 +9,81 @@
 <div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
     @using (Html.BeginForm())
     {
-    <h3 style="text-align:center;">Nuevo Departamento</h3>
-    <div style="width:60%; margin:0 auto;padding:20px;">
-        @Html.ValidationSummary()
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Nombre)
+        <h3 style="text-align:center;">Nuevo Departamento</h3>
+        <div style="width:60%; margin:0 auto;padding:20px;">
+            @Html.ValidationSummary()
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Nombre)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(d => d.Nombre)
+                </div>
             </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(d => d.Nombre)
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.NumDpto)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(d => d.NumDpto)
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.NumDpto)
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Direccion)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(d => d.Direccion)
+                </div>
             </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(d => d.NumDpto)
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Ciudad)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.DropDownListFor(d => d.CiudadId, new SelectList(ViewBag.ciudades, "Id", "Nombre"))
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Direccion)
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Superficie)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(d => d.Superficie)
+                </div>
             </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(d => d.Direccion)
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Precio)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(d => d.Precio)
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Ciudad)
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Disponible)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.CheckBoxFor(d => d.IsDisp)
+                </div>
             </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.DropDownListFor(d => d.CiudadId, new SelectList(ViewBag.ciudades, "Id", "Nombre"))
+            <div class="row">
+                <div class="col-md-6" style="padding:10px">
+                    @Html.LabelFor(d => d.Condicion)
+                </div>
+                <div class="col-md-6" style="padding:10px">
+                    @Html.TextBoxFor(d => d.Condicion)
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Superficie)
-            </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(d => d.Superficie)
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Precio)
-            </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(d => d.Precio)
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Disponible)
-            </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.CheckBoxFor(d => d.IsDisp)
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="padding:10px">
-                @Html.LabelFor(d => d.Condicion)
-            </div>
-            <div class="col-md-6" style="padding:10px">
-                @Html.TextBoxFor(d => d.Condicion)
-            </div>
-        </div>
 
-        <br />
-        <div class="row" style="margin-top:12px;text-align:center;">
-            <button type="submit" value="Guardar" class="btn btn-primary">Submit</button>
+            <br />
+            <div class="row" style="margin-top:12px;text-align:center;">
+                <button type="submit" value="Guardar" class="btn btn-primary">Submit</button>
+            </div>
         </div>
-    </div>
     }
+    
 </div>
 
 

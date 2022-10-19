@@ -60,6 +60,7 @@
     <Compile Include="Servicio.cs" />
     <Compile Include="Tipo_Usuario.cs" />
     <Compile Include="Transporte.cs" />
+    <Compile Include="TR_Recursos.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>

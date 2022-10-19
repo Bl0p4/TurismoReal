@@ -6,34 +6,34 @@
 <br />
 @Html.ActionLink("Inventario de Departamentos", "Index")
 
-<div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
+<div class="card col-md-5" style="margin: 20px 20px; width: 500px; height: 600px; ">
     @using (Html.BeginForm())
     {
-        <h3 style="text-align:center;">Nuevo Item de Departamento</h3>
-        <div style="width:60%; margin:0 auto;padding:20px;">
+        <h3 class="card-header" style="text-align:center;">Nuevo Item de Departamento</h3>
+        <div class="card-body" style="width:60%; margin:0 auto;padding:20px;">
             @Html.ValidationSummary()
 
             <div class="row">
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.LabelFor(i => i.Item)
                 </div>
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.TextBoxFor(i => i.Item)
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.LabelFor(i => i.Dpto)
                 </div>
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.DropDownListFor(i => i.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"))
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.LabelFor(i => i.Valor)
                 </div>
-                <div class="col-md-6" style="padding:10px">
+                <div class="form-floating mb-3" style="padding:10px">
                     @Html.TextBoxFor(i => i.Valor)
                 </div>
             </div>
@@ -48,7 +48,7 @@
 
             <br />
             <div class="row" style="margin-top:12px;text-align:center;">
-                <button type="submit" value="Guardar" class="btn btn-primary">Submit</button>
+                <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     }
