@@ -4,47 +4,89 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-@Html.ActionLink("Lista de Mantenciones", "Index", new { btnl = "list", @class = "btn btn-success" })
+<script type="text/javascript">
+    $(document).ready(function (){
+        $('.datepicker').datepicker({
+            dateFormat: 'dd/mm/yy',
+            minDate: new Date()
+        });
 
-<div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
-    @using (Html.BeginForm())
-    {
-        <h3 style="text-align:center;">Nuevo Item de Departamento</h3>
-        <div style="width:60%; margin:0 auto;padding:20px;">
-            @Html.ValidationSummary()
-            @Html.HiddenFor(i => i.Id)
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Dpto)
+        $("#txtFech").change(function () {
+            alert($("#txtFech").val());
+        });
+
+    });
+</script>
+
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" onclick="location.href ='@Url.Action("Index", "Mantencion")'">Listado de Mantenciones</button>
+        </div>
+    </div>
+
+    <div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
+        @using (Html.BeginForm())
+        {
+            <h3 style="text-align:center;">Modificar Mantención</h3>
+            <div style="width:60%; margin:0 auto;padding:20px;">
+                @Html.ValidationSummary()
+                @Html.HiddenFor(i => i.Id)
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Dpto)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.DropDownListFor(i => i.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"))
+                    </div>
                 </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.DropDownListFor(i => i.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"))
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Descripcion)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.TextBoxFor(i => i.Descripcion)
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Descripcion)
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Fech_ini)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.EditorFor(i => i.Fech_ini,
+                                       new
+                                       {
+                                           HtmlAttributes = new
+                                           {
+                                               @readonly = "true",
+                                               Value = Model.Fech_ini.ToString("dd/mm/yyyy"),
+                                               @class = "form-control datepicker",
+                                               id = "txtFech"
+                                           }
+                                       })
+                    </div>
                 </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.TextBoxFor(i => i.Descripcion)
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Fech_ini)
-                </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.EditorFor(i => i.Fech_ini, new { HtmlAttributes = new { @class = "datepicker" } })
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Fech_term)
-                </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.EditorFor(i => i.Fech_term, new { HtmlAttributes = new { @class = "datepicker" } })
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Fech_term)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.EditorFor(i => i.Fech_term,
+                                        new
+                                        {
+                                            HtmlAttributes = new
+                                            {
+                                                @readonly = "true",
+                                                Value = Model.Fech_ini.ToString("dd/mm/yyyy"),
+                                                @class = "form-control datepicker"
+                                            }
+                                        })
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6" style="padding:10px">
@@ -57,9 +99,14 @@
 
                 <br />
                 <div class="row" style="margin-top:12px;text-align:center;">
-                    <button type="submit" value="Modificar" class="btn btn-primary">Submit</button>
+                    <button type="submit" value="Modificar" class="btn btn-primary">Modificar</button>
                 </div>
             </div>
-        </div>
-      }
+        }
+    </div>
 </div>
+
+@section scripts
+{
+
+    }

@@ -2,53 +2,93 @@
 @{
     ViewBag.Title = "Edit";
 }
-<br />
-@Html.ActionLink("Inventario de Departamentos", "Index")
-<div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
-    @using (Html.BeginForm())
-    {
-        <h3 style="text-align:center;">Nuevo Item de Departamento</h3>
-        <div style="width:60%; margin:0 auto;padding:20px;">
-            @Html.ValidationSummary()
-            @Html.HiddenFor(i => i.Id)
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Item)
-                </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.TextBoxFor(i => i.Item)
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Dpto)
-                </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.DropDownListFor(i => i.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"))
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Valor)
-                </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.TextBoxFor(i => i.Valor)
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6" style="padding:10px">
-                    @Html.LabelFor(i => i.Disponible)
-                </div>
-                <div class="col-md-6" style="padding:10px">
-                    @Html.TextBoxFor(i => i.Disponible)
-                </div>
-            </div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-            <br />
-            <div class="row" style="margin-top:12px;text-align:center;">
-                <button type="submit" value="Modificar" class="btn btn-primary">Submit</button>
-            </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+            dateFormat: 'dd/mm/yy',
+            minDate: new Date()
+        });
+
+        $("#txtFech").change(function () {
+            alert($("#txtFech").val());
+        });
+
+    });
+</script>
+
+<div class="card-body">
+    <div class="row">
+        <div class="col-12">
+            <button type="button" class="btn btn-success" onclick="location.href ='@Url.Action("Index", "Inventario")'">Inventario de Departamentos</button>
         </div>
-    }
-</div>
+    </div>
+    <div class="col-md-5" style="margin: 20px 20px; width: 700px; height: 600px; background-color: #f2f2f2 ">
+        @using (Html.BeginForm())
+        {
+            <h3 style="text-align:center;">Nuevo Item de Departamento</h3>
+            <div style="width:60%; margin:0 auto;padding:20px;">
+                @Html.ValidationSummary()
+                @Html.HiddenFor(i => i.Id)
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Item)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.TextBoxFor(i => i.Item)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Dpto)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.DropDownListFor(i => i.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"))
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.Valor)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.TextBoxFor(i => i.Valor)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(i => i.FechComp)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.EditorFor(i => i.FechComp,
+                                       new
+                                       {
+                                           HtmlAttributes = new
+                                           {
+                                               @readonly = "true",
+                                               Value = Model.FechComp.ToString("dd/mm/yyyy"),
+                                               @class = "form-control datepicker",
+                                               id = "txtFech"
+                                           }
+                                       })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(d => d.Disponible)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.CheckBoxFor(d => d.IsDisp)
+                    </div>
+                </div>
 
+                <br />
+                <div class="row" style="margin-top:12px;text-align:center;">
+                    <button type="submit" value="Modificar" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -20,14 +20,22 @@ namespace TurismoRealWeb.Controllers
         // GET: Mantencion/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Mantencion manten = new Mantencion().Find(id);
+            EnviarDptos();
+            return View(manten);
         }
 
         // GET: Mantencion/Create
         public ActionResult Create()
         {
+            Mantencion manten = new Mantencion()
+            {
+                Fech_ini = DateTime.MinValue,
+                Fech_term = DateTime.MinValue
+            };
+
             EnviarDptos();
-            return View();
+            return View(manten);
         }
 
         private void EnviarDptos()
@@ -69,6 +77,9 @@ namespace TurismoRealWeb.Controllers
                 TempData["mensaje"] = "El Objeto no existe";
                 return RedirectToAction("Index");
             }
+
+            man.Fech_ini = DateTime.MinValue;
+            man.Fech_term = DateTime.MinValue;            
 
             EnviarDptos();
             return View(man);

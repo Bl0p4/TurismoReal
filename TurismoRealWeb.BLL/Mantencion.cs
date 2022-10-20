@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace TurismoRealWeb.BLL
     public class Mantencion
     {
         public decimal Id { get; set; }
-        public decimal DptoId { get; set; }
+        public decimal DptoId { get; set; }        
         public DateTime Fech_ini { get; set; }
         public DateTime Fech_term { get; set; }
         public string Descripcion { get; set; }
@@ -51,6 +52,8 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                Fech_ini = Convert.ToDateTime(Fech_ini);
+                Fech_term = Convert.ToDateTime(Fech_term);
                 //Procedimiento almacenado
                 db.SP_CREA_MANTEN(this.DptoId, this.Fech_ini, this.Fech_term,
                                       this.Descripcion, this.Costo);
@@ -94,6 +97,8 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                Fech_ini = Convert.ToDateTime(Fech_ini);
+                Fech_term = Convert.ToDateTime(Fech_term);
                 db.SP_UPDATE_MANTEN(this.Id, this.DptoId, this.Fech_ini, this.Fech_term,
                                       this.Descripcion, this.Costo);
                 return true;

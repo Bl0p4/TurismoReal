@@ -661,6 +661,8 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Departamento\Details.cshtml" />
+    <Content Include="Views\Mantencion\Details.cshtml" />
+    <Content Include="Views\Inventario\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

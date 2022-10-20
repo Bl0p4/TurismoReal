@@ -14,13 +14,17 @@ namespace TurismoRealWeb.Controllers
         public ActionResult Index()
         {
             ViewBag.inventario = new Inventario().ReadAll();
+
+            EnviarDptos();
             return View();
         }
 
         // GET: Inventario/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Inventario inven = new Inventario().Find(id);
+            EnviarDptos();
+            return View(inven);
         }
 
         // GET: Inventario/Create
@@ -37,7 +41,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Inventario/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "DptoId, Item, Valor, Disponible")] Inventario inventario)
+        public ActionResult Create([Bind(Include = "DptoId, Item, Valor, Disponible, FechComp")] Inventario inventario)
         {
             try
             {
@@ -70,13 +74,22 @@ namespace TurismoRealWeb.Controllers
                 return RedirectToAction("Index");
             }
 
+            if (inv.Disponible == "1")
+            {
+                inv.IsDisp = true;
+            }
+            else
+            {
+                inv.IsDisp = false;
+            }
+
             EnviarDptos();
             return View(inv);
         }
 
         // POST: Inventario/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id, DptoId, Item, Valor, Disponible")] Inventario inventario)
+        public ActionResult Edit([Bind(Include = "Id, DptoId, Item, Valor, Disponible, FechComp")] Inventario inventario)
         {
             try
             {

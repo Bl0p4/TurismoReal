@@ -15,6 +15,7 @@ namespace TurismoRealWeb.BLL
         public decimal Valor { get; set; }
         public string Disponible { get; set; }
         public DateTime FechComp { get; set; }
+        public Boolean IsDisp { get; set; }
 
         public Departamento Dpto { get; set; }
 
@@ -29,6 +30,7 @@ namespace TurismoRealWeb.BLL
                 Item = i.NOMBRE,
                 Valor = i.VALOR,
                 Disponible = i.DISPONIBLE,
+                FechComp = i.FECHA_COMPRA,
                 
                 Dpto = new Departamento()
                 {
@@ -49,6 +51,15 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                if (IsDisp == true)
+                {
+                    Disponible = "1";
+                }
+                else if (IsDisp == false)
+                {
+                    Disponible = "0";
+                }
+                FechComp = Convert.ToDateTime(FechComp);
                 //Procedimiento almacenado
                 db.SP_CREA_ITEM(this.DptoId, this.Item, this.Valor, this.Disponible, this.FechComp);
                 return true;
@@ -69,6 +80,7 @@ namespace TurismoRealWeb.BLL
                 Item = i.NOMBRE,
                 Valor = i.VALOR,
                 Disponible = i.DISPONIBLE,
+                FechComp = i.FECHA_COMPRA,
                 Dpto = new Departamento()
                 {
                     Id = i.ID_DPTO,
@@ -89,6 +101,15 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                if (IsDisp == true)
+                {
+                    Disponible = "1";
+                }
+                else if (IsDisp == false)
+                {
+                    Disponible = "0";
+                }
+                FechComp = Convert.ToDateTime(FechComp);
                 db.SP_UPDATE_ITEM(this.Id, this.DptoId, this.Item, this.Valor, this.Disponible, this.FechComp);                
                 return true;
             }

@@ -1,0 +1,66 @@
+﻿@model TurismoRealWeb.BLL.Inventario
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Inventario</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.DptoId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DptoId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Item)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Item)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Valor)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Valor)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Disponible)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Disponible)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.FechComp)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.FechComp)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Modificar", "Edit", new { id = Model.Id }, new { btn1 = "edit", @class = "btn btn-secondary" })
+        @Html.ActionLink("Volver", "Index", null, new { btn5 = "back", @class = "btn btn-danger" })
+    </p>
+</body>
+</html>

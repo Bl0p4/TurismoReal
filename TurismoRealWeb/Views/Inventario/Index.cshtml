@@ -4,37 +4,52 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Inventario de Departamentos</h2>
 
 @{ List<Inventario> inventarios = (List<Inventario>)ViewBag.inventario;}
-@Html.ActionLink("Nuevo Inventario", "Create")
 
-<table id="tabla">
-    <tr>
-        <th>Item</th>
-        <th>Valor</th>
-        <th>Departamento</th>
-        <th>Disponible</th>
-        <th>Opciones</th>
 
-    </tr>
-    @foreach (var inventario in inventarios)
-    {
+<div class="table-responsive card mb-4 mt-4 bg-">
+    <div class="card-header bg-dark" style="color: white">
+        <i class="fas fa-building me-1 "></i> Lista de Inventario
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="location.href ='@Url.Action("Create", "Inventario")'">Crear Departamento</button>
+            </div>
+        </div>
+
+        <hr />
+        <table id="tabla" class="table table-hover table-striped" style="width: 100%">
+            <tr>
+                <th>Item</th>
+                <th>Valor</th>
+                <th>Departamento</th>
+                <th>Disponible</th>
+                <th>Fecha de Compra</th>
+                <th>Opciones</th>
+
+            </tr>
+            @foreach (var inventario in inventarios)
+            {
         <tr>
             <td>@inventario.Item</td>
             <td>@inventario.Valor</td>
             <td>@inventario.Dpto.Nombre</td>
-            <td>@inventario.Disponible</td>
+            <td>@(inventario.Disponible == "1" ? "Disponible":"No Disponible")</td>
+            <td>@inventario.FechComp</td>
             <td>
-                @Html.ActionLink("Eliminar", "Delete", new { id = inventario.Id })
-                <span> || </span>
-                @Html.ActionLink("Modificar", "Edit", new { id = inventario.Id })
+                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Inventario", new { id = inventario.Id })'"><i class="fas fa-file"></i></button>
+                <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Inventario", new { id = inventario.Id })'"><i class="fas fa-pen"></i></button>
+                <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Inventario", new { id = inventario.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>
+
             </td>
-
         </tr>
-    }
+            }
 
-</table>
+        </table>
+    </div>
+</div>
 
 @section scripts{
     <script type="text/javascript">
@@ -57,3 +72,4 @@
 
     </script>
 }
+

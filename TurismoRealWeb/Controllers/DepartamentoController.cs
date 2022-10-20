@@ -19,10 +19,6 @@ namespace TurismoRealWeb.Controllers
             return View();
         }
 
-        private void Disp()
-        {
-
-        }
 
         // GET: Departamento/Details/5
         public ActionResult Details(int id)
