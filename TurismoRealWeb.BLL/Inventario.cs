@@ -42,7 +42,7 @@ namespace TurismoRealWeb.BLL
                     Precio = i.DEPARTAMENTO.PRECIO_DPTO,
                     Disponible = i.DEPARTAMENTO.DISPONIBLE,
                     Condicion = i.DEPARTAMENTO.CONDICION,
-                    NumDpto = i.DEPARTAMENTO.NRO_DPTO
+                    NroDpto = i.DEPARTAMENTO.NRO_DPTO
                 }
             }).ToList();
         }

@@ -75,7 +75,7 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_CLIParameter);
         }
     
-        public virtual int SP_CREA_DPTO(Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, string nRO_DPTO)
+        public virtual int SP_CREA_DPTO(Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, Nullable<decimal> nRO_DPTO)
         {
             var iD_CIUDADParameter = iD_CIUDAD.HasValue ?
                 new ObjectParameter("ID_CIUDAD", iD_CIUDAD) :
@@ -105,9 +105,9 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("COND", cOND) :
                 new ObjectParameter("COND", typeof(string));
     
-            var nRO_DPTOParameter = nRO_DPTO != null ?
+            var nRO_DPTOParameter = nRO_DPTO.HasValue ?
                 new ObjectParameter("NRO_DPTO", nRO_DPTO) :
-                new ObjectParameter("NRO_DPTO", typeof(string));
+                new ObjectParameter("NRO_DPTO", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREA_DPTO", iD_CIUDADParameter, nOMBREParameter, dIRParameter, m2Parameter, pRECIOParameter, dISPParameter, cONDParameter, nRO_DPTOParameter);
         }
@@ -397,7 +397,7 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ARRIENDO", iDParameter, iD_CLIParameter, iD_DPTOParameter, fEC_RESERVAParameter, vALOR_RESERVAParameter, pAGADAParameter, fEC_INIParameter, fEC_FINParameter, tOTALParameter);
         }
     
-        public virtual int SP_UPDATE_DPTO(Nullable<decimal> iD, Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, string nRO_DPTO)
+        public virtual int SP_UPDATE_DPTO(Nullable<decimal> iD, Nullable<decimal> iD_CIUDAD, string nOMBRE, string dIR, string m2, Nullable<decimal> pRECIO, string dISP, string cOND, Nullable<decimal> nRO_DPTO)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
@@ -431,30 +431,30 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("COND", cOND) :
                 new ObjectParameter("COND", typeof(string));
     
-            var nRO_DPTOParameter = nRO_DPTO != null ?
+            var nRO_DPTOParameter = nRO_DPTO.HasValue ?
                 new ObjectParameter("NRO_DPTO", nRO_DPTO) :
-                new ObjectParameter("NRO_DPTO", typeof(string));
+                new ObjectParameter("NRO_DPTO", typeof(decimal));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_DPTO", iDParameter, iD_CIUDADParameter, nOMBREParameter, dIRParameter, m2Parameter, pRECIOParameter, dISPParameter, cONDParameter, nRO_DPTOParameter);
         }
     
-        public virtual int SP_UPDATE_ITEM(Nullable<decimal> iD, Nullable<decimal> iD_DPTO, string iTEM, Nullable<decimal> vALOR, string dISP, Nullable<System.DateTime> fEC)
+        public virtual int SP_UPDATE_ITEM(Nullable<decimal> iD, Nullable<decimal> p_ID_DPTO, string iTEM, Nullable<decimal> p_VALOR, string dISP, Nullable<System.DateTime> fEC)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
                 new ObjectParameter("ID", typeof(decimal));
     
-            var iD_DPTOParameter = iD_DPTO.HasValue ?
-                new ObjectParameter("ID_DPTO", iD_DPTO) :
-                new ObjectParameter("ID_DPTO", typeof(decimal));
+            var p_ID_DPTOParameter = p_ID_DPTO.HasValue ?
+                new ObjectParameter("P_ID_DPTO", p_ID_DPTO) :
+                new ObjectParameter("P_ID_DPTO", typeof(decimal));
     
             var iTEMParameter = iTEM != null ?
                 new ObjectParameter("ITEM", iTEM) :
                 new ObjectParameter("ITEM", typeof(string));
     
-            var vALORParameter = vALOR.HasValue ?
-                new ObjectParameter("VALOR", vALOR) :
-                new ObjectParameter("VALOR", typeof(decimal));
+            var p_VALORParameter = p_VALOR.HasValue ?
+                new ObjectParameter("P_VALOR", p_VALOR) :
+                new ObjectParameter("P_VALOR", typeof(decimal));
     
             var dISPParameter = dISP != null ?
                 new ObjectParameter("DISP", dISP) :
@@ -464,18 +464,18 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("FEC", fEC) :
                 new ObjectParameter("FEC", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ITEM", iDParameter, iD_DPTOParameter, iTEMParameter, vALORParameter, dISPParameter, fECParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ITEM", iDParameter, p_ID_DPTOParameter, iTEMParameter, p_VALORParameter, dISPParameter, fECParameter);
         }
     
-        public virtual int SP_UPDATE_MANTEN(Nullable<decimal> iD, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_TERM, string dESCRIPCION, Nullable<decimal> cOSTO)
+        public virtual int SP_UPDATE_MANTEN(Nullable<decimal> iD, Nullable<decimal> p_ID_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_TERM, string p_DESCRIPCION, Nullable<decimal> p_COSTO)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
                 new ObjectParameter("ID", typeof(decimal));
     
-            var iD_DPTOParameter = iD_DPTO.HasValue ?
-                new ObjectParameter("ID_DPTO", iD_DPTO) :
-                new ObjectParameter("ID_DPTO", typeof(decimal));
+            var p_ID_DPTOParameter = p_ID_DPTO.HasValue ?
+                new ObjectParameter("P_ID_DPTO", p_ID_DPTO) :
+                new ObjectParameter("P_ID_DPTO", typeof(decimal));
     
             var fEC_INIParameter = fEC_INI.HasValue ?
                 new ObjectParameter("FEC_INI", fEC_INI) :
@@ -485,18 +485,18 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("FEC_TERM", fEC_TERM) :
                 new ObjectParameter("FEC_TERM", typeof(System.DateTime));
     
-            var dESCRIPCIONParameter = dESCRIPCION != null ?
-                new ObjectParameter("DESCRIPCION", dESCRIPCION) :
-                new ObjectParameter("DESCRIPCION", typeof(string));
+            var p_DESCRIPCIONParameter = p_DESCRIPCION != null ?
+                new ObjectParameter("P_DESCRIPCION", p_DESCRIPCION) :
+                new ObjectParameter("P_DESCRIPCION", typeof(string));
     
-            var cOSTOParameter = cOSTO.HasValue ?
-                new ObjectParameter("COSTO", cOSTO) :
-                new ObjectParameter("COSTO", typeof(decimal));
+            var p_COSTOParameter = p_COSTO.HasValue ?
+                new ObjectParameter("P_COSTO", p_COSTO) :
+                new ObjectParameter("P_COSTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_MANTEN", iDParameter, iD_DPTOParameter, fEC_INIParameter, fEC_TERMParameter, dESCRIPCIONParameter, cOSTOParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_MANTEN", iDParameter, p_ID_DPTOParameter, fEC_INIParameter, fEC_TERMParameter, p_DESCRIPCIONParameter, p_COSTOParameter);
         }
     
-        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> iD, string nOMBRE, Nullable<System.DateTime> fECH, Nullable<decimal> iD_ARRIENDO, Nullable<decimal> aCOMP, string vIG)
+        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> iD, string nOMBRE, Nullable<System.DateTime> fECH, Nullable<decimal> p_ID_ARRIENDO, Nullable<decimal> aCOMP, string vIG)
         {
             var iDParameter = iD.HasValue ?
                 new ObjectParameter("ID", iD) :
@@ -510,9 +510,9 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("FECH", fECH) :
                 new ObjectParameter("FECH", typeof(System.DateTime));
     
-            var iD_ARRIENDOParameter = iD_ARRIENDO.HasValue ?
-                new ObjectParameter("ID_ARRIENDO", iD_ARRIENDO) :
-                new ObjectParameter("ID_ARRIENDO", typeof(decimal));
+            var p_ID_ARRIENDOParameter = p_ID_ARRIENDO.HasValue ?
+                new ObjectParameter("P_ID_ARRIENDO", p_ID_ARRIENDO) :
+                new ObjectParameter("P_ID_ARRIENDO", typeof(decimal));
     
             var aCOMPParameter = aCOMP.HasValue ?
                 new ObjectParameter("ACOMP", aCOMP) :
@@ -522,7 +522,7 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("VIG", vIG) :
                 new ObjectParameter("VIG", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", iDParameter, nOMBREParameter, fECHParameter, iD_ARRIENDOParameter, aCOMPParameter, vIGParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", iDParameter, nOMBREParameter, fECHParameter, p_ID_ARRIENDOParameter, aCOMPParameter, vIGParameter);
         }
     
         public virtual int SP_UPDATE_USUARIO(Nullable<decimal> iD, Nullable<decimal> iD_TIPO, string nOMBRE, string pATERNO, string mATERNO, Nullable<decimal> rUT, string dV, string dIRECCION, string cIUDAD, string tELEFONO, string eMAIL, string aREA, string uSUARIO, string pASS)

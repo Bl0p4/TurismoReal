@@ -71,7 +71,7 @@
           <Property Name="PRECIO_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DISPONIBLE" Type="varchar2" MaxLength="1" Nullable="false" />
           <Property Name="CONDICION" Type="varchar2" MaxLength="100" Nullable="false" />
-          <Property Name="NRO_DPTO" Type="varchar2" MaxLength="5" Nullable="false" />
+          <Property Name="NRO_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
@@ -353,7 +353,7 @@
           <Parameter Name="PRECIO" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CREA_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
@@ -445,29 +445,29 @@
           <Parameter Name="PRECIO" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
-          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="ITEM" Type="varchar2" Mode="In" />
-          <Parameter Name="VALOR" Type="number" Mode="In" />
+          <Parameter Name="P_VALOR" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="FEC" Type="date" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_MANTEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
-          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="FEC_INI" Type="date" Mode="In" />
           <Parameter Name="FEC_TERM" Type="date" Mode="In" />
-          <Parameter Name="DESCRIPCION" Type="varchar2" Mode="In" />
-          <Parameter Name="COSTO" Type="number" Mode="In" />
+          <Parameter Name="P_DESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
           <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
           <Parameter Name="FECH" Type="date" Mode="In" />
-          <Parameter Name="ID_ARRIENDO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
           <Parameter Name="ACOMP" Type="number" Mode="In" />
           <Parameter Name="VIG" Type="char" Mode="In" />
         </Function>
@@ -629,7 +629,7 @@
           <Property Name="PRECIO_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DISPONIBLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CONDICION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NRO_DPTO" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NRO_DPTO" Type="Decimal" Nullable="false" />
           <NavigationProperty Name="CIUDAD" Relationship="Model.CIUDADDEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="CIUDAD" />
           <NavigationProperty Name="INVENTARIO" Relationship="Model.a" FromRole="DEPARTAMENTO" ToRole="INVENTARIO" />
           <NavigationProperty Name="MANTENCION" Relationship="Model.DEPARTAMENTOMANTENCION" FromRole="DEPARTAMENTO" ToRole="MANTENCION" />
@@ -988,7 +988,7 @@
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
-            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CREA_ITEM">
             <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
@@ -1080,29 +1080,29 @@
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
-            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_ITEM">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="ITEM" Mode="In" Type="String" />
-            <Parameter Name="VALOR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_VALOR" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="FEC" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_MANTEN">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
             <Parameter Name="FEC_TERM" Mode="In" Type="DateTime" />
-            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
-            <Parameter Name="COSTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_RESERVA">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
             <Parameter Name="NOMBRE" Mode="In" Type="String" />
             <Parameter Name="FECH" Mode="In" Type="DateTime" />
-            <Parameter Name="ID_ARRIENDO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
             <Parameter Name="ACOMP" Mode="In" Type="Decimal" />
             <Parameter Name="VIG" Mode="In" Type="String" />
           </FunctionImport>
