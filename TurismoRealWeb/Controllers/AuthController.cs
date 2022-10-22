@@ -44,5 +44,27 @@ namespace TurismoRealWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult Registro()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registro([Bind(Include = "Nombre,Paterno,Materno,Rut,Dv,Direccion,Ciudad,Telefono,Email,Area,Username,Password,Id_tipo")] Usuario usuario)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                usuario.Reg();
+                TempData["mensaje"] = "Registrado Correctamente";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(usuario);
+            }
+        }
+
+
     }
 }

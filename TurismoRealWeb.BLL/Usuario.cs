@@ -85,6 +85,23 @@ namespace TurismoRealWeb.BLL
             }
         }
 
+        public bool Reg()
+        {
+            try
+            {
+                this.Password = TR_Recursos.ConvertirSha256(Password);
+                Id_tipo = 1;
+                //Procedimiento almacenado
+                db.SP_CREATE_USUARIO(this.Id_tipo, this.Nombre, this.Paterno, this.Materno,
+                                     this.Rut, this.Dv, this.Direccion, this.Ciudad,
+                                     this.Telefono, this.Email, this.Area, this.Username, this.Password);
+                return true;
+            }
+            catch (Exception)
+            {
 
+                return false;
+            }
+        }
     }
 }
