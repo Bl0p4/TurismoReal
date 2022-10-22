@@ -13,7 +13,7 @@ namespace TurismoRealWeb.Controllers
         // GET: Inventario
         public ActionResult Index()
         {
-            ViewBag.inventario = new Inventario().ReadAll();
+            ViewBag.inventarios = new Inventario().ReadAll();
 
             EnviarDptos();
             return View();

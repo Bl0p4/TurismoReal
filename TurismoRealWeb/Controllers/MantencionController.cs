@@ -28,14 +28,14 @@ namespace TurismoRealWeb.Controllers
         // GET: Mantencion/Create
         public ActionResult Create()
         {
-            Mantencion manten = new Mantencion()
-            {
-                Fech_ini = DateTime.MinValue,
-                Fech_term = DateTime.MinValue
-            };
+            //Mantencion manten = new Mantencion()
+            //{
+            //    Fech_ini = DateTime.MinValue,
+            //    Fech_term = DateTime.MinValue
+            //};
 
             EnviarDptos();
-            return View(manten);
+            return View();
         }
 
         private void EnviarDptos()
@@ -78,8 +78,8 @@ namespace TurismoRealWeb.Controllers
                 return RedirectToAction("Index");
             }
 
-            man.Fech_ini = DateTime.MinValue;
-            man.Fech_term = DateTime.MinValue;            
+            //man.Fech_ini = DateTime.MinValue;
+            //man.Fech_term = DateTime.MinValue;            
 
             EnviarDptos();
             return View(man);

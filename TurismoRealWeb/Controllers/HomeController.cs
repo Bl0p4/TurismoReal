@@ -26,6 +26,6 @@ namespace TurismoRealWeb.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
+        }        
     }
 }

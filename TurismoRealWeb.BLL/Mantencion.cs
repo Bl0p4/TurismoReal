@@ -52,8 +52,6 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                Fech_ini = Convert.ToDateTime(Fech_ini);
-                Fech_term = Convert.ToDateTime(Fech_term);
                 //Procedimiento almacenado
                 db.SP_CREA_MANTEN(this.DptoId, this.Fech_ini, this.Fech_term,
                                       this.Descripcion, this.Costo);
@@ -86,7 +84,8 @@ namespace TurismoRealWeb.BLL
                     Superficie = m.DEPARTAMENTO.SUPERFICIE_DPTO,
                     Precio = m.DEPARTAMENTO.PRECIO_DPTO,
                     Disponible = m.DEPARTAMENTO.DISPONIBLE,
-                    Condicion = m.DEPARTAMENTO.CONDICION
+                    Condicion = m.DEPARTAMENTO.CONDICION,
+                    NroDpto = m.DEPARTAMENTO.NRO_DPTO
                 }
 
 
@@ -97,8 +96,6 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                Fech_ini = Convert.ToDateTime(Fech_ini);
-                Fech_term = Convert.ToDateTime(Fech_term);
                 db.SP_UPDATE_MANTEN(this.Id, this.DptoId, this.Fech_ini, this.Fech_term,
                                       this.Descripcion, this.Costo);
                 return true;

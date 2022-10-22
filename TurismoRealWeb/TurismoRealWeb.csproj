@@ -244,6 +244,7 @@
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MantencionController.cs" />
     <Compile Include="Controllers\ReservaController.cs" />
+    <Compile Include="Controllers\SitioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,6 +272,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
+    <Content Include="Content\css\styles.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -482,6 +484,32 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\assets\favicon.ico" />
+    <Content Include="Img\assets\img\02slider.jpg" />
+    <Content Include="Img\assets\img\about\1.jpg" />
+    <Content Include="Img\assets\img\about\2.jpg" />
+    <Content Include="Img\assets\img\about\3.jpg" />
+    <Content Include="Img\assets\img\about\4.jpg" />
+    <Content Include="Img\assets\img\close-icon.svg" />
+    <Content Include="Img\assets\img\header-bg.jpg" />
+    <Content Include="Img\assets\img\logos\facebook.svg" />
+    <Content Include="Img\assets\img\logos\google.svg" />
+    <Content Include="Img\assets\img\logos\ibm.svg" />
+    <Content Include="Img\assets\img\logos\microsoft.svg" />
+    <Content Include="Img\assets\img\map-image.png" />
+    <Content Include="Img\assets\img\navbar-logo.svg" />
+    <Content Include="Img\assets\img\portfolio\1.jpg" />
+    <Content Include="Img\assets\img\portfolio\2.jpg" />
+    <Content Include="Img\assets\img\portfolio\3.jpg" />
+    <Content Include="Img\assets\img\portfolio\4.jpg" />
+    <Content Include="Img\assets\img\portfolio\5.jpg" />
+    <Content Include="Img\assets\img\portfolio\6.jpg" />
+    <Content Include="Img\assets\img\team\1.jpg" />
+    <Content Include="Img\assets\img\team\2.jpg" />
+    <Content Include="Img\assets\img\team\3.jpg" />
+    <Content Include="Img\assets\img\Turismo-Real-_1_.svg" />
+    <Content Include="Img\assets\img\Turismo_real_logo.png" />
+    <Content Include="Img\assets\img\Turismo_real_logo.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -615,6 +643,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\scripts.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Img\fondo.jpg" />
     <Content Include="Scripts\scripts.js" />
@@ -667,6 +696,7 @@
     <Content Include="Views\Reserva\Index.cshtml" />
     <Content Include="Views\Reserva\Create.cshtml" />
     <Content Include="Views\Reserva\Edit.cshtml" />
+    <Content Include="Views\Sitio\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

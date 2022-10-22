@@ -71,7 +71,7 @@
           <Property Name="PRECIO_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DISPONIBLE" Type="varchar2" MaxLength="1" Nullable="false" />
           <Property Name="CONDICION" Type="varchar2" MaxLength="100" Nullable="false" />
-          <Property Name="NRO_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NRO_DPTO" Type="varchar2" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
@@ -353,7 +353,7 @@
           <Parameter Name="PRECIO" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DPTO" Type="number" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="SP_CREA_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
@@ -445,7 +445,7 @@
           <Parameter Name="PRECIO" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DPTO" Type="number" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -629,7 +629,7 @@
           <Property Name="PRECIO_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DISPONIBLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CONDICION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NRO_DPTO" Type="Decimal" Nullable="false" />
+          <Property Name="NRO_DPTO" Type="String" Nullable="false" />
           <NavigationProperty Name="CIUDAD" Relationship="Model.CIUDADDEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="CIUDAD" />
           <NavigationProperty Name="INVENTARIO" Relationship="Model.a" FromRole="DEPARTAMENTO" ToRole="INVENTARIO" />
           <NavigationProperty Name="MANTENCION" Relationship="Model.DEPARTAMENTOMANTENCION" FromRole="DEPARTAMENTO" ToRole="MANTENCION" />
@@ -988,7 +988,7 @@
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
-            <Parameter Name="NRO_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CREA_ITEM">
             <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
@@ -1080,7 +1080,7 @@
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
-            <Parameter Name="NRO_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_ITEM">
             <Parameter Name="ID" Mode="In" Type="Decimal" />

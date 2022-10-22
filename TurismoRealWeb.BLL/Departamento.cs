@@ -24,7 +24,7 @@ namespace TurismoRealWeb.BLL
         public Boolean IsDisp { get; set; }
         public string Disponible { get; set; }
         public string Disp { get; set; }
-        public decimal NroDpto { get; set; }
+        public string NroDpto { get; set; }
         [Required, MaxLength(100)]
         public string Condicion { get; set; }
 

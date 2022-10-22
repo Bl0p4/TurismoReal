@@ -90,7 +90,8 @@ namespace TurismoRealWeb.BLL
                     Superficie = i.DEPARTAMENTO.SUPERFICIE_DPTO,
                     Precio = i.DEPARTAMENTO.PRECIO_DPTO,
                     Disponible = i.DEPARTAMENTO.DISPONIBLE,
-                    Condicion = i.DEPARTAMENTO.CONDICION
+                    Condicion = i.DEPARTAMENTO.CONDICION,
+                    NroDpto = i.DEPARTAMENTO.NRO_DPTO
                 }
 
 

@@ -28,7 +28,7 @@ namespace TurismoRealWeb.DAL
         public decimal PRECIO_DPTO { get; set; }
         public string DISPONIBLE { get; set; }
         public string CONDICION { get; set; }
-        public decimal NRO_DPTO { get; set; }
+        public string NRO_DPTO { get; set; }
     
         public virtual CIUDAD CIUDAD { get; set; }
         public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
