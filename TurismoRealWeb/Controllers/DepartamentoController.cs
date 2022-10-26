@@ -52,7 +52,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Departamento/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "CiudadId, Nombre, Direccion, Superficie, Precio, Disponible, Condicion, NumDpto, IsDisp")] Departamento departamento)
+        public ActionResult Create([Bind(Include = "CiudadId, Nombre, Direccion, Superficie, Precio, Disponible, IsDisp, Condicion, NumDpto")] Departamento departamento)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Departamento/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id, CiudadId, Nombre, Direccion, Superficie, Precio, IsDisp, Condicion, NumDpto")] Departamento departamento)
+        public ActionResult Edit([Bind(Include = "Id, CiudadId, Nombre, Direccion, Superficie, Precio, Disponible, IsDisp, Condicion, NumDpto")] Departamento departamento)
         {
             try
             {

@@ -16,13 +16,27 @@
             <div style="width:60%; margin:0 auto;padding:20px;">
                 @Html.ValidationSummary()
                 @Html.HiddenFor(d => d.Id)
-                <div class="row">                    
+                <div class="row">
                     <div class="form-floating mb-3" style="padding:10px">
                         @Html.TextBoxFor(d => d.Nombre, new { @placeholder = "Departamento", @class = "form-control" })
                         <label for="Nombre">Nombre</label>
                     </div>
                 </div>
-                <div class="row">                    
+                <div class="row">
+                    <div class="form-floating mb-3" style="padding:10px">
+                        @Html.TextBoxFor(d => d.Direccion, new { @placeholder = "Direccion", @class = "form-control" })
+                        <label for="Direccion">Dirección</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.LabelFor(d => d.NumDpto)
+                    </div>
+                    <div class="col-md-6" style="padding:10px">
+                        @Html.TextBoxFor(d => d.NumDpto)
+                    </div>
+                </div>
+                <div class="row">
                     <div class="form-floating mb-3" style="padding:10px">
                         @Html.TextBoxFor(d => d.Direccion, new { @placeholder = "Direccion", @class = "form-control" })
                         <label for="Direccion">Dirección</label>

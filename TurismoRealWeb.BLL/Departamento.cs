@@ -25,6 +25,7 @@ namespace TurismoRealWeb.BLL
         public string Disponible { get; set; }
         public string Disp { get; set; }
         public string NroDpto { get; set; }
+        public string NumDpto { get; set; }
         [Required, MaxLength(100)]
         public string Condicion { get; set; }
 
@@ -44,7 +45,7 @@ namespace TurismoRealWeb.BLL
                 Precio = d.PRECIO_DPTO,
                 Disponible = d.DISPONIBLE,
                 Condicion = d.CONDICION,
-                NroDpto = d.NRO_DPTO,
+                NumDpto = d.NRO_DPTO,
                 Ciudad = new Ciudad()
                 {
                     Id = d.ID_CIUDAD,
@@ -66,8 +67,7 @@ namespace TurismoRealWeb.BLL
                     Disponible = "0";
                 }
                 //Procedimiento almacenado
-                db.SP_CREATE_DPTO(this.CiudadId, this.Nombre, this.Direccion, 
-                                this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NroDpto);
+                db.SP_CREATE_DPTO(this.CiudadId, this.Nombre, this.Direccion, this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NumDpto);
                 return true;
             }
             catch (Exception)
@@ -114,7 +114,7 @@ namespace TurismoRealWeb.BLL
                 }
 
                 db.SP_UPDATE_DPTO(this.Id, this.CiudadId, this.Nombre, this.Direccion,
-                                this.Superficie, this.NroDpto, this.Precio, this.Disponible, this.Condicion);
+                                this.Superficie, this.NumDpto, this.Precio, this.Disponible, this.Condicion);
                 return true;
             }
             catch (Exception)
