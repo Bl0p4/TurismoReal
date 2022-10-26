@@ -19,14 +19,21 @@ namespace TurismoRealWeb.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario, string ReturnUrl)
         {
+            var tipo = usuario.Id_tipo;
             if (IsValid(usuario))
             {
-                FormsAuthentication.SetAuthCookie(usuario.Username, false);
+                FormsAuthentication.SetAuthCookie(usuario.Username, false);               
+
                 if (ReturnUrl != null)
                 {
                     return Redirect(ReturnUrl);
                 }
+                
 
+                if (tipo != 1)
+                {
+                    return RedirectToAction("Home", "Sitio");
+                }                
                 return RedirectToAction("Index", "Home");
             }
             TempData["mensaje"] = "Usuario o Contraseña Incorrectos";
@@ -34,7 +41,7 @@ namespace TurismoRealWeb.Controllers
         }
 
         private bool IsValid(Usuario usuario)
-        {
+        {            
             return usuario.Autenticar();
         }
 
@@ -42,6 +49,12 @@ namespace TurismoRealWeb.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult LogOut2()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Home", "Sitio");
         }
 
         public ActionResult Registro()
@@ -57,7 +70,7 @@ namespace TurismoRealWeb.Controllers
                 // TODO: Add insert logic here
                 usuario.Reg();
                 TempData["mensaje"] = "Registrado Correctamente";
-                return RedirectToAction("Index");
+                return RedirectToAction("Home", "Sitio");
             }
             catch
             {

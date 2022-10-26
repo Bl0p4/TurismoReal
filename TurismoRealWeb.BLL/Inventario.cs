@@ -61,7 +61,7 @@ namespace TurismoRealWeb.BLL
                 }
                 FechComp = Convert.ToDateTime(FechComp);
                 //Procedimiento almacenado
-                db.SP_CREA_ITEM(this.DptoId, this.Item, this.Valor, this.Disponible, this.FechComp);
+                db.SP_CREATE_ITEM(this.DptoId, this.Item, this.Valor, this.Disponible, this.FechComp);
                 return true;
             }
             catch (Exception)

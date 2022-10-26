@@ -53,7 +53,7 @@ namespace TurismoRealWeb.BLL
             try
             {
                 //Procedimiento almacenado
-                db.SP_CREA_MANTEN(this.DptoId, this.Fech_ini, this.Fech_term,
+                db.SP_CREATE_MANTEN(this.DptoId, this.Fech_ini, this.Fech_term,
                                       this.Descripcion, this.Costo);
                 return true;
             }

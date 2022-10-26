@@ -130,6 +130,9 @@
     <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.19.9.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
@@ -491,7 +494,6 @@
     <Content Include="Img\assets\img\about\3.jpg" />
     <Content Include="Img\assets\img\about\4.jpg" />
     <Content Include="Img\assets\img\close-icon.svg" />
-    <Content Include="Img\assets\img\header-bg.jpg" />
     <Content Include="Img\assets\img\logos\facebook.svg" />
     <Content Include="Img\assets\img\logos\google.svg" />
     <Content Include="Img\assets\img\logos\ibm.svg" />
@@ -507,6 +509,7 @@
     <Content Include="Img\assets\img\team\1.jpg" />
     <Content Include="Img\assets\img\team\2.jpg" />
     <Content Include="Img\assets\img\team\3.jpg" />
+    <Content Include="Img\assets\img\TR_header.jpg" />
     <Content Include="Img\assets\img\Turismo_real_logo_.svg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />

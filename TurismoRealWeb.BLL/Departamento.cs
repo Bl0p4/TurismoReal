@@ -66,7 +66,7 @@ namespace TurismoRealWeb.BLL
                     Disponible = "0";
                 }
                 //Procedimiento almacenado
-                db.SP_CREA_DPTO(this.CiudadId, this.Nombre, this.Direccion, 
+                db.SP_CREATE_DPTO(this.CiudadId, this.Nombre, this.Direccion, 
                                 this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NroDpto);
                 return true;
             }
@@ -114,7 +114,7 @@ namespace TurismoRealWeb.BLL
                 }
 
                 db.SP_UPDATE_DPTO(this.Id, this.CiudadId, this.Nombre, this.Direccion,
-                                this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NroDpto);
+                                this.Superficie, this.NroDpto, this.Precio, this.Disponible, this.Condicion);
                 return true;
             }
             catch (Exception)

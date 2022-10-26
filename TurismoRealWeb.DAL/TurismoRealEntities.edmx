@@ -116,6 +116,14 @@
           <Property Name="MONTO_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="MONTO_MULTAS" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
+        <EntityType Name="IMAGEN">
+          <Key>
+            <PropertyRef Name="ID_IMAGEN" />
+          </Key>
+          <Property Name="ID_IMAGEN" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FOTO" Type="blob" Nullable="false" />
+        </EntityType>
         <EntityType Name="INVENTARIO">
           <Key>
             <PropertyRef Name="ID_INVENTARIO" />
@@ -336,6 +344,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_ALTERNAR_DISP_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_DISPONIBLE" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="SP_CANCEL_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
@@ -344,30 +356,6 @@
         </Function>
         <Function Name="SP_CHECKOUT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
-        </Function>
-        <Function Name="SP_CREA_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID_CIUDAD" Type="number" Mode="In" />
-          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
-          <Parameter Name="DIR" Type="varchar2" Mode="In" />
-          <Parameter Name="M2" Type="varchar2" Mode="In" />
-          <Parameter Name="PRECIO" Type="number" Mode="In" />
-          <Parameter Name="DISP" Type="varchar2" Mode="In" />
-          <Parameter Name="COND" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
-        </Function>
-        <Function Name="SP_CREA_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="ITEM" Type="varchar2" Mode="In" />
-          <Parameter Name="VALOR" Type="number" Mode="In" />
-          <Parameter Name="DISP" Type="varchar2" Mode="In" />
-          <Parameter Name="FEC_COMP" Type="date" Mode="In" />
-        </Function>
-        <Function Name="SP_CREA_MANTEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="FEC_INI" Type="date" Mode="In" />
-          <Parameter Name="FEC_TERM" Type="date" Mode="In" />
-          <Parameter Name="DESCRIPCION" Type="varchar2" Mode="In" />
-          <Parameter Name="COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
@@ -378,6 +366,35 @@
           <Parameter Name="FEC_INI" Type="date" Mode="In" />
           <Parameter Name="FEC_FIN" Type="date" Mode="In" />
           <Parameter Name="TOTAL" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SP_CREATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
+          <Parameter Name="P_ACTUALDISP" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CREATE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="ID_CIUDAD" Type="number" Mode="In" />
+          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="DIR" Type="varchar2" Mode="In" />
+          <Parameter Name="M2" Type="varchar2" Mode="In" />
+          <Parameter Name="PRECIO" Type="number" Mode="In" />
+          <Parameter Name="DISP" Type="char" Mode="In" />
+          <Parameter Name="COND" Type="varchar2" Mode="In" />
+          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="SP_CREATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="ITEM" Type="varchar2" Mode="In" />
+          <Parameter Name="VALOR" Type="number" Mode="In" />
+          <Parameter Name="DISP" Type="varchar2" Mode="In" />
+          <Parameter Name="FEC_COMPRA" Type="date" Mode="In" />
+        </Function>
+        <Function Name="SP_CREATE_MANTEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="FEC_INI" Type="date" Mode="In" />
+          <Parameter Name="FEC_TERM" Type="date" Mode="In" />
+          <Parameter Name="DESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_MULTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_ARRIENDO" Type="number" Mode="In" />
@@ -391,6 +408,10 @@
           <Parameter Name="ACOMP" Type="number" Mode="In" />
           <Parameter Name="COSTO" Type="number" Mode="In" />
           <Parameter Name="VIG" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_CREATE_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_DESC" Type="varchar2" Mode="In" />
+          <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_TIPO" Type="number" Mode="In" />
@@ -425,6 +446,14 @@
         <Function Name="SP_DELETE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_USER" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PASS" Type="varchar2" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="Out" />
+          <Parameter Name="P_APE_PAT" Type="varchar2" Mode="Out" />
+          <Parameter Name="P_ID_USUARIO" Type="number" Mode="Out" />
+          <Parameter Name="P_TIPO_USUARIO" Type="varchar2" Mode="Out" />
+        </Function>
         <Function Name="SP_UPDATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
@@ -436,16 +465,22 @@
           <Parameter Name="FEC_FIN" Type="date" Mode="In" />
           <Parameter Name="TOTAL" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_UPDATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
+          <Parameter Name="P_ACTUALDISP" Type="char" Mode="In" />
+        </Function>
         <Function Name="SP_UPDATE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
-          <Parameter Name="ID_CIUDAD" Type="number" Mode="In" />
-          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ID_CIUDAD" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
           <Parameter Name="DIR" Type="varchar2" Mode="In" />
           <Parameter Name="M2" Type="varchar2" Mode="In" />
+          <Parameter Name="P_NRO_DPTO" Type="varchar2" Mode="In" />
           <Parameter Name="PRECIO" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -453,7 +488,7 @@
           <Parameter Name="ITEM" Type="varchar2" Mode="In" />
           <Parameter Name="P_VALOR" Type="number" Mode="In" />
           <Parameter Name="DISP" Type="varchar2" Mode="In" />
-          <Parameter Name="FEC" Type="date" Mode="In" />
+          <Parameter Name="FEC_COMPRA" Type="date" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_MANTEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -469,7 +504,11 @@
           <Parameter Name="FECH" Type="date" Mode="In" />
           <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
           <Parameter Name="ACOMP" Type="number" Mode="In" />
-          <Parameter Name="VIG" Type="char" Mode="In" />
+        </Function>
+        <Function Name="SP_UPDATE_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_DESC" Type="varchar2" Mode="In" />
+          <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -498,6 +537,7 @@
           <EntitySet Name="ERROR" EntityType="Self.ERROR" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="HISTORICO_ARRIENDO" EntityType="Self.HISTORICO_ARRIENDO" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="HISTORICO_INGRESO" EntityType="Self.HISTORICO_INGRESO" Schema="ASD" store:Type="Tables" />
+          <EntitySet Name="IMAGEN" EntityType="Self.IMAGEN" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="MANTENCION" EntityType="Self.MANTENCION" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="MULTA" EntityType="Self.MULTA" Schema="ASD" store:Type="Tables" />
@@ -633,6 +673,7 @@
           <NavigationProperty Name="CIUDAD" Relationship="Model.CIUDADDEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="CIUDAD" />
           <NavigationProperty Name="INVENTARIO" Relationship="Model.a" FromRole="DEPARTAMENTO" ToRole="INVENTARIO" />
           <NavigationProperty Name="MANTENCION" Relationship="Model.DEPARTAMENTOMANTENCION" FromRole="DEPARTAMENTO" ToRole="MANTENCION" />
+          <NavigationProperty Name="IMAGEN" Relationship="Model.IMAGENDEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="IMAGEN" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
@@ -1073,14 +1114,14 @@
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_DPTO">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_CIUDAD" Mode="In" Type="Decimal" />
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_ID_CIUDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
             <Parameter Name="DIR" Mode="In" Type="String" />
             <Parameter Name="M2" Mode="In" Type="String" />
+            <Parameter Name="P_NRO_DPTO" Mode="In" Type="String" />
             <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
             <Parameter Name="COND" Mode="In" Type="String" />
-            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_ITEM">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
@@ -1088,7 +1129,7 @@
             <Parameter Name="ITEM" Mode="In" Type="String" />
             <Parameter Name="P_VALOR" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
-            <Parameter Name="FEC" Mode="In" Type="DateTime" />
+            <Parameter Name="FEC_COMPRA" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_MANTEN">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
@@ -1104,7 +1145,6 @@
             <Parameter Name="FECH" Mode="In" Type="DateTime" />
             <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
             <Parameter Name="ACOMP" Mode="In" Type="Decimal" />
-            <Parameter Name="VIG" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_USUARIO">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
@@ -1137,6 +1177,67 @@
           <AssociationSet Name="ARRIENDORESERVA" Association="Model.ARRIENDORESERVA">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
             <End Role="RESERVA" EntitySet="RESERVA" />
+          </AssociationSet>
+          <EntitySet Name="IMAGEN" EntityType="Model.IMAGEN" />
+          <FunctionImport Name="SP_ALTERNAR_DISP_DPTO">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DISPONIBLE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_DISP_SERVICIO">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ACTUALDISP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_DPTO">
+            <Parameter Name="ID_CIUDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="DIR" Mode="In" Type="String" />
+            <Parameter Name="M2" Mode="In" Type="String" />
+            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="DISP" Mode="In" Type="String" />
+            <Parameter Name="COND" Mode="In" Type="String" />
+            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_ITEM">
+            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="ITEM" Mode="In" Type="String" />
+            <Parameter Name="VALOR" Mode="In" Type="Decimal" />
+            <Parameter Name="DISP" Mode="In" Type="String" />
+            <Parameter Name="FEC_COMPRA" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_MANTEN">
+            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
+            <Parameter Name="FEC_TERM" Mode="In" Type="DateTime" />
+            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="COSTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_SERVICIO">
+            <Parameter Name="P_DESC" Mode="In" Type="String" />
+            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_LOGIN">
+            <Parameter Name="P_USER" Mode="In" Type="String" />
+            <Parameter Name="P_PASS" Mode="In" Type="String" />
+            <Parameter Name="P_NOMBRE" Mode="Out" Type="String" />
+            <Parameter Name="P_APE_PAT" Mode="Out" Type="String" />
+            <Parameter Name="P_ID_USUARIO" Mode="Out" Type="Decimal" />
+            <Parameter Name="P_TIPO_USUARIO" Mode="Out" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_DISP_SERVICIO">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ACTUALDISP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_SERVICIO">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DESC" Mode="In" Type="String" />
+            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <AssociationSet Name="IMAGENDEPARTAMENTO" Association="Model.IMAGENDEPARTAMENTO">
+            <End Role="IMAGEN" EntitySet="IMAGEN" />
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="CIUDADDEPARTAMENTO">
@@ -1184,6 +1285,27 @@
             </Principal>
             <Dependent Role="RESERVA">
               <PropertyRef Name="ID_ARRIENDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="IMAGEN">
+          <Key>
+            <PropertyRef Name="ID_IMAGEN" />
+          </Key>
+          <Property Name="ID_IMAGEN" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ID_DPTO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="FOTO" Type="Binary" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Model.IMAGENDEPARTAMENTO" FromRole="IMAGEN" ToRole="DEPARTAMENTO" />
+        </EntityType>
+        <Association Name="IMAGENDEPARTAMENTO">
+          <End Type="Model.IMAGEN" Role="IMAGEN" Multiplicity="*" />
+          <End Type="Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="IMAGEN">
+              <PropertyRef Name="ID_DPTO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1426,9 +1548,6 @@
           <FunctionImportMapping FunctionImportName="SP_CANCEL_RESERVA" FunctionName="Model.Store.SP_CANCEL_RESERVA" />
           <FunctionImportMapping FunctionImportName="SP_CHECKIN" FunctionName="Model.Store.SP_CHECKIN" />
           <FunctionImportMapping FunctionImportName="SP_CHECKOUT" FunctionName="Model.Store.SP_CHECKOUT" />
-          <FunctionImportMapping FunctionImportName="SP_CREA_DPTO" FunctionName="Model.Store.SP_CREA_DPTO" />
-          <FunctionImportMapping FunctionImportName="SP_CREA_ITEM" FunctionName="Model.Store.SP_CREA_ITEM" />
-          <FunctionImportMapping FunctionImportName="SP_CREA_MANTEN" FunctionName="Model.Store.SP_CREA_MANTEN" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_ARRIENDO" FunctionName="Model.Store.SP_CREATE_ARRIENDO" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_MULTA" FunctionName="Model.Store.SP_CREATE_MULTA" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_RESERVA" FunctionName="Model.Store.SP_CREATE_RESERVA" />
@@ -1445,6 +1564,24 @@
           <FunctionImportMapping FunctionImportName="SP_UPDATE_MANTEN" FunctionName="Model.Store.SP_UPDATE_MANTEN" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_RESERVA" FunctionName="Model.Store.SP_UPDATE_RESERVA" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_USUARIO" FunctionName="Model.Store.SP_UPDATE_USUARIO" />
+          <EntitySetMapping Name="IMAGEN">
+            <EntityTypeMapping TypeName="Model.IMAGEN">
+              <MappingFragment StoreEntitySet="IMAGEN">
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+                <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+                <ScalarProperty Name="ID_IMAGEN" ColumnName="ID_IMAGEN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ALTERNAR_DISP_DPTO" FunctionName="Model.Store.SP_ALTERNAR_DISP_DPTO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_DISP_SERVICIO" FunctionName="Model.Store.SP_CREATE_DISP_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_DPTO" FunctionName="Model.Store.SP_CREATE_DPTO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_ITEM" FunctionName="Model.Store.SP_CREATE_ITEM" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_MANTEN" FunctionName="Model.Store.SP_CREATE_MANTEN" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_SERVICIO" FunctionName="Model.Store.SP_CREATE_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_LOGIN" FunctionName="Model.Store.SP_LOGIN" />
+          <FunctionImportMapping FunctionImportName="SP_UPDATE_DISP_SERVICIO" FunctionName="Model.Store.SP_UPDATE_DISP_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_UPDATE_SERVICIO" FunctionName="Model.Store.SP_UPDATE_SERVICIO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

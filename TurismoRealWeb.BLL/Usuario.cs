@@ -24,6 +24,7 @@ namespace TurismoRealWeb.BLL
         public string Password { get; set; }
         public decimal Id_tipo { get; set; }
         public Tipo_usuario Tipo { get; set; }
+        public Ciudad City { get; set; }
 
 
         TurismoRealEntities db = new TurismoRealEntities();
@@ -63,6 +64,7 @@ namespace TurismoRealWeb.BLL
                     Id = p.ID_TIPOUSUARIO,
                     Descripcion = p.TIPO_USUARIO.DESCRIPCION
                 }
+
             }).ToList();
         }
 

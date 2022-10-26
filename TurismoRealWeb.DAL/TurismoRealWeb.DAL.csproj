@@ -78,6 +78,9 @@
     <Compile Include="HISTORICO_INGRESO.cs">
       <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="IMAGEN.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="INVENTARIO.cs">
       <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
