@@ -116,9 +116,7 @@ namespace TurismoRealWeb.BLL
         public bool Reg()
         {
             try
-            {
-                this.Pass = TR_Recursos.ConvertirSha256(Pass);
-                Id_tipo = 1;
+            {                
                 //Procedimiento almacenado
                 db.SP_CREATE_USUARIO(this.Id_tipo, this.Nombre, this.Paterno, this.Materno,
                                      this.Rut, this.Dv, this.Direccion, this.Ciudad,
