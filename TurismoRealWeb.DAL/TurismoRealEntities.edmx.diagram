@@ -42,7 +42,6 @@
         <EntityTypeShape EntityType="Model.IMAGEN" Width="1.5" PointX="14.125" PointY="0.5" />
         <AssociationConnector Association="Model.IMAGENDEPARTAMENTO" />
         <AssociationConnector Association="Model.DEPARTAMENTOARRIENDO" />
-        <AssociationConnector Association="Model.ARRIENDO_USUARIO_FK1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

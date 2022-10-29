@@ -34,7 +34,6 @@ namespace TurismoRealWeb.DAL
         public string CHECK_IN { get; set; }
         public string CHECK_OUT { get; set; }
         public decimal TOTAL_ARRIENDO { get; set; }
-        public decimal ID_USUARIO { get; set; }
     
         public virtual USUARIO USUARIO { get; set; }
         public virtual ICollection<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
@@ -43,6 +42,5 @@ namespace TurismoRealWeb.DAL
         public virtual ICollection<TRANSPORTE_REALIZADO> TRANSPORTE_REALIZADO { get; set; }
         public virtual ICollection<RESERVA> RESERVA { get; set; }
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
-        public virtual USUARIO USUARIO1 { get; set; }
     }
 }

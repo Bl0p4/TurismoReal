@@ -47,7 +47,7 @@ namespace TurismoRealWeb.BLL
 
                 Cliente = new Usuario()
                 {
-                    Id = a.ID_USUARIO,
+                    Id = a.USUARIO.ID_USUARIO,
                     Nombre = a.USUARIO.NOMBRE,
                     Paterno = a.USUARIO.APE_PAT,
                     Materno = a.USUARIO.APE_MAT,
@@ -55,7 +55,7 @@ namespace TurismoRealWeb.BLL
                     Dv = a.USUARIO.DV,
                     Direccion = a.USUARIO.DIRECCION,
                     Ciudad = a.USUARIO.CIUDAD,
-                    Telefono =  a.USUARIO.TELEFONO,
+                    Telefono = a.USUARIO.TELEFONO,
                     Email = a.USUARIO.EMAIL,
                     Area = a.USUARIO.AREA_FUNCIONARIO,
                     Username = a.USUARIO.USERNAME,
@@ -121,7 +121,7 @@ namespace TurismoRealWeb.BLL
 
                 Cliente = new Usuario()
                 {
-                    Id = a.ID_USUARIO,
+                    Id = a.USUARIO.ID_USUARIO,
                     Nombre = a.USUARIO.NOMBRE,
                     Paterno = a.USUARIO.APE_PAT,
                     Materno = a.USUARIO.APE_MAT,

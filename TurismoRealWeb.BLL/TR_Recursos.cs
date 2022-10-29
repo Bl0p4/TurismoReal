@@ -13,7 +13,7 @@ namespace TurismoRealWeb.BLL
         {
             StringBuilder Sb = new StringBuilder();
             //Usar referencia System.Security.Cryptography;
-            using (SHA256 hash = SHA256Managed.Create())
+            using (SHA256 hash = SHA256.Create())
             {
                 Encoding enc = Encoding.UTF8;
                 byte[] result = hash.ComputeHash(enc.GetBytes(texto));

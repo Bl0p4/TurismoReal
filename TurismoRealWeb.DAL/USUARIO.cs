@@ -17,7 +17,6 @@ namespace TurismoRealWeb.DAL
         public USUARIO()
         {
             this.ARRIENDO = new HashSet<ARRIENDO>();
-            this.ARRIENDO1 = new HashSet<ARRIENDO>();
         }
     
         public decimal ID_USUARIO { get; set; }
@@ -37,6 +36,5 @@ namespace TurismoRealWeb.DAL
     
         public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
         public virtual TIPO_USUARIO TIPO_USUARIO { get; set; }
-        public virtual ICollection<ARRIENDO> ARRIENDO1 { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace TurismoRealWeb.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario, string ReturnUrl)
         {
-            var tipo = usuario.Id_tipo;
+            
             if (IsValid(usuario))
             {
                 FormsAuthentication.SetAuthCookie(usuario.Username, false);               
@@ -30,7 +30,7 @@ namespace TurismoRealWeb.Controllers
                 }
                 
 
-                if (tipo != 1)
+                if (usuario.Id_tipo != 1)
                 {
                     return RedirectToAction("Home", "Sitio");
                 }                
@@ -41,7 +41,8 @@ namespace TurismoRealWeb.Controllers
         }
 
         private bool IsValid(Usuario usuario)
-        {            
+        {
+            usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
             return usuario.Autenticar();
         }
 
