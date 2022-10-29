@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using TurismoRealWeb.DAL;
 
 namespace TurismoRealWeb.BLL
@@ -10,21 +11,46 @@ namespace TurismoRealWeb.BLL
     public class Usuario
     {
         public decimal Id { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Nombre")]
         public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Apellido")]
         public string Paterno { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Apellido Materno")]
         public string Materno { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Rut")]
         public decimal Rut { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Dígito Verificador")]
         public string Dv { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Dirección")]
         public string Direccion { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Ciudad")]
         public string Ciudad { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Telefono")]
         public string Telefono { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Email")]
         public string Email { get; set; }
         public string Area { get; set; }
+
+        [Required(ErrorMessage ="Ingrese Usuario")]
         public string Username { get; set; }
+
+        [Required(ErrorMessage = "Ingrese Contraseña")]
         public string Password { get; set; }
+
         public decimal Id_tipo { get; set; }
         public Tipo_usuario Tipo { get; set; }
-        public Ciudad City { get; set; }
+
+        public string Cuenta { get; set; }
+        public string Pass { get; set; }
 
 
         TurismoRealEntities db = new TurismoRealEntities();
@@ -72,12 +98,12 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                this.Password = TR_Recursos.ConvertirSha256(Password);
+                this.Pass = TR_Recursos.ConvertirSha256(Pass);
 
                 //Procedimiento almacenado
                 db.SP_CREATE_USUARIO(this.Id_tipo, this.Nombre, this.Paterno, this.Materno,
                                      this.Rut, this.Dv, this.Direccion, this.Ciudad,
-                                     this.Telefono, this.Email, this.Area, this.Username, this.Password);
+                                     this.Telefono, this.Email, this.Area, this.Cuenta, this.Pass);
                 return true;
             }
             catch (Exception)
@@ -91,12 +117,12 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                this.Password = TR_Recursos.ConvertirSha256(Password);
+                this.Pass = TR_Recursos.ConvertirSha256(Pass);
                 Id_tipo = 1;
                 //Procedimiento almacenado
                 db.SP_CREATE_USUARIO(this.Id_tipo, this.Nombre, this.Paterno, this.Materno,
                                      this.Rut, this.Dv, this.Direccion, this.Ciudad,
-                                     this.Telefono, this.Email, this.Area, this.Username, this.Password);
+                                     this.Telefono, this.Email, this.Area, this.Cuenta, this.Pass);
                 return true;
             }
             catch (Exception)

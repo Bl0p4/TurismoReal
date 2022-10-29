@@ -25,7 +25,7 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">TURISMO REAL</h3><h3 class="text-center font-weight-light my-4">Bienvenido</h3></div>
-                                <div class="card-body">
+                                <div class="card-body">                                    
                                     <form action="" method="post" class="form form-login">
                                         <div class="form-floating mb-3">
                                             @Html.TextBoxFor(u => u.Username, new { @placeholder = "Usuario", @class = "form-control" })
@@ -38,6 +38,7 @@
                                             <label for="Password">Contraseña</label>
                                         </div>
                                         <div class="mt-4 mb-0">
+                                            <div class="text-danger">@TempData["mensaje"]</div>
                                             <div class="d-grid"><input type="submit" value="Ingresar" class="btn btn-primary d-grid btn-block" /></div>
                                         </div>
                                     </form>
@@ -73,6 +74,28 @@
 
 <script src="https://use.typekit.net/rjb4unc.js"></script>
 <script>try { Typekit.load({ async: true }); } catch (e) { }</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

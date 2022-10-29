@@ -63,7 +63,7 @@ namespace TurismoRealWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registro([Bind(Include = "Nombre,Paterno,Materno,Rut,Dv,Direccion,Ciudad,Telefono,Email,Area,Username,Password,Id_tipo")] Usuario usuario)
+        public ActionResult Registro([Bind(Include = "Nombre,Paterno,Materno,Rut,Dv,Direccion,Ciudad,Telefono,Email,Area,Cuenta,Pass,Id_tipo")] Usuario usuario)
         {
             try
             {

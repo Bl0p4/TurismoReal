@@ -176,7 +176,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
@@ -246,7 +248,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MantencionController.cs" />
-    <Compile Include="Controllers\ReservaController.cs" />
+    <Compile Include="Controllers\ArriendoController.cs" />
     <Compile Include="Controllers\SitioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -694,11 +696,13 @@
     <Content Include="Views\Departamento\Details.cshtml" />
     <Content Include="Views\Mantencion\Details.cshtml" />
     <Content Include="Views\Inventario\Details.cshtml" />
-    <Content Include="Views\Reserva\Index.cshtml" />
-    <Content Include="Views\Reserva\Create.cshtml" />
-    <Content Include="Views\Reserva\Edit.cshtml" />
+    <Content Include="Views\Arriendo\Index.cshtml" />
+    <Content Include="Views\Arriendo\Create.cshtml" />
+    <Content Include="Views\Arriendo\Edit.cshtml" />
     <Content Include="Views\Sitio\Home.cshtml" />
     <Content Include="Views\Auth\Registro.cshtml" />
+    <Content Include="Views\Shared\_LayoutUsuario.cshtml" />
+    <Content Include="Views\Sitio\Departamentos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

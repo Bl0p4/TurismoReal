@@ -37,7 +37,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Usuario/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "Nombre,Paterno,Materno,Rut,Dv,Direccion,Ciudad,Telefono,Email,Area,Username,Password,Id_tipo")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "Nombre,Paterno,Materno,Rut,Dv,Direccion,Ciudad,Telefono,Email,Area,Cuenta,Pass,Id_tipo")] Usuario usuario)
         {
             try
             {

@@ -96,22 +96,21 @@
                                         <div class="row mb-3">
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    @Html.TextBoxFor(u => u.Username, new { @placeholder = "Usuario", @class = "form-control" })
-                                                    @Html.ValidationMessageFor(u => u.Username, "", new { @class = "text-danger" })
+                                                    @Html.TextBoxFor(u => u.Cuenta, new { @placeholder = "Usuario", @class = "form-control" })
+                                                    @Html.ValidationMessageFor(u => u.Cuenta, "", new { @class = "text-danger" })
                                                     <label for="username">Usuario</label>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    @Html.PasswordFor(u => u.Password, new { @placeholder = "Contraseña", @class = "form-control" })
-                                                    @Html.ValidationMessageFor(u => u.Password, "", new { @class = "text-danger" })
+                                                    @Html.PasswordFor(u => u.Pass, new { @placeholder = "Contraseña", @class = "form-control" })
+                                                    @Html.ValidationMessageFor(u => u.Pass, "", new { @class = "text-danger" })
                                                     <label for="password">Contraseña</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><input type="submit" value="Registrar Cuenta" class="btn btn-primary d-grid btn-block" /></div>
-                                            
+                                            <div class="d-grid"><input type="submit" value="Registrar Cuenta" class="btn btn-primary d-grid btn-block" /></div>                                            
                                         </div>
                                     </form>
                                 </div>

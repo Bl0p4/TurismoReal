@@ -80,7 +80,7 @@ namespace TurismoRealWeb.Controllers
 
             if(d == null)
             {
-                TempData["mensaje"] = "El Departamento no existe";
+                TempData["SuccessMessage"] = "El Departamento no existe";
                 return RedirectToAction("Index");
             }
 
@@ -110,7 +110,7 @@ namespace TurismoRealWeb.Controllers
                 }
                 // TODO: Add update logic here
                 departamento.Update();                                               
-                TempData["SuccessMessage"] = departamento.Nombre + "  Guardado Correctamente";
+                TempData["SuccessMessage"] = departamento.Nombre + "  Modificado Correctamente";
                 return RedirectToAction("Index");
             }
             catch
@@ -124,19 +124,19 @@ namespace TurismoRealWeb.Controllers
         {
             if(new Departamento().Find(id) == null)
             {
-                TempData["mensaje"] = "No existe el departamento";
+                TempData["SuccessMessage"] = "No existe el departamento";
                 return RedirectToAction("Index");
             }
 
 
             if(new Departamento().Delete(id))
             {
-                TempData["mensaje"] = "Eliminado Correctamente";
+                TempData["SuccessMessage"] = "Eliminado Correctamente";
                 return RedirectToAction("Index");
             }
 
 
-            TempData["mensaje"] = "No se ha podido eliminar";
+            TempData["SuccessMessage"] = "No se ha podido eliminar";
             return RedirectToAction("Index");
         }
 

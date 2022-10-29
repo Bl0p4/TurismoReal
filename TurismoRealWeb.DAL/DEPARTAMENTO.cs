@@ -19,6 +19,7 @@ namespace TurismoRealWeb.DAL
             this.INVENTARIO = new HashSet<INVENTARIO>();
             this.MANTENCION = new HashSet<MANTENCION>();
             this.IMAGEN = new HashSet<IMAGEN>();
+            this.ARRIENDO = new HashSet<ARRIENDO>();
         }
     
         public decimal ID_DPTO { get; set; }
@@ -35,5 +36,6 @@ namespace TurismoRealWeb.DAL
         public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
         public virtual ICollection<MANTENCION> MANTENCION { get; set; }
         public virtual ICollection<IMAGEN> IMAGEN { get; set; }
+        public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
     }
 }

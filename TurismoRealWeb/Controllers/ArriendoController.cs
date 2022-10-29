@@ -3,37 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TurismoRealWeb.BLL;
 
 namespace TurismoRealWeb.Controllers
 {
-    public class ReservaController : Controller
+    public class ArriendoController : Controller
     {
-        // GET: Reserva
+        // GET: Arriendo
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: Reserva/Details/5
+        // GET: Arriendo/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Reserva/Create
+        // GET: Arriendo/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Reserva/Create
+        // POST: Arriendo/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                //TempData["SuccessMessage"] ;
                 return RedirectToAction("Index");
             }
             catch
@@ -42,20 +43,20 @@ namespace TurismoRealWeb.Controllers
             }
         }
 
-        // GET: Reserva/Edit/5
+        // GET: Arriendo/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Reserva/Edit/5
+        // POST: Arriendo/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
-
+                //TempData["SuccessMessage"];
                 return RedirectToAction("Index");
             }
             catch
@@ -64,20 +65,34 @@ namespace TurismoRealWeb.Controllers
             }
         }
 
-        // GET: Reserva/Delete/5
+        // GET: Arriendo/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            if (new Arriendo().Find(id) == null)
+            {
+                TempData["SuccessMessage"] = "No existe el departamento";
+                return RedirectToAction("Index");
+            }
+
+
+            if (new Arriendo().Delete(id))
+            {
+                TempData["SuccessMessage"] = "Eliminado Correctamente";
+                return RedirectToAction("Index");
+            }
+
+
+            TempData["SuccessMessage"] = "No se ha podido eliminar";
+            return RedirectToAction("Index");            
         }
 
-        // POST: Reserva/Delete/5
+        // POST: Arriendo/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                // TODO: Add delete logic here                
                 return RedirectToAction("Index");
             }
             catch
@@ -87,3 +102,4 @@ namespace TurismoRealWeb.Controllers
         }
     }
 }
+//TempData["SuccessMessage"]

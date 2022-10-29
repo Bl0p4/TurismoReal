@@ -11,9 +11,6 @@
     @Html.LabelFor(p => p.Nombre)
     @Html.TextBoxFor(p => p.Nombre)
     <br />
-    @*@Html.LabelFor(p => p.Nombre)
-    @Html.CheckBoxFor(p => p.Nombre)
-    <br />*@
     @Html.LabelFor(p => p.Paterno)
     @Html.TextBoxFor(p => p.Paterno)
     <br />
@@ -42,10 +39,10 @@
     @Html.TextBoxFor(p => p.Area)
     <br />
     @Html.LabelFor(p => p.Username)
-    @Html.TextBoxFor(p => p.Username)
+    @Html.TextBoxFor(p => p.Cuenta)
     <br />
     @Html.LabelFor(p => p.Password)
-    @Html.TextBoxFor(p => p.Password)
+    @Html.TextBoxFor(p => p.Pass)
     <br />
     @Html.LabelFor(p => p.Id_tipo, "Tipo de Usuario")
     @Html.DropDownListFor(p => p.Id_tipo, new SelectList(ViewBag.tipos_user, "Id", "Descripcion"))
@@ -54,3 +51,24 @@
 
 }
 
+@section scripts{
+    <script type="text/javascript">
+
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("myModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+
+            $('#myModalSuccess').modal("show");
+        }
+
+
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        });
+
+
+
+    </script>
+}

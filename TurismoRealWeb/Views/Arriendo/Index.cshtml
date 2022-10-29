@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+    </div>
+</body>
+</html>
+
+@section scripts{
+    <script type="text/javascript">
+
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("myModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+
+            $('#myModalSuccess').modal("show");
+        }
+
+
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        });
+
+
+
+    </script>
+}

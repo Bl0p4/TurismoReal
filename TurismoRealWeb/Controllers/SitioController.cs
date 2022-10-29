@@ -13,5 +13,11 @@ namespace TurismoRealWeb.Controllers
         {
             return View();
         }
+
+        public ActionResult Departamentos()
+        {
+            return View();
+        }
+
     }
 }
