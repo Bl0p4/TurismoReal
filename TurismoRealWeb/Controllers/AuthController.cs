@@ -64,15 +64,23 @@ namespace TurismoRealWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registro([Bind(Include = "Username, Paterno, Materno, Rut, Dv, Direccion, Ciudad, Telefono, Email, Cuenta, Pass, Id_tipo")] Usuario usuario)
+        public ActionResult Registro([Bind(Include = "Nombre, Paterno, Materno, Rut, Dv, Direccion, Ciudad, Telefono, Email, Area, Username, Password. Id_Tipo")] Usuario usuario)
         {
             try
             {
-                usuario.Pass = TR_Recursos.ConvertirSha256(usuario.Pass);
+                if (!ModelState.IsValid)
+                {                    
+                    return View(usuario);
+                }
+
+                usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
                 usuario.Id_tipo = 1;
+
                 // TODO: Add insert logic here
                 usuario.Reg();
+
                 TempData["mensaje"] = "Registrado Correctamente";
+
                 return RedirectToAction("Home", "Sitio");
             }
             catch

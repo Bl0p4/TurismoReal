@@ -44,6 +44,7 @@ namespace TurismoRealWeb.BLL
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Ingrese Contraseña")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         public decimal Id_tipo { get; set; }
@@ -120,7 +121,7 @@ namespace TurismoRealWeb.BLL
                 //Procedimiento almacenado
                 db.SP_CREATE_USUARIO(this.Id_tipo, this.Nombre, this.Paterno, this.Materno,
                                      this.Rut, this.Dv, this.Direccion, this.Ciudad,
-                                     this.Telefono, this.Email, this.Area, this.Cuenta, this.Pass);
+                                     this.Telefono, this.Email, this.Area, this.Username, this.Password);
                 return true;
             }
             catch (Exception)

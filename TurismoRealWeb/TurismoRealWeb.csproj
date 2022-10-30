@@ -703,6 +703,8 @@
     <Content Include="Views\Auth\Registro.cshtml" />
     <Content Include="Views\Shared\_LayoutUsuario.cshtml" />
     <Content Include="Views\Sitio\Departamentos.cshtml" />
+    <Content Include="Views\Sitio\Reserva.cshtml" />
+    <Content Include="Views\Sitio\DescDpto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

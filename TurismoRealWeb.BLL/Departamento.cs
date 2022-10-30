@@ -20,6 +20,7 @@ namespace TurismoRealWeb.BLL
         [Required, MaxLength(25)]
         public string Superficie { get; set; }
         [Required, Range(1, 5000000, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
+        [DisplayFormat(DataFormatString ="{0:C}",ApplyFormatInEditMode =false)]
         public decimal Precio { get; set; }        
         public Boolean IsDisp { get; set; }
         public string Disponible { get; set; }

@@ -1,8 +1,82 @@
-﻿
+﻿@using TurismoRealWeb.BLL;
+
 @{
     ViewBag.Title = "Departamentos";
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
 
-<h2>Departamentos</h2>
 
+<!--Listado-->
+@{ List<Departamento> departamentos = (List<Departamento>)ViewBag.departamentos;}
+
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <div class="sb-sidenav-menu-heading">Resumen</div>
+                    <a class="nav-link" href="@Url.Action("Index","Home")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Dashboard
+                    </a>
+                    <a class="nav-link" href="@Url.Action("Index","Usuario")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Usuarios
+                    </a>
+                    <div class="sb-sidenav-menu-heading">Mantenedores</div>
+                    <a class="nav-link" href="@Url.Action("Index","Departamento")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
+                        Departamentos
+                    </a>
+                    <a class="nav-link" href="@Url.Action("Index","Reserva")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-bookmark"></i></div>
+                        Reservas
+                    </a>
+                    <a class="nav-link" href="@Url.Action("Index","Arriendo")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
+                        Arriendos
+                    </a>
+                    <a class="nav-link" href="@Url.Action("Index","Servicio")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-concierge-bell"></i></div>
+                        Servicios
+                    </a>
+                    <a class="nav-link" href="@Url.Action("Index","Mantencion")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-cogs"></i></div>
+                        Mantenciones
+                    </a>
+                    <a class="nav-link" href="@Url.Action("Index","Inventario")">
+                        <div class="sb-nav-link-icon"><i class="fas fa-clipboard-list"></i></div>
+                        Inventario
+                    </a>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                @User.Identity.Name
+            </div>
+        </nav>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-5 g-10">
+
+        @if (departamentos != null)
+        {
+            foreach (var dpto in departamentos)
+            {
+                <div class="col">
+                    <div class="card">
+                        <img src="https://imgclasificados3.emol.com/Proyectos/imagenes//PR_FOTO_4484_1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@dpto.Nombre</h5>
+                            <p class="card-text">@dpto.Ciudad.Nombre</p>
+                            <p class="card-text"><small>@Html.DisplayFor(modelItem => dpto.Precio)</small></p>
+                            <a href="#" class="btn btn-primary">Reserva</a>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        }
+    </div>
+
+    <!--Filtro Ciudad-->
