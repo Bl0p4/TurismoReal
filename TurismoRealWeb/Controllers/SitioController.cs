@@ -12,6 +12,9 @@ namespace TurismoRealWeb.Controllers
         // GET: Sitio
         public ActionResult Home()
         {
+            ViewBag.departamentos = new Departamento().ReadAll();
+
+            EnviarCiudades();
             return View();
         }
 
@@ -30,12 +33,37 @@ namespace TurismoRealWeb.Controllers
 
         public ActionResult Reserva()
         {
+            EnviarCiudades();
             return View();
         }
 
-        public ActionResult DescDpto()
+        [HttpPost]
+        public ActionResult Reserva(Departamento departamento, Usuario usuario)
         {
-            return View();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    EnviarCiudades();
+                    return View(departamento);
+                }
+                // TODO: Add update logic here
+                departamento.Update();
+                TempData["SuccessMessage"] = departamento.Nombre + "  Reservado Correctamente";
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(departamento);
+            }
+        }
+
+
+        public ActionResult DescDpto(int id)
+        {
+            Departamento dpto = new Departamento().Find(id);
+            EnviarCiudades();
+            return View(dpto);
         }
 
     }

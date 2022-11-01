@@ -58,11 +58,11 @@ namespace TurismoRealWeb.BLL
 
 
         public bool Autenticar()
-        {
+        {        
             return db.USUARIO
                 .Where(u => u.USERNAME == this.Username
                 && u.PASSWORD == this.Password)
-                .FirstOrDefault() != null;
+                .FirstOrDefault() != null;            
         }
 
 

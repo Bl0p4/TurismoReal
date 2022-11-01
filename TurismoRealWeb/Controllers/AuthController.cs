@@ -29,10 +29,11 @@ namespace TurismoRealWeb.Controllers
                     return Redirect(ReturnUrl);
                 }
                 
+                
 
-                if (usuario.Id_tipo != 1)
+                if (usuario.Id_tipo == 1)
                 {
-                    return RedirectToAction("Index", "Home");                    
+                    return RedirectToAction("Index", "Home");
                 }
                 return RedirectToAction("Home", "Sitio");
             }
@@ -42,7 +43,7 @@ namespace TurismoRealWeb.Controllers
 
         private bool IsValid(Usuario usuario)
         {
-            usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
+            usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);            
             return usuario.Autenticar();
         }
 
