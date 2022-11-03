@@ -43,7 +43,7 @@ namespace TurismoRealWeb.Controllers
 
         private bool IsValid(Usuario usuario)
         {
-            //usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);            
+            usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);            
             return usuario.Autenticar();
         }
 
@@ -74,7 +74,7 @@ namespace TurismoRealWeb.Controllers
                     return View(usuario);
                 }
 
-                //usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
+                usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
                 usuario.Id_tipo = 1;
 
                 // TODO: Add insert logic here
