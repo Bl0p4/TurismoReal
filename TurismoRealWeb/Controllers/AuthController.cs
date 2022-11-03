@@ -28,8 +28,8 @@ namespace TurismoRealWeb.Controllers
                 {
                     return Redirect(ReturnUrl);
                 }
-                
-                
+
+                //string sessionID = HttpContext.Session.SessionID;
 
                 if (usuario.Id_tipo == 1)
                 {
@@ -43,7 +43,7 @@ namespace TurismoRealWeb.Controllers
 
         private bool IsValid(Usuario usuario)
         {
-            usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);            
+            //usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);            
             return usuario.Autenticar();
         }
 
@@ -65,7 +65,7 @@ namespace TurismoRealWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Registro([Bind(Include = "Nombre, Paterno, Materno, Rut, Dv, Direccion, Ciudad, Telefono, Email, Area, Username, Password. Id_Tipo")] Usuario usuario)
+        public ActionResult Registro(Usuario usuario)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace TurismoRealWeb.Controllers
                     return View(usuario);
                 }
 
-                usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
+                //usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
                 usuario.Id_tipo = 1;
 
                 // TODO: Add insert logic here

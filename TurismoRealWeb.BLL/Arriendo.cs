@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,13 @@ namespace TurismoRealWeb.BLL
         public decimal Id { get; set; }
         public decimal ClienteId { get; set; }
         public decimal DptoId { get; set; }
+        public string Nombre { get; set; }
+        
         public DateTime FecReserva { get; set; }
         public decimal ValReserva { get; set; }
         public Boolean IsResPago { get; set; }
-        public string ResPago { get; set; }
-        public DateTime FecIni { get; set; }
+        public string ResPago { get; set; }        
+        public DateTime FecIni { get; set; }        
         public DateTime FecFin { get; set; }
         public string CheckIn { get; set; }
         public string Checkout { get; set; }
@@ -24,6 +27,7 @@ namespace TurismoRealWeb.BLL
 
         public Usuario Cliente { get; set; }
         public Departamento Departamento { get; set; }
+        
 
 
         TurismoRealEntities db = new TurismoRealEntities();
@@ -84,16 +88,12 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                if (IsResPago == true)
-                {
-                    ResPago = "1";
-                }
-                else if (IsResPago == false)
-                {
-                    ResPago = "0";
-                }
+                //Total = Departamento.Precio;
+                //ResPago = "1";                
+                //FecReserva = DateTime.Today;
+                //ValReserva = (Total / 20)*100;
                 //Procedimiento almacenaao
-                //ab.SP_CREATE_ARRIENDO();
+                db.SP_CREATE_ARRIENDO(this.ClienteId,this.DptoId,this.FecReserva, this.ValReserva,this.ResPago,this.FecIni,this.FecFin,this.Total);
                 return true;
             }
             catch (Exception)
@@ -158,16 +158,8 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                if (IsResPago == true)
-                {
-                    ResPago = "1";
-                }
-                else if (IsResPago == false)
-                {
-                    ResPago = "0";
-                }
-
-                //db.SP_UPDATE_ARRIENDO();
+                
+                db.SP_UPDATE_ARRIENDO(this.Id,this.ClienteId, this.DptoId, this.FecReserva, this.ValReserva, this.ResPago, this.FecIni, this.FecFin, this.Total);
                 return true;
             }
             catch (Exception)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace TurismoRealWeb.BLL
     {
         public decimal Id { get; set; }
         public string NomPersona { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Fech { get; set; }
         public decimal ArriendoId { get; set; }
         public decimal Acomp { get; set; }
@@ -18,28 +20,39 @@ namespace TurismoRealWeb.BLL
         public Boolean IsVig { get; set; }
         public string Vigente { get; set; }
 
+        public Arriendo Arriendo { get; set; }
+
 
         TurismoRealEntities db = new TurismoRealEntities();
 
 
-        public List<Departamento> ReadAll()
+        public List<Reserva> ReadAll()
         {
-            return this.db.DEPARTAMENTO.Select(d => new Departamento()
+            return this.db.RESERVA.Select(a => new Reserva()
             {
-                Id = d.ID_DPTO,
-                CiudadId = d.ID_CIUDAD,
-                Nombre = d.NOMBRE,
-                Direccion = d.DIRECCION,
-                Superficie = d.SUPERFICIE_DPTO,
-                Precio = d.PRECIO_DPTO,
-                Disponible = d.DISPONIBLE,
-                Condicion = d.CONDICION,
-                NroDpto = d.NRO_DPTO,
-                Ciudad = new Ciudad()
+                Id = a.ID_RESERVA,
+                NomPersona = a.NOM_PERSONA,
+                Fech = a.FECH_ARRIENDO,
+                ArriendoId = a.ID_ARRIENDO,
+                Acomp = a.ACOMPANANTES,
+                Valor = a.COSTO_RESERVA,
+                Vigente = a.VIGENTE,
+
+                Arriendo = new Arriendo() 
                 {
-                    Id = d.ID_CIUDAD,
-                    Nombre = d.CIUDAD.NOMBRE
+                    Id = a.ID_ARRIENDO,
+                    ClienteId = a.ARRIENDO.ID_CLIENTE,
+                    DptoId = a.ARRIENDO.ID_DPTO,
+                    FecReserva = a.ARRIENDO.FECHA_RESERVA,
+                    ValReserva = a.ARRIENDO.VALOR_RESERVA,
+                    ResPago = a.ARRIENDO.RESERVA_PAGADA,
+                    FecIni = a.ARRIENDO.FECHA_INICIO,
+                    FecFin = a.ARRIENDO.FECHA_FIN,
+                    CheckIn = a.ARRIENDO.CHECK_IN,
+                    Checkout = a.ARRIENDO.CHECK_OUT,
+                    Total = a.ARRIENDO.TOTAL_ARRIENDO
                 }
+
             }).ToList();
         }
 
@@ -56,7 +69,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
                 //Procedimiento almacenado
-                //db.SP_CREATE_RESERVA();
+                db.SP_CREATE_RESERVA(this.NomPersona, this.Fech, this.ArriendoId, this.Acomp, this.Valor, this.Vigente);
                 return true;
             }
             catch (Exception)
@@ -66,23 +79,31 @@ namespace TurismoRealWeb.BLL
             }
         }
 
-        public Departamento Find(int id)
+        public Reserva Find(int id)
         {
-            return this.db.DEPARTAMENTO.Select(d => new Departamento()
+            return this.db.RESERVA.Select(a => new Reserva()
             {
-                Id = d.ID_DPTO,
-                CiudadId = d.ID_CIUDAD,
-                Nombre = d.NOMBRE,
-                Direccion = d.DIRECCION,
-                Superficie = d.SUPERFICIE_DPTO,
-                Precio = d.PRECIO_DPTO,
-                Disponible = d.DISPONIBLE,
-                Condicion = d.CONDICION,
-                NroDpto = d.NRO_DPTO,
-                Ciudad = new Ciudad()
+                Id = a.ID_RESERVA,
+                NomPersona = a.NOM_PERSONA,
+                Fech = a.FECH_ARRIENDO,
+                ArriendoId = a.ID_ARRIENDO,
+                Acomp = a.ACOMPANANTES,
+                Valor = a.COSTO_RESERVA,
+                Vigente = a.VIGENTE,
+
+                Arriendo = new Arriendo()
                 {
-                    Id = d.ID_CIUDAD,
-                    Nombre = d.CIUDAD.NOMBRE
+                    Id = a.ID_ARRIENDO,
+                    ClienteId = a.ARRIENDO.ID_CLIENTE,
+                    DptoId = a.ARRIENDO.ID_DPTO,
+                    FecReserva = a.ARRIENDO.FECHA_RESERVA,
+                    ValReserva = a.ARRIENDO.VALOR_RESERVA,
+                    ResPago = a.ARRIENDO.RESERVA_PAGADA,
+                    FecIni = a.ARRIENDO.FECHA_INICIO,
+                    FecFin = a.ARRIENDO.FECHA_FIN,
+                    CheckIn = a.ARRIENDO.CHECK_IN,
+                    Checkout = a.ARRIENDO.CHECK_OUT,
+                    Total = a.ARRIENDO.TOTAL_ARRIENDO
                 }
 
 
@@ -102,7 +123,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
 
-                //db.SP_UPDATE_RESERVA();
+                db.SP_UPDATE_RESERVA(this.Id,this.NomPersona, this.Fech, this.ArriendoId, this.Acomp);
                 return true;
             }
             catch (Exception)
@@ -112,11 +133,11 @@ namespace TurismoRealWeb.BLL
             }
         }
 
-        public bool Delete(int id)
+        public bool Cancelar(int id)
         {
             try
             {
-                db.SP_DELETE_DPTO(id);
+                db.SP_CANCEL_RESERVA(id);
                 return true;
             }
             catch (Exception)

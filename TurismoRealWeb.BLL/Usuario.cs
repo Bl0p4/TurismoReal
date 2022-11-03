@@ -99,7 +99,7 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                this.Pass = TR_Recursos.ConvertirSha256(Pass);
+                //this.Pass = TR_Recursos.ConvertirSha256(Pass);
 
                 //Procedimiento almacenado
                 db.SP_CREATE_USUARIO(this.Id_tipo, this.Nombre, this.Paterno, this.Materno,

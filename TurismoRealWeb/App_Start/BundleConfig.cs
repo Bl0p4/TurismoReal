@@ -9,7 +9,8 @@ namespace TurismoRealWeb
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new Bundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new Bundle("~/bundles/complementos").Include(
                         "~/Scripts/scripts.js",
@@ -29,6 +30,7 @@ namespace TurismoRealWeb
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css",
+                "~/Content/themes/base/jquery-ui.css",
                 "~/Content/DataTables/css/jquery.dataTables.css",
                 "~/Content/DataTables/css/responsive.dataTables.css"
                 ));

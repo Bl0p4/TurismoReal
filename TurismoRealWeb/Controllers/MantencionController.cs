@@ -45,7 +45,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Mantencion/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "DptoId, Fec_ini, Fec_term, Descripcion, Costo")] Mantencion mantencion)
+        public ActionResult Create( Mantencion mantencion)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Mantencion/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "DptoId, Fec_ini, Fec_term, Descripcion, Costo")] Mantencion mantencion)
+        public ActionResult Edit( Mantencion mantencion)
         {
             try
             {

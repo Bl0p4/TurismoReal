@@ -31,18 +31,18 @@
             </tr>
             @foreach (var mantencion in mantenciones)
             {
-        <tr>
-            <td>@mantencion.Dpto.Nombre</td>
-            <td>@mantencion.Descripcion</td>
-            <td>@mantencion.Fech_ini</td>
-            <td>@mantencion.Fech_term</td>
-            <td>@mantencion.Costo</td>
-            <td>
-                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Mantencion", new { id = mantencion.Id })'"><i class="fas fa-file"></i></button>
-                <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Mantencion", new { id = mantencion.Id })'"><i class="fas fa-pen"></i></button>
-                <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Mantencion", new { id = mantencion.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>
-            </td>
-        </tr>
+                <tr>
+                    <td>@mantencion.Dpto.Nombre</td>
+                    <td>@mantencion.Descripcion</td>
+                    <td>@mantencion.Fech_ini</td>
+                    <td>@mantencion.Fech_term</td>
+                    <td>@mantencion.Costo</td>
+                    <td>
+                        <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Mantencion", new { id = mantencion.Id })'"><i class="fas fa-file"></i></button>
+                        <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Mantencion", new { id = mantencion.Id })'"><i class="fas fa-pen"></i></button>
+                        <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Mantencion", new { id = mantencion.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
             }
 
         </table>
@@ -50,25 +50,21 @@
 </div>
 
 @section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+
     <script type="text/javascript">
-
-        function openSuccessModal(strMessage) {
-            var myDiv = document.getElementById("myModalSuccessAlertBody");
-            myDiv.innerHTML = strMessage;
-
-            $('#myModalSuccess').modal("show");
-        }
-
-
         $(document).ready(function () {
-            var msg = "@TempData["SuccessMessage"]";
-            if (msg)
-                openSuccessModal(msg);
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
+
         });
-
-
-
     </script>
+
 }
 
 

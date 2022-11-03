@@ -138,12 +138,6 @@
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.19.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.19.9.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.EJ2, Version=20.3500.0.52, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.EJ2.MVC5.20.3.0.52\lib\net45\Syncfusion.EJ2.dll</HintPath>
-    </Reference>
-    <Reference Include="Syncfusion.Licensing, Version=20.3460.0.52, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Licensing.20.3.0.52\lib\net46\Syncfusion.Licensing.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -443,25 +437,6 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
-    <Content Include="Content\ej2\bootstrap-dark.css" />
-    <Content Include="Content\ej2\bootstrap.css" />
-    <Content Include="Content\ej2\bootstrap4.css" />
-    <Content Include="Content\ej2\bootstrap5-dark.css" />
-    <Content Include="Content\ej2\bootstrap5.css" />
-    <Content Include="Content\ej2\compatibility\bootstrap.css" />
-    <Content Include="Content\ej2\compatibility\bootstrap4.css" />
-    <Content Include="Content\ej2\compatibility\fabric.css" />
-    <Content Include="Content\ej2\compatibility\highcontrast.css" />
-    <Content Include="Content\ej2\compatibility\material.css" />
-    <Content Include="Content\ej2\fabric-dark.css" />
-    <Content Include="Content\ej2\fabric.css" />
-    <Content Include="Content\ej2\fluent-dark.css" />
-    <Content Include="Content\ej2\fluent.css" />
-    <Content Include="Content\ej2\highcontrast.css" />
-    <Content Include="Content\ej2\material-dark.css" />
-    <Content Include="Content\ej2\material.css" />
-    <Content Include="Content\ej2\tailwind-dark.css" />
-    <Content Include="Content\ej2\tailwind.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\regular.css" />
@@ -571,11 +546,6 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
-    <Content Include="Content\ej2\compatibility\material.scss" />
-    <Content Include="Content\ej2\compatibility\highcontrast.scss" />
-    <Content Include="Content\ej2\compatibility\fabric.scss" />
-    <Content Include="Content\ej2\compatibility\bootstrap4.scss" />
-    <Content Include="Content\ej2\compatibility\bootstrap.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -653,7 +623,6 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
-    <Content Include="Scripts\ej2\ej2.min.js" />
     <Content Include="Scripts\fontawesome\all.js" />
     <Content Include="Scripts\fontawesome\all.min.js" />
     <Content Include="Scripts\fontawesome\brands.js" />
@@ -740,6 +709,7 @@
     <Content Include="Views\Sitio\DescDpto.cshtml">
       <BrowseToURL>~/Sitio/Arriendo</BrowseToURL>
     </Content>
+    <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -755,9 +725,6 @@
       <Project>{f6056cd1-fbea-4581-9ded-3d03b7eb6134}</Project>
       <Name>TurismoRealWeb.BLL</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="Scripts\ej2\ej2.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

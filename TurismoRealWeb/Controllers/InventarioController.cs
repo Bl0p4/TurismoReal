@@ -41,7 +41,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Inventario/Create
         [HttpPost]
-        public ActionResult Create([Bind(Include = "DptoId, Item, Valor, Disponible, FechComp")] Inventario inventario)
+        public ActionResult Create( Inventario inventario)
         {
             try
             {

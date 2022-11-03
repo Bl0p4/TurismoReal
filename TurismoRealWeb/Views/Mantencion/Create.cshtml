@@ -8,19 +8,23 @@
 <script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-<script type="text/javascript">
-    $(document).ready(function (){
-        $('.datepicker').datepicker({
-            dateFormat: 'dd/mm/yy',
-            minDate: new Date()
-        });
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
 
-        $("#txtFech").change(function () {
-            alert($("#txtFech").val());
-        });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
 
-    });
-</script>
+        });
+    </script>
+
+}
 
 
 
@@ -59,17 +63,7 @@
                         @Html.LabelFor(i => i.Fech_ini)
                     </div>
                     <div class="col-md-6" style="padding:10px">
-                        @*@Html.EditorFor(i => i.Fech_ini,
-                                       new
-                                            {
-                                                HtmlAttributes = new
-                                                {
-                                           @readonly = "true",
-                                           Value = Model.Fech_ini.ToString("dd/mm/yyyy"),
-                                           @class = "form-control datepicker",
-                                                    id = "txtFech"
-                                       }
-                                            })*@
+                        @Html.EditorFor(i => i.Fech_ini, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha Inicio ", @readonly = "true" } })
                     </div>
                 </div>
                 <div class="row">
@@ -77,16 +71,7 @@
                         @Html.LabelFor(i => i.Fech_term)
                     </div>
                     <div class="col-md-6" style="padding:10px">
-                        @*@Html.EditorFor(i => i.Fech_term,
-                                        new
-                                             {
-                                                 HtmlAttributes = new
-                                                 {
-                                        @readonly = "true",
-                                        Value = Model.Fech_ini.ToString("dd/mm/yyyy"),
-                                        @class = "form-control datepicker"
-                                                 }
-                                             })*@
+                        @Html.EditorFor(i => i.Fech_term, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha Término", @readonly = "true" } })
                     </div>
                 </div>
                 <div class="row">
@@ -102,71 +87,10 @@
                     <button type="submit" value="Guardar" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
-          } 
-      </div>
+        }
+    </div>
 </div>
 
 
 
-@section scripts
-{
-
-
-    <script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
-
-    @*<script>
-        $(document).ready(function () {
-            $.datepicker.setDefaults($.datepicker.regional["es"]);
-            $('.datepicker').datepicker({
-                firstDay: 1,
-                dateFormat: 'dd/mm/yy',
-                changemonth: true,
-                changeyear: true,
-                showOn: "button",
-                buttonText: 'Seleccione..',
-                minDate: new Date()
-            });
-        });
-    </script>*@
-
-    @*<script>
-        $(function () {
-            $("#Fech_ini").attr("class", "form-control datepicker");
-            // DATEPICKER JQUERY ADDITION
-            $(".datepicker").datepicker({
-                dateFormat: "dd/mm/yy",
-                changeYear: true,
-                shownOn: "button",
-            })
-                .css("display", "inline-block")
-                .next("button")
-                .button({
-                    icons: { primary: "ui-icon-calendar" },
-                    label: "Select a Date",
-                    text: false
-                });
-        })
-
-        $(function () {
-            $("#Fech_term").attr("class", "form-control datepicker");
-            // DATEPICKER JQUERY ADDITION
-            $(".datepicker").datepicker({
-                dateFormat: "ddmmyy",
-                changeYear: true,
-                shownOn: "button",
-            })
-                .css("display", "inline-block")
-                .next("button")
-                .button({
-                    icons: { primary: "ui-icon-calendar" },
-                    label: "Select a Date",
-                    text: false
-                });
-        })
-    </script>*@
-
-
-
-
-}
 

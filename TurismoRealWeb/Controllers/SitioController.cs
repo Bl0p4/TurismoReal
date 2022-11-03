@@ -31,8 +31,8 @@ namespace TurismoRealWeb.Controllers
             ViewBag.ciudades = new Ciudad().ReadAll();
         }
 
-        public ActionResult Reserva()
-        {
+        public ActionResult Reserva(int id)
+        {            
             EnviarCiudades();
             return View();
         }

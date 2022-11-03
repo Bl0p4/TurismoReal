@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TurismoRealWeb.BLL;
+using System.Web.Security;
+
 
 namespace TurismoRealWeb.Controllers
 {
@@ -24,22 +26,45 @@ namespace TurismoRealWeb.Controllers
         // GET: Arriendo/Create
         public ActionResult Create()
         {
+            Arriendo arriendo = new Arriendo();
+            arriendo.ClienteId = 1;
+            arriendo.FecReserva = DateTime.Today;
+            arriendo.ValReserva = 15000;
+            arriendo.ResPago = "0";
+            arriendo.CheckIn = "0";
+            arriendo.Checkout = "0";
+
+            EnviarDptos();
             return View();
+        }       
+
+        private void EnviarCiudades()
+        {
+            ViewBag.ciudades = new Ciudad().ReadAll();
         }
 
+        private void EnviarDptos()
+        {
+            ViewBag.departamentos = new Departamento().ReadAll();            
+        }
         // POST: Arriendo/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
+        public ActionResult Create(Arriendo arriendo)
+        {            
             try
             {
                 // TODO: Add insert logic here
-                //TempData["SuccessMessage"] ;
-                return RedirectToAction("Index");
+                if (!ModelState.IsValid)
+                {
+                    EnviarDptos();
+                    return View(arriendo);
+                }                
+                arriendo.Save();
+                return RedirectToAction("Reserva","Sitio");
             }
             catch
             {
-                return View();
+                return View(arriendo);
             }
         }
 

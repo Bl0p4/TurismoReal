@@ -25,7 +25,7 @@
                             <h5 class="card-title">@dpto.Nombre</h5>
                             <p class="card-text">@dpto.Ciudad.Nombre</p>
                             <p class="card-text"><small>@Html.DisplayFor(modelItem => dpto.Precio)</small></p>
-                            <a class="btn btn-primary" href="@Url.Action("Index","")">Reserva</a>
+                            <a class="btn btn-primary" href="@Url.Action("Create","Arriendo", new { id = dpto.Id })">Reserva</a>
                         </div>
                     </div>
                 </div>
@@ -34,8 +34,6 @@
         }
     </div>
 </div>
-
-<!--Filtro Ciudad-->
 
 
 

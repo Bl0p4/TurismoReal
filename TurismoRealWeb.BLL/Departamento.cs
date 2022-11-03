@@ -90,7 +90,7 @@ namespace TurismoRealWeb.BLL
                 Precio = d.PRECIO_DPTO,
                 Disponible = d.DISPONIBLE,
                 Condicion = d.CONDICION,
-                NroDpto = d.NRO_DPTO,
+                NumDpto = d.NRO_DPTO,
                 Ciudad = new Ciudad()
                 {
                     Id = d.ID_CIUDAD,
