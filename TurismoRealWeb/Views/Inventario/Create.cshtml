@@ -7,19 +7,23 @@
 <script src="~/Scripts/jquery-ui-1.13.2.min.js"></script>
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.datepicker').datepicker({
-            dateFormat: 'dd/mm/yy',
-            minDate: new Date()
-        });
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
 
-        $("#txtFech").change(function () {
-            alert($("#txtFech").val());
-        });
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0"
+            });
 
-    });
-</script>
+        });
+    </script>
+
+}
 
 <div class="card-body">
     <div class="row">
@@ -63,17 +67,7 @@
                         @Html.LabelFor(i => i.FechComp)
                     </div>
                     <div class="col-md-6" style="padding:10px">
-                        @*@Html.EditorFor(i => i.FechComp,
-                                       new
-                                            {
-                                           HtmlAttributes = new
-                                           {
-                                               @readonly = "true",
-                                               Value = Model.FechComp.ToString("dd/mm/yyyy"),
-                                               @class = "form-control datepicker",
-                                               id = "txtFech"
-                                           }
-                                       })*@
+                        @Html.EditorFor(i => i.FechComp, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Compra ", @readonly = "true" } })
                     </div>
                 </div>
                 <div class="row">
