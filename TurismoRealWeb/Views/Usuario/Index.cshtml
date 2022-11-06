@@ -7,44 +7,74 @@
 <h2>Listado de usuarios</h2>
 
 @{ List<Usuario> usuarios = (List<Usuario>)ViewBag.usuarios;}
-@Html.ActionLink("Crear Usuario", "Create")
-<table id="tabla">
-    <tr>
-        <th>Nombre</th>
-        <th>Paterno</th>
-        <th>Materno</th>
-        <th>Rut</th>
-        <th>Dv</th>
-        <th>Direccion</th>
-        <th>Ciudad</th>
-        <th>Telefono</th>
-        <th>Email</th>
-        <th>Area</th>
-        @*<th>Username</th>
-        <th>Password</th>*@
-        <th>Tipo Usuario</th>
-    </tr>
-    @foreach (var usuario in usuarios)
-    {
-        <tr>
-            <td>@usuario.Nombre</td>
-            <td>@usuario.Paterno</td>
-            <td>@usuario.Materno</td>
-            <td>@usuario.Rut</td>
-            <td>@usuario.Dv</td>
-            <td>@usuario.Direccion</td>
-            <td>@usuario.Ciudad</td>
-            <td>@usuario.Telefono</td>
-            <td>@usuario.Email</td>
-            <td>@usuario.Area</td>
-            @*<td>@usuario.Username</td>
-            <td>@usuario.Password</td>*@
-            <td>@usuario.Tipo.Descripcion</td>
-        </tr>
-    }
+<div class="table-responsive card mb-4 mt-4 bg-">
+    <div class="card-header bg-dark" style="color: white">
+        <i class="fas fa-user me-1 "></i> Listado de Usuarios
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="location.href ='@Url.Action("Create", "Usuario")'">Crear Usuario</button>
+            </div>
+        </div>
 
-</table>
+        <hr />
+        <table id="tabla" class="table table-hover table-striped" style="width: 100%">
+            <tr>
+                <th>Nombre</th>
+                <th>Paterno</th>
+                <th>Materno</th>
+                <th>Rut</th>
+                <th>Direccion</th>
+                <th>Ciudad</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Area</th>
+                <th>Tipo Usuario</th>
+                <th>Username</th>
+
+            </tr>
+            @foreach (var usuario in usuarios)
+            {
+                <tr>
+                    <td>@usuario.Nombre</td>
+                    <td>@usuario.Paterno</td>
+                    <td>@usuario.Materno</td>
+                    <td>@usuario.Rut.ToString("N0")-@usuario.Dv</td>
+                    <td>@usuario.Direccion</td>
+                    <td>@usuario.Ciudad</td>
+                    <td>@usuario.Telefono</td>
+                    <td>@usuario.Email</td>
+                    <td>@usuario.Area</td>
+                    <td>@usuario.Tipo.Descripcion</td>
+                    <td>@usuario.Username</td>
+
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
 
 
-@TempData["mensaje"]
+@section scripts{
+    <script type="text/javascript">
 
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("myModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+
+            $('#myModalSuccess').modal("show");
+        }
+
+
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        });
+
+
+
+    </script>
+}

@@ -89,7 +89,7 @@ namespace TurismoRealWeb.Controllers
 
         // POST: Inventario/Edit/5
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Id, DptoId, Item, Valor, Disponible, FechComp")] Inventario inventario)
+        public ActionResult Edit( Inventario inventario)
         {
             try
             {

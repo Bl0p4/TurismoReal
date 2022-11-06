@@ -20,8 +20,9 @@ namespace TurismoRealWeb.BLL
 
         [Required(ErrorMessage = "Ingrese Apellido Materno")]
         public string Materno { get; set; }
-
+        
         [Required(ErrorMessage = "Ingrese Rut")]
+        [DisplayFormat(DataFormatString = "{0:G}", ApplyFormatInEditMode = false)]
         public decimal Rut { get; set; }
 
         [Required(ErrorMessage = "Ingrese Dígito Verificador")]

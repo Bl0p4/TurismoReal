@@ -26,13 +26,6 @@ namespace TurismoRealWeb.Controllers
         // GET: Arriendo/Create
         public ActionResult Create()
         {
-            Arriendo arriendo = new Arriendo();
-            arriendo.ClienteId = 1;
-            arriendo.FecReserva = DateTime.Today;
-            arriendo.ValReserva = 15000;
-            arriendo.ResPago = "0";
-            arriendo.CheckIn = "0";
-            arriendo.Checkout = "0";
 
             EnviarDptos();
             return View();
