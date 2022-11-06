@@ -43,8 +43,15 @@ namespace TurismoRealWeb.Controllers
 
         private bool IsValid(Usuario usuario)
         {
-            usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);            
-            return usuario.Autenticar();
+            if (usuario.Password != null)
+            {
+                usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
+                return usuario.Autenticar();
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public ActionResult LogOut()
