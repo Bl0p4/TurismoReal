@@ -19,27 +19,33 @@ namespace TurismoRealWeb.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario, string ReturnUrl)
         {
-            
+
             if (IsValid(usuario))
             {
-                FormsAuthentication.SetAuthCookie(usuario.Username, false);               
+                
+                FormsAuthentication.SetAuthCookie(usuario.Username, false);
 
                 if (ReturnUrl != null)
                 {
                     return Redirect(ReturnUrl);
                 }
-
-                //string sessionID = HttpContext.Session.SessionID;
+                usuario = usuario.Buscar(usuario.Username);
+                Session["User"] = usuario;
+                Session["id"] = usuario.Id;
+                Session["username"] = usuario.Username;
 
                 if (usuario.Id_tipo == 1)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Home", "Sitio");
                 }
-                return RedirectToAction("Home", "Sitio");
+                return RedirectToAction("Index", "Home");
+                
             }
             TempData["mensaje"] = "Usuario o Contraseña Incorrectos";
             return View(usuario);
         }
+
+
 
         private bool IsValid(Usuario usuario)
         {

@@ -16,10 +16,11 @@ namespace TurismoRealWeb.DAL
     {
         public DEPARTAMENTO()
         {
+            this.ARRIENDO = new HashSet<ARRIENDO>();
+            this.IMAGEN = new HashSet<IMAGEN>();
             this.INVENTARIO = new HashSet<INVENTARIO>();
             this.MANTENCION = new HashSet<MANTENCION>();
-            this.IMAGEN = new HashSet<IMAGEN>();
-            this.ARRIENDO = new HashSet<ARRIENDO>();
+            this.DISPONIBILIDAD_SERVICIO = new HashSet<DISPONIBILIDAD_SERVICIO>();
         }
     
         public decimal ID_DPTO { get; set; }
@@ -32,10 +33,11 @@ namespace TurismoRealWeb.DAL
         public string CONDICION { get; set; }
         public string NRO_DPTO { get; set; }
     
+        public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
         public virtual CIUDAD CIUDAD { get; set; }
+        public virtual ICollection<IMAGEN> IMAGEN { get; set; }
         public virtual ICollection<INVENTARIO> INVENTARIO { get; set; }
         public virtual ICollection<MANTENCION> MANTENCION { get; set; }
-        public virtual ICollection<IMAGEN> IMAGEN { get; set; }
-        public virtual ICollection<ARRIENDO> ARRIENDO { get; set; }
+        public virtual ICollection<DISPONIBILIDAD_SERVICIO> DISPONIBILIDAD_SERVICIO { get; set; }
     }
 }

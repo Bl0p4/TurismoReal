@@ -24,11 +24,17 @@ namespace TurismoRealWeb.Controllers
         }
 
         // GET: Arriendo/Create
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-
-            EnviarDptos();
-            return View();
+            Arriendo arriendo = new Arriendo();
+            arriendo.Departamento = new Departamento().Find(id);
+            arriendo.ClienteId = 1;
+            arriendo.total_serv = 0;
+            arriendo.CheckIn = null;
+            arriendo.Checkout = null;
+            arriendo.DptoId = arriendo.Departamento.Id;
+            arriendo.Total = arriendo.Departamento.Precio;
+            return View(arriendo);
         }       
 
         private void EnviarCiudades()
@@ -40,6 +46,7 @@ namespace TurismoRealWeb.Controllers
         {
             ViewBag.departamentos = new Departamento().ReadAll();            
         }
+
         // POST: Arriendo/Create
         [HttpPost]
         public ActionResult Create(Arriendo arriendo)
@@ -49,11 +56,10 @@ namespace TurismoRealWeb.Controllers
                 // TODO: Add insert logic here
                 if (!ModelState.IsValid)
                 {
-                    EnviarDptos();
                     return View(arriendo);
                 }                
                 arriendo.Save();
-                return RedirectToAction("Reserva","Sitio");
+                return RedirectToAction("Reserva", "Sitio");
             }
             catch
             {

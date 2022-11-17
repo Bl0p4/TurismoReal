@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AMIGO">
           <Key>
             <PropertyRef Name="ID_AMIGO" />
@@ -24,20 +24,18 @@
           <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_CLIENTE" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="FECHA_RESERVA" Type="date" Nullable="false" />
-          <Property Name="VALOR_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="RESERVA_PAGADA" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
           <Property Name="FECHA_FIN" Type="date" Nullable="false" />
           <Property Name="CHECK_IN" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="CHECK_OUT" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="TOTAL_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_SERVICIOS" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="ARRIENDO_AMIGO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ARRIENDO" />
+            <PropertyRef Name="ID_AMIGOS" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_AMIGOS" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
@@ -69,15 +67,15 @@
           <Property Name="DIRECCION" Type="varchar2" MaxLength="80" Nullable="false" />
           <Property Name="SUPERFICIE_DPTO" Type="varchar2" MaxLength="25" Nullable="false" />
           <Property Name="PRECIO_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DISPONIBLE" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="DISPONIBLE" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="CONDICION" Type="varchar2" MaxLength="100" Nullable="false" />
-          <Property Name="NRO_DPTO" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="NRO_DPTO" Type="varchar2" MaxLength="15" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_DPTO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ACTUALMENTE_DISPONIBLE" Type="char" MaxLength="1" Nullable="false" />
@@ -132,7 +130,7 @@
           <Property Name="ID_DPTO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar2" MaxLength="50" Nullable="false" />
           <Property Name="VALOR" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DISPONIBLE" Type="varchar2" MaxLength="1" Nullable="false" />
+          <Property Name="DISPONIBLE" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="FECHA_COMPRA" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="MANTENCION">
@@ -160,23 +158,24 @@
             <PropertyRef Name="ID_RESERVA" />
           </Key>
           <Property Name="ID_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="NOM_PERSONA" Type="varchar2" MaxLength="100" Nullable="false" />
-          <Property Name="FECH_ARRIENDO" Type="date" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOM_PERSONA" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="FECHA_RESERVA" Type="date" Nullable="false" />
           <Property Name="ACOMPANANTES" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COSTO_RESERVA" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="VIGENTE" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="SERVICIO_CONTRATADO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ARRIENDO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COSTO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="FECHA_REALIZACION" Type="date" />
           <Property Name="REALIZADO" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="POST_CHECK_IN" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="SERVICIO_EXTRA">
           <Key>
@@ -185,6 +184,20 @@
           <Property Name="ID_SERVICIO" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DESCRIPCION" Type="varchar2" MaxLength="35" Nullable="false" />
           <Property Name="COSTO_ACTUAL" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_TRANSPORTE">
+          <Key>
+            <PropertyRef Name="ID_SOLICITUD" />
+          </Key>
+          <Property Name="ID_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
+          <Property Name="PASAJEROS" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DIR_INICIO" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="DIR_DESTINO" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="KMS_DISTANCIA" Type="number" Precision="38" Scale="0" />
+          <Property Name="ACEPTADA" Type="char" MaxLength="1" />
+          <Property Name="COSTO" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="TIPO_USUARIO">
           <Key>
@@ -199,11 +212,9 @@
           </Key>
           <Property Name="ID_TRANSPORTE" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_CONDUCTOR" Type="number" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="ID_ARRIENDO" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SOLICITUD" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DESC_VEHICULO" Type="varchar2" MaxLength="130" Nullable="false" />
           <Property Name="PATENTE" Type="varchar2" MaxLength="7" Nullable="false" />
-          <Property Name="FECHA_INICIO" Type="date" Nullable="false" />
-          <Property Name="COSTO" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -272,6 +283,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="DEPARTAMENTOS_CIUDADES_FK">
+          <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="1" />
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIUDAD">
+              <PropertyRef Name="ID_CIUDAD" />
+            </Principal>
+            <Dependent Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_CIUDAD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IMAGEN_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="IMAGEN" Type="Self.IMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="IMAGEN">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INVENTARIO_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MANTENCION_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="MANTENCION" Type="Self.MANTENCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="MANTENCION">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="MULTA_ARRIENDO_FK">
           <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
           <End Role="MULTA" Type="Self.MULTA" Multiplicity="*" />
@@ -280,6 +339,18 @@
               <PropertyRef Name="ID_ARRIENDO" />
             </Principal>
             <Dependent Role="MULTA">
+              <PropertyRef Name="ID_ARRIENDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RESERVA_ARRIENDO_FK">
+          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
+          <End Role="RESERVA" Type="Self.RESERVA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARRIENDO">
+              <PropertyRef Name="ID_ARRIENDO" />
+            </Principal>
+            <Dependent Role="RESERVA">
               <PropertyRef Name="ID_ARRIENDO" />
             </Dependent>
           </ReferentialConstraint>
@@ -308,6 +379,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="SERVICIODISP_DPTOS_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="DISPONIBILIDAD_SERVICIO" Type="Self.DISPONIBILIDAD_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="DISPONIBILIDAD_SERVICIO">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="SERVICIOSDISP_FK">
           <End Role="SERVICIO_EXTRA" Type="Self.SERVICIO_EXTRA" Multiplicity="1" />
           <End Role="DISPONIBILIDAD_SERVICIO" Type="Self.DISPONIBILIDAD_SERVICIO" Multiplicity="*" />
@@ -320,6 +403,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="SOLICITUD_ARRIENDO_FK">
+          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
+          <End Role="SOLICITUD_TRANSPORTE" Type="Self.SOLICITUD_TRANSPORTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARRIENDO">
+              <PropertyRef Name="ID_ARRIENDO" />
+            </Principal>
+            <Dependent Role="SOLICITUD_TRANSPORTE">
+              <PropertyRef Name="ID_ARRIENDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SOLICITUD_TRANSPORTES_FK">
+          <End Role="SOLICITUD_TRANSPORTE" Type="Self.SOLICITUD_TRANSPORTE" Multiplicity="1" />
+          <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_TRANSPORTE">
+              <PropertyRef Name="ID_SOLICITUD" />
+            </Principal>
+            <Dependent Role="TRANSPORTE_REALIZADO">
+              <PropertyRef Name="ID_SOLICITUD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="TRANSPORTE_CONDUCTOR_FK">
           <End Role="CONDUCTOR" Type="Self.CONDUCTOR" Multiplicity="1" />
           <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
@@ -329,18 +436,6 @@
             </Principal>
             <Dependent Role="TRANSPORTE_REALIZADO">
               <PropertyRef Name="ID_CONDUCTOR" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TRANSPORTES_REALIZADOS_FK">
-          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
-          <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ARRIENDO">
-              <PropertyRef Name="ID_ARRIENDO" />
-            </Principal>
-            <Dependent Role="TRANSPORTE_REALIZADO">
-              <PropertyRef Name="ID_ARRIENDO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -358,7 +453,7 @@
         </Association>
         <Function Name="SP_ALTERNAR_DISP_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="P_DISPONIBLE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_DISPONIBLE" Type="char" Mode="In" />
         </Function>
         <Function Name="SP_CANCEL_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -372,12 +467,10 @@
         <Function Name="SP_CREATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="FEC_RESERVA" Type="date" Mode="In" />
-          <Parameter Name="VALOR_RESERVA" Type="number" Mode="In" />
-          <Parameter Name="PAGADA" Type="char" Mode="In" />
           <Parameter Name="FEC_INI" Type="date" Mode="In" />
           <Parameter Name="FEC_FIN" Type="date" Mode="In" />
-          <Parameter Name="TOTAL" Type="number" Mode="In" />
+          <Parameter Name="TOTAL_ARRI" Type="number" Mode="In" />
+          <Parameter Name="TOTAL_SERV" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
@@ -393,6 +486,10 @@
           <Parameter Name="DISP" Type="char" Mode="In" />
           <Parameter Name="COND" Type="varchar2" Mode="In" />
           <Parameter Name="NRO_DPTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="SP_CREATE_IMAGEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_FOTO" Type="blob" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_DPTO" Type="number" Mode="In" />
@@ -443,8 +540,15 @@
         <Function Name="SP_DELETE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_DELETE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_DELETE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SP_DELETE_IMAGEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID_IMAGEN" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_DELETE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
@@ -467,55 +571,54 @@
           <Parameter Name="P_TIPO_USUARIO" Type="varchar2" Mode="Out" />
         </Function>
         <Function Name="SP_UPDATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID" Type="number" Mode="In" />
-          <Parameter Name="ID_CLI" Type="number" Mode="In" />
-          <Parameter Name="ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="FEC_RESERVA" Type="date" Mode="In" />
-          <Parameter Name="VALOR_RESERVA" Type="number" Mode="In" />
-          <Parameter Name="PAGADA" Type="char" Mode="In" />
-          <Parameter Name="FEC_INI" Type="date" Mode="In" />
-          <Parameter Name="FEC_FIN" Type="date" Mode="In" />
-          <Parameter Name="TOTAL" Type="number" Mode="In" />
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_CLI" Type="number" Mode="In" />
+          <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
+          <Parameter Name="P_FEC_INI" Type="date" Mode="In" />
+          <Parameter Name="P_FEC_FIN" Type="date" Mode="In" />
+          <Parameter Name="P_TOTAL_ARRI" Type="number" Mode="In" />
+          <Parameter Name="P_TOTAL_SERV" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_DISP_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="P_ID_SERV" Type="number" Mode="In" />
           <Parameter Name="P_ACTUALDISP" Type="char" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_DPTO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_CIUDAD" Type="number" Mode="In" />
           <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
-          <Parameter Name="DIR" Type="varchar2" Mode="In" />
-          <Parameter Name="M2" Type="varchar2" Mode="In" />
+          <Parameter Name="P_DIR" Type="varchar2" Mode="In" />
+          <Parameter Name="P_M2" Type="varchar2" Mode="In" />
           <Parameter Name="P_NRO_DPTO" Type="varchar2" Mode="In" />
-          <Parameter Name="PRECIO" Type="number" Mode="In" />
-          <Parameter Name="DISP" Type="varchar2" Mode="In" />
-          <Parameter Name="COND" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PRECIO" Type="number" Mode="In" />
+          <Parameter Name="P_DISP" Type="varchar2" Mode="In" />
+          <Parameter Name="P_COND" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_ITEM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="ITEM" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ITEM" Type="varchar2" Mode="In" />
           <Parameter Name="P_VALOR" Type="number" Mode="In" />
-          <Parameter Name="DISP" Type="varchar2" Mode="In" />
-          <Parameter Name="FEC_COMPRA" Type="date" Mode="In" />
+          <Parameter Name="P_DISP" Type="varchar2" Mode="In" />
+          <Parameter Name="P_FEC_COMPRA" Type="date" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_MANTEN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID" Type="number" Mode="In" />
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
-          <Parameter Name="FEC_INI" Type="date" Mode="In" />
-          <Parameter Name="FEC_TERM" Type="date" Mode="In" />
+          <Parameter Name="P_FEC_INI" Type="date" Mode="In" />
+          <Parameter Name="P_FEC_TERM" Type="date" Mode="In" />
           <Parameter Name="P_DESCRIPCION" Type="varchar2" Mode="In" />
           <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID" Type="number" Mode="In" />
-          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
-          <Parameter Name="FECH" Type="date" Mode="In" />
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_FECH" Type="date" Mode="In" />
           <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
-          <Parameter Name="ACOMP" Type="number" Mode="In" />
+          <Parameter Name="P_ACOMP" Type="number" Mode="In" />
+          <Parameter Name="P_COSTO" Type="number" Mode="In" />
+          <Parameter Name="P_VIG" Type="char" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_ID" Type="number" Mode="In" />
@@ -523,20 +626,20 @@
           <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID" Type="number" Mode="In" />
-          <Parameter Name="ID_TIPO" Type="number" Mode="In" />
-          <Parameter Name="NOMBRE" Type="varchar2" Mode="In" />
-          <Parameter Name="PATERNO" Type="varchar2" Mode="In" />
-          <Parameter Name="MATERNO" Type="varchar2" Mode="In" />
-          <Parameter Name="RUT" Type="number" Mode="In" />
-          <Parameter Name="DV" Type="char" Mode="In" />
-          <Parameter Name="DIRECCION" Type="varchar2" Mode="In" />
-          <Parameter Name="CIUDAD" Type="varchar2" Mode="In" />
-          <Parameter Name="TELEFONO" Type="varchar2" Mode="In" />
-          <Parameter Name="EMAIL" Type="varchar2" Mode="In" />
-          <Parameter Name="AREA" Type="varchar2" Mode="In" />
-          <Parameter Name="USUARIO" Type="varchar2" Mode="In" />
-          <Parameter Name="PASS" Type="varchar2" Mode="In" />
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_ID_TIPO" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PATERNO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_MATERNO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_RUT" Type="number" Mode="In" />
+          <Parameter Name="P_DV" Type="char" Mode="In" />
+          <Parameter Name="P_DIRECCION" Type="varchar2" Mode="In" />
+          <Parameter Name="P_CIUDAD" Type="varchar2" Mode="In" />
+          <Parameter Name="P_TELEFONO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_EMAIL" Type="varchar2" Mode="In" />
+          <Parameter Name="P_AREA" Type="varchar2" Mode="In" />
+          <Parameter Name="P_USUARIO" Type="varchar2" Mode="In" />
+          <Parameter Name="P_PASS" Type="varchar2" Mode="In" />
         </Function>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AMIGO" EntityType="Self.AMIGO" Schema="ASD" store:Type="Tables" />
@@ -556,6 +659,7 @@
           <EntitySet Name="RESERVA" EntityType="Self.RESERVA" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="SERVICIO_CONTRATADO" EntityType="Self.SERVICIO_CONTRATADO" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="SERVICIO_EXTRA" EntityType="Self.SERVICIO_EXTRA" Schema="ASD" store:Type="Tables" />
+          <EntitySet Name="SOLICITUD_TRANSPORTE" EntityType="Self.SOLICITUD_TRANSPORTE" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="TIPO_USUARIO" EntityType="Self.TIPO_USUARIO" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="TRANSPORTE_REALIZADO" EntityType="Self.TRANSPORTE_REALIZADO" Schema="ASD" store:Type="Tables" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="ASD" store:Type="Tables" />
@@ -575,9 +679,29 @@
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
             <End Role="ARRIENDO_AMIGO" EntitySet="ARRIENDO_AMIGO" />
           </AssociationSet>
+          <AssociationSet Name="DEPARTAMENTOS_CIUDADES_FK" Association="Self.DEPARTAMENTOS_CIUDADES_FK">
+            <End Role="CIUDAD" EntitySet="CIUDAD" />
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="IMAGEN_DEPARTAMENTO_FK" Association="Self.IMAGEN_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="IMAGEN" EntitySet="IMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="INVENTARIO_DEPARTAMENTO_FK" Association="Self.INVENTARIO_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="MANTENCION_DEPARTAMENTO_FK" Association="Self.MANTENCION_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="MANTENCION" EntitySet="MANTENCION" />
+          </AssociationSet>
           <AssociationSet Name="MULTA_ARRIENDO_FK" Association="Self.MULTA_ARRIENDO_FK">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
             <End Role="MULTA" EntitySet="MULTA" />
+          </AssociationSet>
+          <AssociationSet Name="RESERVA_ARRIENDO_FK" Association="Self.RESERVA_ARRIENDO_FK">
+            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+            <End Role="RESERVA" EntitySet="RESERVA" />
           </AssociationSet>
           <AssociationSet Name="SERVCONTRAT_ARRIENDOS_FK" Association="Self.SERVCONTRAT_ARRIENDOS_FK">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
@@ -587,16 +711,24 @@
             <End Role="SERVICIO_EXTRA" EntitySet="SERVICIO_EXTRA" />
             <End Role="SERVICIO_CONTRATADO" EntitySet="SERVICIO_CONTRATADO" />
           </AssociationSet>
+          <AssociationSet Name="SERVICIODISP_DPTOS_FK" Association="Self.SERVICIODISP_DPTOS_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="DISPONIBILIDAD_SERVICIO" EntitySet="DISPONIBILIDAD_SERVICIO" />
+          </AssociationSet>
           <AssociationSet Name="SERVICIOSDISP_FK" Association="Self.SERVICIOSDISP_FK">
             <End Role="SERVICIO_EXTRA" EntitySet="SERVICIO_EXTRA" />
             <End Role="DISPONIBILIDAD_SERVICIO" EntitySet="DISPONIBILIDAD_SERVICIO" />
           </AssociationSet>
-          <AssociationSet Name="TRANSPORTE_CONDUCTOR_FK" Association="Self.TRANSPORTE_CONDUCTOR_FK">
-            <End Role="CONDUCTOR" EntitySet="CONDUCTOR" />
+          <AssociationSet Name="SOLICITUD_ARRIENDO_FK" Association="Self.SOLICITUD_ARRIENDO_FK">
+            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+            <End Role="SOLICITUD_TRANSPORTE" EntitySet="SOLICITUD_TRANSPORTE" />
+          </AssociationSet>
+          <AssociationSet Name="SOLICITUD_TRANSPORTES_FK" Association="Self.SOLICITUD_TRANSPORTES_FK">
+            <End Role="SOLICITUD_TRANSPORTE" EntitySet="SOLICITUD_TRANSPORTE" />
             <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
           </AssociationSet>
-          <AssociationSet Name="TRANSPORTES_REALIZADOS_FK" Association="Self.TRANSPORTES_REALIZADOS_FK">
-            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+          <AssociationSet Name="TRANSPORTE_CONDUCTOR_FK" Association="Self.TRANSPORTE_CONDUCTOR_FK">
+            <End Role="CONDUCTOR" EntitySet="CONDUCTOR" />
             <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
           </AssociationSet>
           <AssociationSet Name="USUARIO_TIPOUSUARIO_FK" Association="Self.USUARIO_TIPOUSUARIO_FK">
@@ -604,7 +736,8 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -619,7 +752,7 @@
           <Property Name="FEC_NAC" Type="DateTime" Nullable="false" />
           <Property Name="TELEFONO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EMAIL" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ARRIENDO_AMIGO" Relationship="Self.ARRIENDOSAMIGOS_AMIGOS_FK" FromRole="AMIGO" ToRole="ARRIENDO_AMIGO" />
+          <NavigationProperty Name="ARRIENDO" Relationship="Self.ARRIENDO_AMIGO" FromRole="AMIGO" ToRole="ARRIENDO" />
         </EntityType>
         <EntityType Name="ARRIENDO">
           <Key>
@@ -628,31 +761,19 @@
           <Property Name="ID_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_CLIENTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="FECHA_RESERVA" Type="DateTime" Nullable="false" />
-          <Property Name="VALOR_RESERVA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="RESERVA_PAGADA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" />
           <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" />
           <Property Name="CHECK_IN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="CHECK_OUT" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="TOTAL_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_SERVICIOS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.ARRIENDO_DEPARTAMENTO_FK" FromRole="ARRIENDO" ToRole="DEPARTAMENTO" />
           <NavigationProperty Name="USUARIO" Relationship="Self.ARRIENDO_USUARIO_FK" FromRole="ARRIENDO" ToRole="USUARIO" />
-          <NavigationProperty Name="ARRIENDO_AMIGO" Relationship="Self.ARRIENDOSAMIGOS_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="ARRIENDO_AMIGO" />
           <NavigationProperty Name="MULTA" Relationship="Self.MULTA_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="MULTA" />
+          <NavigationProperty Name="RESERVA" Relationship="Self.RESERVA_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="RESERVA" />
           <NavigationProperty Name="SERVICIO_CONTRATADO" Relationship="Self.SERVCONTRAT_ARRIENDOS_FK" FromRole="ARRIENDO" ToRole="SERVICIO_CONTRATADO" />
-          <NavigationProperty Name="TRANSPORTE_REALIZADO" Relationship="Self.TRANSPORTES_REALIZADOS_FK" FromRole="ARRIENDO" ToRole="TRANSPORTE_REALIZADO" />
-          <NavigationProperty Name="RESERVA" Relationship="Model.ARRIENDORESERVA" FromRole="ARRIENDO" ToRole="RESERVA" />
-          <NavigationProperty Name="DEPARTAMENTO" Relationship="Model.DEPARTAMENTOARRIENDO" FromRole="ARRIENDO" ToRole="DEPARTAMENTO" />
-        </EntityType>
-        <EntityType Name="ARRIENDO_AMIGO">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ID_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ID_AMIGOS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="AMIGO" Relationship="Self.ARRIENDOSAMIGOS_AMIGOS_FK" FromRole="ARRIENDO_AMIGO" ToRole="AMIGO" />
-          <NavigationProperty Name="ARRIENDO" Relationship="Self.ARRIENDOSAMIGOS_ARRIENDO_FK" FromRole="ARRIENDO_AMIGO" ToRole="ARRIENDO" />
+          <NavigationProperty Name="SOLICITUD_TRANSPORTE" Relationship="Self.SOLICITUD_ARRIENDO_FK" FromRole="ARRIENDO" ToRole="SOLICITUD_TRANSPORTE" />
+          <NavigationProperty Name="AMIGO" Relationship="Self.ARRIENDO_AMIGO" FromRole="ARRIENDO" ToRole="AMIGO" />
         </EntityType>
         <EntityType Name="CIUDAD">
           <Key>
@@ -660,7 +781,7 @@
           </Key>
           <Property Name="ID_CIUDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="DEPARTAMENTO" Relationship="Model.CIUDADDEPARTAMENTO" FromRole="CIUDAD" ToRole="DEPARTAMENTO" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.DEPARTAMENTOS_CIUDADES_FK" FromRole="CIUDAD" ToRole="DEPARTAMENTO" />
         </EntityType>
         <EntityType Name="CONDUCTOR">
           <Key>
@@ -684,23 +805,25 @@
           <Property Name="DIRECCION" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SUPERFICIE_DPTO" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PRECIO_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DISPONIBLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DISPONIBLE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="CONDICION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NRO_DPTO" Type="String" Nullable="false" />
-          <NavigationProperty Name="CIUDAD" Relationship="Model.CIUDADDEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="CIUDAD" />
-          <NavigationProperty Name="INVENTARIO" Relationship="Model.a" FromRole="DEPARTAMENTO" ToRole="INVENTARIO" />
-          <NavigationProperty Name="MANTENCION" Relationship="Model.DEPARTAMENTOMANTENCION" FromRole="DEPARTAMENTO" ToRole="MANTENCION" />
-          <NavigationProperty Name="IMAGEN" Relationship="Model.IMAGENDEPARTAMENTO" FromRole="DEPARTAMENTO" ToRole="IMAGEN" />
-          <NavigationProperty Name="ARRIENDO" Relationship="Model.DEPARTAMENTOARRIENDO" FromRole="DEPARTAMENTO" ToRole="ARRIENDO" />
+          <Property Name="NRO_DPTO" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ARRIENDO" Relationship="Self.ARRIENDO_DEPARTAMENTO_FK" FromRole="DEPARTAMENTO" ToRole="ARRIENDO" />
+          <NavigationProperty Name="CIUDAD" Relationship="Self.DEPARTAMENTOS_CIUDADES_FK" FromRole="DEPARTAMENTO" ToRole="CIUDAD" />
+          <NavigationProperty Name="IMAGEN" Relationship="Self.IMAGEN_DEPARTAMENTO_FK" FromRole="DEPARTAMENTO" ToRole="IMAGEN" />
+          <NavigationProperty Name="INVENTARIO" Relationship="Self.INVENTARIO_DEPARTAMENTO_FK" FromRole="DEPARTAMENTO" ToRole="INVENTARIO" />
+          <NavigationProperty Name="MANTENCION" Relationship="Self.MANTENCION_DEPARTAMENTO_FK" FromRole="DEPARTAMENTO" ToRole="MANTENCION" />
+          <NavigationProperty Name="DISPONIBILIDAD_SERVICIO" Relationship="Self.SERVICIODISP_DPTOS_FK" FromRole="DEPARTAMENTO" ToRole="DISPONIBILIDAD_SERVICIO" />
         </EntityType>
         <EntityType Name="DISPONIBILIDAD_SERVICIO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_DPTO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_SERVICIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ACTUALMENTE_DISPONIBLE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.SERVICIODISP_DPTOS_FK" FromRole="DISPONIBILIDAD_SERVICIO" ToRole="DEPARTAMENTO" />
           <NavigationProperty Name="SERVICIO_EXTRA" Relationship="Self.SERVICIOSDISP_FK" FromRole="DISPONIBILIDAD_SERVICIO" ToRole="SERVICIO_EXTRA" />
         </EntityType>
         <EntityType Name="ERROR">
@@ -737,6 +860,15 @@
           <Property Name="MONTO_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="MONTO_MULTAS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
+        <EntityType Name="IMAGEN">
+          <Key>
+            <PropertyRef Name="ID_IMAGEN" />
+          </Key>
+          <Property Name="ID_IMAGEN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FOTO" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.IMAGEN_DEPARTAMENTO_FK" FromRole="IMAGEN" ToRole="DEPARTAMENTO" />
+        </EntityType>
         <EntityType Name="INVENTARIO">
           <Key>
             <PropertyRef Name="ID_INVENTARIO" />
@@ -745,9 +877,9 @@
           <Property Name="ID_DPTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VALOR" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DISPONIBLE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DISPONIBLE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="FECHA_COMPRA" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="DEPARTAMENTO" Relationship="Model.a" FromRole="INVENTARIO" ToRole="DEPARTAMENTO" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.INVENTARIO_DEPARTAMENTO_FK" FromRole="INVENTARIO" ToRole="DEPARTAMENTO" />
         </EntityType>
         <EntityType Name="MANTENCION">
           <Key>
@@ -759,7 +891,7 @@
           <Property Name="FECHA_FIN" Type="DateTime" Nullable="false" />
           <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="DEPARTAMENTO" Relationship="Model.DEPARTAMENTOMANTENCION" FromRole="MANTENCION" ToRole="DEPARTAMENTO" />
+          <NavigationProperty Name="DEPARTAMENTO" Relationship="Self.MANTENCION_DEPARTAMENTO_FK" FromRole="MANTENCION" ToRole="DEPARTAMENTO" />
         </EntityType>
         <EntityType Name="MULTA">
           <Key>
@@ -776,24 +908,25 @@
             <PropertyRef Name="ID_RESERVA" />
           </Key>
           <Property Name="ID_RESERVA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="NOM_PERSONA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECH_ARRIENDO" Type="DateTime" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOM_PERSONA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FECHA_RESERVA" Type="DateTime" Nullable="false" />
           <Property Name="ACOMPANANTES" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COSTO_RESERVA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="VIGENTE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ARRIENDO" Relationship="Model.ARRIENDORESERVA" FromRole="RESERVA" ToRole="ARRIENDO" />
+          <NavigationProperty Name="ARRIENDO" Relationship="Self.RESERVA_ARRIENDO_FK" FromRole="RESERVA" ToRole="ARRIENDO" />
         </EntityType>
         <EntityType Name="SERVICIO_CONTRATADO">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_ARRIENDO" />
+            <PropertyRef Name="ID_SERVICIO" />
           </Key>
-          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_SERVICIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="FECHA_REALIZACION" Type="DateTime" />
           <Property Name="REALIZADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="POST_CHECK_IN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="ARRIENDO" Relationship="Self.SERVCONTRAT_ARRIENDOS_FK" FromRole="SERVICIO_CONTRATADO" ToRole="ARRIENDO" />
           <NavigationProperty Name="SERVICIO_EXTRA" Relationship="Self.SERVCONTRAT_SERVICIOS_FK" FromRole="SERVICIO_CONTRATADO" ToRole="SERVICIO_EXTRA" />
         </EntityType>
@@ -806,6 +939,22 @@
           <Property Name="COSTO_ACTUAL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <NavigationProperty Name="DISPONIBILIDAD_SERVICIO" Relationship="Self.SERVICIOSDISP_FK" FromRole="SERVICIO_EXTRA" ToRole="DISPONIBILIDAD_SERVICIO" />
           <NavigationProperty Name="SERVICIO_CONTRATADO" Relationship="Self.SERVCONTRAT_SERVICIOS_FK" FromRole="SERVICIO_EXTRA" ToRole="SERVICIO_CONTRATADO" />
+        </EntityType>
+        <EntityType Name="SOLICITUD_TRANSPORTE">
+          <Key>
+            <PropertyRef Name="ID_SOLICITUD" />
+          </Key>
+          <Property Name="ID_SOLICITUD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" />
+          <Property Name="PASAJEROS" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DIR_INICIO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DIR_DESTINO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="KMS_DISTANCIA" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ACEPTADA" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="ARRIENDO" Relationship="Self.SOLICITUD_ARRIENDO_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="ARRIENDO" />
+          <NavigationProperty Name="TRANSPORTE_REALIZADO" Relationship="Self.SOLICITUD_TRANSPORTES_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="TRANSPORTE_REALIZADO" />
         </EntityType>
         <EntityType Name="TIPO_USUARIO">
           <Key>
@@ -821,13 +970,11 @@
           </Key>
           <Property Name="ID_TRANSPORTE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID_CONDUCTOR" Type="Int32" Nullable="false" />
-          <Property Name="ID_ARRIENDO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_SOLICITUD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
           <Property Name="DESC_VEHICULO" Type="String" MaxLength="130" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PATENTE" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FECHA_INICIO" Type="DateTime" Nullable="false" />
-          <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
-          <NavigationProperty Name="ARRIENDO" Relationship="Self.TRANSPORTES_REALIZADOS_FK" FromRole="TRANSPORTE_REALIZADO" ToRole="ARRIENDO" />
           <NavigationProperty Name="CONDUCTOR" Relationship="Self.TRANSPORTE_CONDUCTOR_FK" FromRole="TRANSPORTE_REALIZADO" ToRole="CONDUCTOR" />
+          <NavigationProperty Name="SOLICITUD_TRANSPORTE" Relationship="Self.SOLICITUD_TRANSPORTES_FK" FromRole="TRANSPORTE_REALIZADO" ToRole="SOLICITUD_TRANSPORTE" />
         </EntityType>
         <EntityType Name="USUARIO">
           <Key>
@@ -850,15 +997,15 @@
           <NavigationProperty Name="ARRIENDO" Relationship="Self.ARRIENDO_USUARIO_FK" FromRole="USUARIO" ToRole="ARRIENDO" />
           <NavigationProperty Name="TIPO_USUARIO" Relationship="Self.USUARIO_TIPOUSUARIO_FK" FromRole="USUARIO" ToRole="TIPO_USUARIO" />
         </EntityType>
-        <Association Name="ARRIENDOSAMIGOS_AMIGOS_FK">
-          <End Role="AMIGO" Type="Self.AMIGO" Multiplicity="1" />
-          <End Role="ARRIENDO_AMIGO" Type="Self.ARRIENDO_AMIGO" Multiplicity="*" />
+        <Association Name="ARRIENDO_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="AMIGO">
-              <PropertyRef Name="ID_AMIGO" />
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
             </Principal>
-            <Dependent Role="ARRIENDO_AMIGO">
-              <PropertyRef Name="ID_AMIGOS" />
+            <Dependent Role="ARRIENDO">
+              <PropertyRef Name="ID_DPTO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -874,18 +1021,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ARRIENDOSAMIGOS_ARRIENDO_FK">
-          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
-          <End Role="ARRIENDO_AMIGO" Type="Self.ARRIENDO_AMIGO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ARRIENDO">
-              <PropertyRef Name="ID_ARRIENDO" />
-            </Principal>
-            <Dependent Role="ARRIENDO_AMIGO">
-              <PropertyRef Name="ID_ARRIENDO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="MULTA_ARRIENDO_FK">
           <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
           <End Role="MULTA" Type="Self.MULTA" Multiplicity="*" />
@@ -894,6 +1029,18 @@
               <PropertyRef Name="ID_ARRIENDO" />
             </Principal>
             <Dependent Role="MULTA">
+              <PropertyRef Name="ID_ARRIENDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RESERVA_ARRIENDO_FK">
+          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
+          <End Role="RESERVA" Type="Self.RESERVA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ARRIENDO">
+              <PropertyRef Name="ID_ARRIENDO" />
+            </Principal>
+            <Dependent Role="RESERVA">
               <PropertyRef Name="ID_ARRIENDO" />
             </Dependent>
           </ReferentialConstraint>
@@ -910,15 +1057,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TRANSPORTES_REALIZADOS_FK">
+        <Association Name="SOLICITUD_ARRIENDO_FK">
           <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="1" />
-          <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
+          <End Role="SOLICITUD_TRANSPORTE" Type="Self.SOLICITUD_TRANSPORTE" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ARRIENDO">
               <PropertyRef Name="ID_ARRIENDO" />
             </Principal>
-            <Dependent Role="TRANSPORTE_REALIZADO">
+            <Dependent Role="SOLICITUD_TRANSPORTE">
               <PropertyRef Name="ID_ARRIENDO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DEPARTAMENTOS_CIUDADES_FK">
+          <End Role="CIUDAD" Type="Self.CIUDAD" Multiplicity="1" />
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CIUDAD">
+              <PropertyRef Name="ID_CIUDAD" />
+            </Principal>
+            <Dependent Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_CIUDAD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -931,6 +1090,54 @@
             </Principal>
             <Dependent Role="TRANSPORTE_REALIZADO">
               <PropertyRef Name="ID_CONDUCTOR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IMAGEN_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="IMAGEN" Type="Self.IMAGEN" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="IMAGEN">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="INVENTARIO_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="INVENTARIO" Type="Self.INVENTARIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="INVENTARIO">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MANTENCION_DEPARTAMENTO_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="MANTENCION" Type="Self.MANTENCION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="MANTENCION">
+              <PropertyRef Name="ID_DPTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SERVICIODISP_DPTOS_FK">
+          <End Role="DEPARTAMENTO" Type="Self.DEPARTAMENTO" Multiplicity="1" />
+          <End Role="DISPONIBILIDAD_SERVICIO" Type="Self.DISPONIBILIDAD_SERVICIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTAMENTO">
+              <PropertyRef Name="ID_DPTO" />
+            </Principal>
+            <Dependent Role="DISPONIBILIDAD_SERVICIO">
+              <PropertyRef Name="ID_DPTO" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -958,6 +1165,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="SOLICITUD_TRANSPORTES_FK">
+          <End Role="SOLICITUD_TRANSPORTE" Type="Self.SOLICITUD_TRANSPORTE" Multiplicity="1" />
+          <End Role="TRANSPORTE_REALIZADO" Type="Self.TRANSPORTE_REALIZADO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SOLICITUD_TRANSPORTE">
+              <PropertyRef Name="ID_SOLICITUD" />
+            </Principal>
+            <Dependent Role="TRANSPORTE_REALIZADO">
+              <PropertyRef Name="ID_SOLICITUD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="USUARIO_TIPOUSUARIO_FK">
           <End Role="TIPO_USUARIO" Type="Self.TIPO_USUARIO" Multiplicity="1" />
           <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
@@ -970,10 +1189,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="ARRIENDO_AMIGO">
+          <End Role="AMIGO" Type="Self.AMIGO" Multiplicity="*" />
+          <End Role="ARRIENDO" Type="Self.ARRIENDO" Multiplicity="*" />
+        </Association>
         <EntityContainer Name="TurismoRealEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AMIGO" EntityType="Self.AMIGO" />
           <EntitySet Name="ARRIENDO" EntityType="Self.ARRIENDO" />
-          <EntitySet Name="ARRIENDO_AMIGO" EntityType="Self.ARRIENDO_AMIGO" />
           <EntitySet Name="CIUDAD" EntityType="Self.CIUDAD" />
           <EntitySet Name="CONDUCTOR" EntityType="Self.CONDUCTOR" />
           <EntitySet Name="DEPARTAMENTO" EntityType="Self.DEPARTAMENTO" />
@@ -981,42 +1203,64 @@
           <EntitySet Name="ERROR" EntityType="Self.ERROR" />
           <EntitySet Name="HISTORICO_ARRIENDO" EntityType="Self.HISTORICO_ARRIENDO" />
           <EntitySet Name="HISTORICO_INGRESO" EntityType="Self.HISTORICO_INGRESO" />
+          <EntitySet Name="IMAGEN" EntityType="Self.IMAGEN" />
           <EntitySet Name="INVENTARIO" EntityType="Self.INVENTARIO" />
           <EntitySet Name="MANTENCION" EntityType="Self.MANTENCION" />
           <EntitySet Name="MULTA" EntityType="Self.MULTA" />
           <EntitySet Name="RESERVA" EntityType="Self.RESERVA" />
           <EntitySet Name="SERVICIO_CONTRATADO" EntityType="Self.SERVICIO_CONTRATADO" />
           <EntitySet Name="SERVICIO_EXTRA" EntityType="Self.SERVICIO_EXTRA" />
+          <EntitySet Name="SOLICITUD_TRANSPORTE" EntityType="Self.SOLICITUD_TRANSPORTE" />
           <EntitySet Name="TIPO_USUARIO" EntityType="Self.TIPO_USUARIO" />
           <EntitySet Name="TRANSPORTE_REALIZADO" EntityType="Self.TRANSPORTE_REALIZADO" />
           <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
-          <AssociationSet Name="ARRIENDOSAMIGOS_AMIGOS_FK" Association="Self.ARRIENDOSAMIGOS_AMIGOS_FK">
-            <End Role="AMIGO" EntitySet="AMIGO" />
-            <End Role="ARRIENDO_AMIGO" EntitySet="ARRIENDO_AMIGO" />
+          <AssociationSet Name="ARRIENDO_DEPARTAMENTO_FK" Association="Self.ARRIENDO_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
           </AssociationSet>
           <AssociationSet Name="ARRIENDO_USUARIO_FK" Association="Self.ARRIENDO_USUARIO_FK">
             <End Role="USUARIO" EntitySet="USUARIO" />
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
           </AssociationSet>
-          <AssociationSet Name="ARRIENDOSAMIGOS_ARRIENDO_FK" Association="Self.ARRIENDOSAMIGOS_ARRIENDO_FK">
-            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
-            <End Role="ARRIENDO_AMIGO" EntitySet="ARRIENDO_AMIGO" />
-          </AssociationSet>
           <AssociationSet Name="MULTA_ARRIENDO_FK" Association="Self.MULTA_ARRIENDO_FK">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
             <End Role="MULTA" EntitySet="MULTA" />
+          </AssociationSet>
+          <AssociationSet Name="RESERVA_ARRIENDO_FK" Association="Self.RESERVA_ARRIENDO_FK">
+            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+            <End Role="RESERVA" EntitySet="RESERVA" />
           </AssociationSet>
           <AssociationSet Name="SERVCONTRAT_ARRIENDOS_FK" Association="Self.SERVCONTRAT_ARRIENDOS_FK">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
             <End Role="SERVICIO_CONTRATADO" EntitySet="SERVICIO_CONTRATADO" />
           </AssociationSet>
-          <AssociationSet Name="TRANSPORTES_REALIZADOS_FK" Association="Self.TRANSPORTES_REALIZADOS_FK">
+          <AssociationSet Name="SOLICITUD_ARRIENDO_FK" Association="Self.SOLICITUD_ARRIENDO_FK">
             <End Role="ARRIENDO" EntitySet="ARRIENDO" />
-            <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
+            <End Role="SOLICITUD_TRANSPORTE" EntitySet="SOLICITUD_TRANSPORTE" />
+          </AssociationSet>
+          <AssociationSet Name="DEPARTAMENTOS_CIUDADES_FK" Association="Self.DEPARTAMENTOS_CIUDADES_FK">
+            <End Role="CIUDAD" EntitySet="CIUDAD" />
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
           </AssociationSet>
           <AssociationSet Name="TRANSPORTE_CONDUCTOR_FK" Association="Self.TRANSPORTE_CONDUCTOR_FK">
             <End Role="CONDUCTOR" EntitySet="CONDUCTOR" />
             <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
+          </AssociationSet>
+          <AssociationSet Name="IMAGEN_DEPARTAMENTO_FK" Association="Self.IMAGEN_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="IMAGEN" EntitySet="IMAGEN" />
+          </AssociationSet>
+          <AssociationSet Name="INVENTARIO_DEPARTAMENTO_FK" Association="Self.INVENTARIO_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
+          </AssociationSet>
+          <AssociationSet Name="MANTENCION_DEPARTAMENTO_FK" Association="Self.MANTENCION_DEPARTAMENTO_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="MANTENCION" EntitySet="MANTENCION" />
+          </AssociationSet>
+          <AssociationSet Name="SERVICIODISP_DPTOS_FK" Association="Self.SERVICIODISP_DPTOS_FK">
+            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
+            <End Role="DISPONIBILIDAD_SERVICIO" EntitySet="DISPONIBILIDAD_SERVICIO" />
           </AssociationSet>
           <AssociationSet Name="SERVICIOSDISP_FK" Association="Self.SERVICIOSDISP_FK">
             <End Role="SERVICIO_EXTRA" EntitySet="SERVICIO_EXTRA" />
@@ -1026,20 +1270,45 @@
             <End Role="SERVICIO_EXTRA" EntitySet="SERVICIO_EXTRA" />
             <End Role="SERVICIO_CONTRATADO" EntitySet="SERVICIO_CONTRATADO" />
           </AssociationSet>
+          <AssociationSet Name="SOLICITUD_TRANSPORTES_FK" Association="Self.SOLICITUD_TRANSPORTES_FK">
+            <End Role="SOLICITUD_TRANSPORTE" EntitySet="SOLICITUD_TRANSPORTE" />
+            <End Role="TRANSPORTE_REALIZADO" EntitySet="TRANSPORTE_REALIZADO" />
+          </AssociationSet>
           <AssociationSet Name="USUARIO_TIPOUSUARIO_FK" Association="Self.USUARIO_TIPOUSUARIO_FK">
             <End Role="TIPO_USUARIO" EntitySet="TIPO_USUARIO" />
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
+          <AssociationSet Name="ARRIENDO_AMIGO" Association="Self.ARRIENDO_AMIGO">
+            <End Role="AMIGO" EntitySet="AMIGO" />
+            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
+          </AssociationSet>
+          <FunctionImport Name="SP_ALTERNAR_DISP_DPTO">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DISPONIBLE" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="SP_CANCEL_RESERVA">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CHECKIN">
-          <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CHECKOUT">
-          <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREA_DPTO">
+          <FunctionImport Name="SP_CREATE_ARRIENDO">
+            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
+            <Parameter Name="FEC_FIN" Mode="In" Type="DateTime" />
+            <Parameter Name="TOTAL_ARRI" Mode="In" Type="Decimal" />
+            <Parameter Name="TOTAL_SERV" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_DISP_SERVICIO">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ACTUALDISP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_DPTO">
             <Parameter Name="ID_CIUDAD" Mode="In" Type="Decimal" />
             <Parameter Name="NOMBRE" Mode="In" Type="String" />
             <Parameter Name="DIR" Mode="In" Type="String" />
@@ -1049,29 +1318,23 @@
             <Parameter Name="COND" Mode="In" Type="String" />
             <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREA_ITEM">
+          <FunctionImport Name="SP_CREATE_IMAGEN">
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FOTO" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_ITEM">
             <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="ITEM" Mode="In" Type="String" />
             <Parameter Name="VALOR" Mode="In" Type="Decimal" />
             <Parameter Name="DISP" Mode="In" Type="String" />
-            <Parameter Name="FEC_COMP" Mode="In" Type="DateTime" />
+            <Parameter Name="FEC_COMPRA" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREA_MANTEN">
+          <FunctionImport Name="SP_CREATE_MANTEN">
             <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
             <Parameter Name="FEC_TERM" Mode="In" Type="DateTime" />
             <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
             <Parameter Name="COSTO" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_CREATE_ARRIENDO">
-            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="FEC_RESERVA" Mode="In" Type="DateTime" />
-            <Parameter Name="VALOR_RESERVA" Mode="In" Type="Decimal" />
-            <Parameter Name="PAGADA" Mode="In" Type="String" />
-            <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
-            <Parameter Name="FEC_FIN" Mode="In" Type="DateTime" />
-            <Parameter Name="TOTAL" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CREATE_MULTA">
             <Parameter Name="ID_ARRIENDO" Mode="In" Type="Decimal" />
@@ -1085,6 +1348,10 @@
             <Parameter Name="ACOMP" Mode="In" Type="Decimal" />
             <Parameter Name="COSTO" Mode="In" Type="Decimal" />
             <Parameter Name="VIG" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CREATE_SERVICIO">
+            <Parameter Name="P_DESC" Mode="In" Type="String" />
+            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CREATE_USUARIO">
             <Parameter Name="ID_TIPO" Mode="In" Type="Decimal" />
@@ -1102,137 +1369,29 @@
             <Parameter Name="PASS" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_ARRIENDO">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_DELETE_DPTO">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_DELETE_ITEM">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_DELETE_MANTEN">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_DELETE_MULTA">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_DELETE_USUARIO">
-          <Parameter Name="ID" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_ARRIENDO">
             <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="FEC_RESERVA" Mode="In" Type="DateTime" />
-            <Parameter Name="VALOR_RESERVA" Mode="In" Type="Decimal" />
-            <Parameter Name="PAGADA" Mode="In" Type="String" />
-            <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
-            <Parameter Name="FEC_FIN" Mode="In" Type="DateTime" />
-            <Parameter Name="TOTAL" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_DPTO">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_CIUDAD" Mode="In" Type="Decimal" />
-            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
-            <Parameter Name="DIR" Mode="In" Type="String" />
-            <Parameter Name="M2" Mode="In" Type="String" />
-            <Parameter Name="P_NRO_DPTO" Mode="In" Type="String" />
-            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
-            <Parameter Name="DISP" Mode="In" Type="String" />
-            <Parameter Name="COND" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_ITEM">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="ITEM" Mode="In" Type="String" />
-            <Parameter Name="P_VALOR" Mode="In" Type="Decimal" />
-            <Parameter Name="DISP" Mode="In" Type="String" />
-            <Parameter Name="FEC_COMPRA" Mode="In" Type="DateTime" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_MANTEN">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
-            <Parameter Name="FEC_TERM" Mode="In" Type="DateTime" />
-            <Parameter Name="P_DESCRIPCION" Mode="In" Type="String" />
-            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_RESERVA">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
-            <Parameter Name="FECH" Mode="In" Type="DateTime" />
-            <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
-            <Parameter Name="ACOMP" Mode="In" Type="Decimal" />
-          </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_USUARIO">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
-            <Parameter Name="ID_TIPO" Mode="In" Type="Decimal" />
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
-            <Parameter Name="PATERNO" Mode="In" Type="String" />
-            <Parameter Name="MATERNO" Mode="In" Type="String" />
-            <Parameter Name="RUT" Mode="In" Type="Decimal" />
-            <Parameter Name="DV" Mode="In" Type="String" />
-            <Parameter Name="DIRECCION" Mode="In" Type="String" />
-            <Parameter Name="CIUDAD" Mode="In" Type="String" />
-            <Parameter Name="TELEFONO" Mode="In" Type="String" />
-            <Parameter Name="EMAIL" Mode="In" Type="String" />
-            <Parameter Name="AREA" Mode="In" Type="String" />
-            <Parameter Name="USUARIO" Mode="In" Type="String" />
-            <Parameter Name="PASS" Mode="In" Type="String" />
-          </FunctionImport>
-          <AssociationSet Name="CIUDADDEPARTAMENTO" Association="Model.CIUDADDEPARTAMENTO">
-            <End Role="CIUDAD" EntitySet="CIUDAD" />
-            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
-          </AssociationSet>
-          <AssociationSet Name="a" Association="Model.a">
-            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
-            <End Role="INVENTARIO" EntitySet="INVENTARIO" />
-          </AssociationSet>
-          <AssociationSet Name="DEPARTAMENTOMANTENCION" Association="Model.DEPARTAMENTOMANTENCION">
-            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
-            <End Role="MANTENCION" EntitySet="MANTENCION" />
-          </AssociationSet>
-          <AssociationSet Name="ARRIENDORESERVA" Association="Model.ARRIENDORESERVA">
-            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
-            <End Role="RESERVA" EntitySet="RESERVA" />
-          </AssociationSet>
-          <EntitySet Name="IMAGEN" EntityType="Model.IMAGEN" />
-          <FunctionImport Name="SP_ALTERNAR_DISP_DPTO">
-            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_DISPONIBLE" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="SP_CREATE_DISP_SERVICIO">
+          <FunctionImport Name="SP_DELETE_DISP_SERVICIO">
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ACTUALDISP" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREATE_DPTO">
-            <Parameter Name="ID_CIUDAD" Mode="In" Type="Decimal" />
-            <Parameter Name="NOMBRE" Mode="In" Type="String" />
-            <Parameter Name="DIR" Mode="In" Type="String" />
-            <Parameter Name="M2" Mode="In" Type="String" />
-            <Parameter Name="PRECIO" Mode="In" Type="Decimal" />
-            <Parameter Name="DISP" Mode="In" Type="String" />
-            <Parameter Name="COND" Mode="In" Type="String" />
-            <Parameter Name="NRO_DPTO" Mode="In" Type="String" />
+          <FunctionImport Name="SP_DELETE_DPTO">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREATE_ITEM">
-            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="ITEM" Mode="In" Type="String" />
-            <Parameter Name="VALOR" Mode="In" Type="Decimal" />
-            <Parameter Name="DISP" Mode="In" Type="String" />
-            <Parameter Name="FEC_COMPRA" Mode="In" Type="DateTime" />
+          <FunctionImport Name="SP_DELETE_IMAGEN">
+            <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREATE_MANTEN">
-            <Parameter Name="ID_DPTO" Mode="In" Type="Decimal" />
-            <Parameter Name="FEC_INI" Mode="In" Type="DateTime" />
-            <Parameter Name="FEC_TERM" Mode="In" Type="DateTime" />
-            <Parameter Name="DESCRIPCION" Mode="In" Type="String" />
-            <Parameter Name="COSTO" Mode="In" Type="Decimal" />
+          <FunctionImport Name="SP_DELETE_ITEM">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="SP_CREATE_SERVICIO">
-            <Parameter Name="P_DESC" Mode="In" Type="String" />
-            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+          <FunctionImport Name="SP_DELETE_MANTEN">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DELETE_MULTA">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DELETE_USUARIO">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_LOGIN">
             <Parameter Name="P_USER" Mode="In" Type="String" />
@@ -1242,107 +1401,78 @@
             <Parameter Name="P_ID_USUARIO" Mode="Out" Type="Decimal" />
             <Parameter Name="P_TIPO_USUARIO" Mode="Out" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="SP_UPDATE_DISP_SERVICIO">
+          <FunctionImport Name="SP_UPDATE_ARRIENDO">
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_CLI" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FEC_INI" Mode="In" Type="DateTime" />
+            <Parameter Name="P_FEC_FIN" Mode="In" Type="DateTime" />
+            <Parameter Name="P_TOTAL_ARRI" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_DISP_SERVICIO">
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
             <Parameter Name="P_ACTUALDISP" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_DPTO">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_CIUDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_DIR" Mode="In" Type="String" />
+            <Parameter Name="P_M2" Mode="In" Type="String" />
+            <Parameter Name="P_NRO_DPTO" Mode="In" Type="String" />
+            <Parameter Name="P_PRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DISP" Mode="In" Type="String" />
+            <Parameter Name="P_COND" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_ITEM">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ITEM" Mode="In" Type="String" />
+            <Parameter Name="P_VALOR" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DISP" Mode="In" Type="String" />
+            <Parameter Name="P_FEC_COMPRA" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_MANTEN">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_FEC_INI" Mode="In" Type="DateTime" />
+            <Parameter Name="P_FEC_TERM" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_UPDATE_RESERVA">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_FECH" Mode="In" Type="DateTime" />
+            <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ACOMP" Mode="In" Type="Decimal" />
+            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_VIG" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_SERVICIO">
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />
             <Parameter Name="P_DESC" Mode="In" Type="String" />
             <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <AssociationSet Name="IMAGENDEPARTAMENTO" Association="Model.IMAGENDEPARTAMENTO">
-            <End Role="IMAGEN" EntitySet="IMAGEN" />
-            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
-          </AssociationSet>
-          <AssociationSet Name="DEPARTAMENTOARRIENDO" Association="Model.DEPARTAMENTOARRIENDO">
-            <End Role="DEPARTAMENTO" EntitySet="DEPARTAMENTO" />
-            <End Role="ARRIENDO" EntitySet="ARRIENDO" />
-          </AssociationSet>
+          <FunctionImport Name="SP_UPDATE_USUARIO">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID_TIPO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_PATERNO" Mode="In" Type="String" />
+            <Parameter Name="P_MATERNO" Mode="In" Type="String" />
+            <Parameter Name="P_RUT" Mode="In" Type="Decimal" />
+            <Parameter Name="P_DV" Mode="In" Type="String" />
+            <Parameter Name="P_DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="P_CIUDAD" Mode="In" Type="String" />
+            <Parameter Name="P_TELEFONO" Mode="In" Type="String" />
+            <Parameter Name="P_EMAIL" Mode="In" Type="String" />
+            <Parameter Name="P_AREA" Mode="In" Type="String" />
+            <Parameter Name="P_USUARIO" Mode="In" Type="String" />
+            <Parameter Name="P_PASS" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
-        <Association Name="CIUDADDEPARTAMENTO">
-          <End Type="Model.CIUDAD" Role="CIUDAD" Multiplicity="1" />
-          <End Type="Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CIUDAD">
-              <PropertyRef Name="ID_CIUDAD" />
-            </Principal>
-            <Dependent Role="DEPARTAMENTO">
-              <PropertyRef Name="ID_CIUDAD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="a">
-          <End Type="Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
-          <End Type="Model.INVENTARIO" Role="INVENTARIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DEPARTAMENTO">
-              <PropertyRef Name="ID_DPTO" />
-            </Principal>
-            <Dependent Role="INVENTARIO">
-              <PropertyRef Name="ID_DPTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DEPARTAMENTOMANTENCION">
-          <End Type="Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
-          <End Type="Model.MANTENCION" Role="MANTENCION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DEPARTAMENTO">
-              <PropertyRef Name="ID_DPTO" />
-            </Principal>
-            <Dependent Role="MANTENCION">
-              <PropertyRef Name="ID_DPTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ARRIENDORESERVA">
-          <End Type="Model.ARRIENDO" Role="ARRIENDO" Multiplicity="1" />
-          <End Type="Model.RESERVA" Role="RESERVA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ARRIENDO">
-              <PropertyRef Name="ID_ARRIENDO" />
-            </Principal>
-            <Dependent Role="RESERVA">
-              <PropertyRef Name="ID_ARRIENDO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="IMAGEN">
-          <Key>
-            <PropertyRef Name="ID_IMAGEN" />
-          </Key>
-          <Property Name="ID_IMAGEN" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="ID_DPTO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="FOTO" Type="Binary" Nullable="false" />
-          <NavigationProperty Name="DEPARTAMENTO" Relationship="Model.IMAGENDEPARTAMENTO" FromRole="IMAGEN" ToRole="DEPARTAMENTO" />
-        </EntityType>
-        <Association Name="IMAGENDEPARTAMENTO">
-          <End Type="Model.IMAGEN" Role="IMAGEN" Multiplicity="*" />
-          <End Type="Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="DEPARTAMENTO">
-              <PropertyRef Name="ID_DPTO" />
-            </Principal>
-            <Dependent Role="IMAGEN">
-              <PropertyRef Name="ID_DPTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="DEPARTAMENTOARRIENDO">
-          <End Type="Model.DEPARTAMENTO" Role="DEPARTAMENTO" Multiplicity="1" />
-          <End Type="Model.ARRIENDO" Role="ARRIENDO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DEPARTAMENTO">
-              <PropertyRef Name="ID_DPTO" />
-            </Principal>
-            <Dependent Role="ARRIENDO">
-              <PropertyRef Name="ID_DPTO" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1365,26 +1495,15 @@
           <EntitySetMapping Name="ARRIENDO">
             <EntityTypeMapping TypeName="Model.ARRIENDO">
               <MappingFragment StoreEntitySet="ARRIENDO">
-                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
                 <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
                 <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
-                <ScalarProperty Name="FECHA_RESERVA" ColumnName="FECHA_RESERVA" />
-                <ScalarProperty Name="VALOR_RESERVA" ColumnName="VALOR_RESERVA" />
-                <ScalarProperty Name="RESERVA_PAGADA" ColumnName="RESERVA_PAGADA" />
                 <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
                 <ScalarProperty Name="FECHA_FIN" ColumnName="FECHA_FIN" />
                 <ScalarProperty Name="CHECK_IN" ColumnName="CHECK_IN" />
                 <ScalarProperty Name="CHECK_OUT" ColumnName="CHECK_OUT" />
                 <ScalarProperty Name="TOTAL_ARRIENDO" ColumnName="TOTAL_ARRIENDO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ARRIENDO_AMIGO">
-            <EntityTypeMapping TypeName="Model.ARRIENDO_AMIGO">
-              <MappingFragment StoreEntitySet="ARRIENDO_AMIGO">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
-                <ScalarProperty Name="ID_AMIGOS" ColumnName="ID_AMIGOS" />
+                <ScalarProperty Name="TOTAL_SERVICIOS" ColumnName="TOTAL_SERVICIOS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1426,7 +1545,6 @@
           <EntitySetMapping Name="DISPONIBILIDAD_SERVICIO">
             <EntityTypeMapping TypeName="Model.DISPONIBILIDAD_SERVICIO">
               <MappingFragment StoreEntitySet="DISPONIBILIDAD_SERVICIO">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
                 <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
                 <ScalarProperty Name="ACTUALMENTE_DISPONIBLE" ColumnName="ACTUALMENTE_DISPONIBLE" />
@@ -1470,6 +1588,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="IMAGEN">
+            <EntityTypeMapping TypeName="Model.IMAGEN">
+              <MappingFragment StoreEntitySet="IMAGEN">
+                <ScalarProperty Name="ID_IMAGEN" ColumnName="ID_IMAGEN" />
+                <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
+                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="INVENTARIO">
             <EntityTypeMapping TypeName="Model.INVENTARIO">
               <MappingFragment StoreEntitySet="INVENTARIO">
@@ -1508,9 +1635,9 @@
             <EntityTypeMapping TypeName="Model.RESERVA">
               <MappingFragment StoreEntitySet="RESERVA">
                 <ScalarProperty Name="ID_RESERVA" ColumnName="ID_RESERVA" />
-                <ScalarProperty Name="NOM_PERSONA" ColumnName="NOM_PERSONA" />
-                <ScalarProperty Name="FECH_ARRIENDO" ColumnName="FECH_ARRIENDO" />
                 <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+                <ScalarProperty Name="NOM_PERSONA" ColumnName="NOM_PERSONA" />
+                <ScalarProperty Name="FECHA_RESERVA" ColumnName="FECHA_RESERVA" />
                 <ScalarProperty Name="ACOMPANANTES" ColumnName="ACOMPANANTES" />
                 <ScalarProperty Name="COSTO_RESERVA" ColumnName="COSTO_RESERVA" />
                 <ScalarProperty Name="VIGENTE" ColumnName="VIGENTE" />
@@ -1520,12 +1647,12 @@
           <EntitySetMapping Name="SERVICIO_CONTRATADO">
             <EntityTypeMapping TypeName="Model.SERVICIO_CONTRATADO">
               <MappingFragment StoreEntitySet="SERVICIO_CONTRATADO">
-                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
                 <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
                 <ScalarProperty Name="COSTO" ColumnName="COSTO" />
                 <ScalarProperty Name="FECHA_REALIZACION" ColumnName="FECHA_REALIZACION" />
                 <ScalarProperty Name="REALIZADO" ColumnName="REALIZADO" />
+                <ScalarProperty Name="POST_CHECK_IN" ColumnName="POST_CHECK_IN" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1535,6 +1662,21 @@
                 <ScalarProperty Name="ID_SERVICIO" ColumnName="ID_SERVICIO" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="COSTO_ACTUAL" ColumnName="COSTO_ACTUAL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SOLICITUD_TRANSPORTE">
+            <EntityTypeMapping TypeName="Model.SOLICITUD_TRANSPORTE">
+              <MappingFragment StoreEntitySet="SOLICITUD_TRANSPORTE">
+                <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
+                <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
+                <ScalarProperty Name="PASAJEROS" ColumnName="PASAJEROS" />
+                <ScalarProperty Name="DIR_INICIO" ColumnName="DIR_INICIO" />
+                <ScalarProperty Name="DIR_DESTINO" ColumnName="DIR_DESTINO" />
+                <ScalarProperty Name="KMS_DISTANCIA" ColumnName="KMS_DISTANCIA" />
+                <ScalarProperty Name="ACEPTADA" ColumnName="ACEPTADA" />
+                <ScalarProperty Name="COSTO" ColumnName="COSTO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1551,11 +1693,9 @@
               <MappingFragment StoreEntitySet="TRANSPORTE_REALIZADO">
                 <ScalarProperty Name="ID_TRANSPORTE" ColumnName="ID_TRANSPORTE" />
                 <ScalarProperty Name="ID_CONDUCTOR" ColumnName="ID_CONDUCTOR" />
-                <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+                <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
                 <ScalarProperty Name="DESC_VEHICULO" ColumnName="DESC_VEHICULO" />
                 <ScalarProperty Name="PATENTE" ColumnName="PATENTE" />
-                <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />
-                <ScalarProperty Name="COSTO" ColumnName="COSTO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1579,43 +1719,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ARRIENDO_AMIGO" TypeName="Model.ARRIENDO_AMIGO" StoreEntitySet="ARRIENDO_AMIGO">
+            <EndProperty Name="AMIGO">
+              <ScalarProperty Name="ID_AMIGO" ColumnName="ID_AMIGOS" />
+            </EndProperty>
+            <EndProperty Name="ARRIENDO">
+              <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ALTERNAR_DISP_DPTO" FunctionName="Model.Store.SP_ALTERNAR_DISP_DPTO" />
           <FunctionImportMapping FunctionImportName="SP_CANCEL_RESERVA" FunctionName="Model.Store.SP_CANCEL_RESERVA" />
           <FunctionImportMapping FunctionImportName="SP_CHECKIN" FunctionName="Model.Store.SP_CHECKIN" />
           <FunctionImportMapping FunctionImportName="SP_CHECKOUT" FunctionName="Model.Store.SP_CHECKOUT" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_ARRIENDO" FunctionName="Model.Store.SP_CREATE_ARRIENDO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_DISP_SERVICIO" FunctionName="Model.Store.SP_CREATE_DISP_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_DPTO" FunctionName="Model.Store.SP_CREATE_DPTO" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_IMAGEN" FunctionName="Model.Store.SP_CREATE_IMAGEN" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_ITEM" FunctionName="Model.Store.SP_CREATE_ITEM" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_MANTEN" FunctionName="Model.Store.SP_CREATE_MANTEN" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_MULTA" FunctionName="Model.Store.SP_CREATE_MULTA" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_RESERVA" FunctionName="Model.Store.SP_CREATE_RESERVA" />
+          <FunctionImportMapping FunctionImportName="SP_CREATE_SERVICIO" FunctionName="Model.Store.SP_CREATE_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_CREATE_USUARIO" FunctionName="Model.Store.SP_CREATE_USUARIO" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_ARRIENDO" FunctionName="Model.Store.SP_DELETE_ARRIENDO" />
+          <FunctionImportMapping FunctionImportName="SP_DELETE_DISP_SERVICIO" FunctionName="Model.Store.SP_DELETE_DISP_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_DPTO" FunctionName="Model.Store.SP_DELETE_DPTO" />
+          <FunctionImportMapping FunctionImportName="SP_DELETE_IMAGEN" FunctionName="Model.Store.SP_DELETE_IMAGEN" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_ITEM" FunctionName="Model.Store.SP_DELETE_ITEM" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_MANTEN" FunctionName="Model.Store.SP_DELETE_MANTEN" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_MULTA" FunctionName="Model.Store.SP_DELETE_MULTA" />
           <FunctionImportMapping FunctionImportName="SP_DELETE_USUARIO" FunctionName="Model.Store.SP_DELETE_USUARIO" />
+          <FunctionImportMapping FunctionImportName="SP_LOGIN" FunctionName="Model.Store.SP_LOGIN" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_ARRIENDO" FunctionName="Model.Store.SP_UPDATE_ARRIENDO" />
+          <FunctionImportMapping FunctionImportName="SP_UPDATE_DISP_SERVICIO" FunctionName="Model.Store.SP_UPDATE_DISP_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_DPTO" FunctionName="Model.Store.SP_UPDATE_DPTO" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_ITEM" FunctionName="Model.Store.SP_UPDATE_ITEM" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_MANTEN" FunctionName="Model.Store.SP_UPDATE_MANTEN" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_RESERVA" FunctionName="Model.Store.SP_UPDATE_RESERVA" />
-          <FunctionImportMapping FunctionImportName="SP_UPDATE_USUARIO" FunctionName="Model.Store.SP_UPDATE_USUARIO" />
-          <EntitySetMapping Name="IMAGEN">
-            <EntityTypeMapping TypeName="Model.IMAGEN">
-              <MappingFragment StoreEntitySet="IMAGEN">
-                <ScalarProperty Name="FOTO" ColumnName="FOTO" />
-                <ScalarProperty Name="ID_DPTO" ColumnName="ID_DPTO" />
-                <ScalarProperty Name="ID_IMAGEN" ColumnName="ID_IMAGEN" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SP_ALTERNAR_DISP_DPTO" FunctionName="Model.Store.SP_ALTERNAR_DISP_DPTO" />
-          <FunctionImportMapping FunctionImportName="SP_CREATE_DISP_SERVICIO" FunctionName="Model.Store.SP_CREATE_DISP_SERVICIO" />
-          <FunctionImportMapping FunctionImportName="SP_CREATE_DPTO" FunctionName="Model.Store.SP_CREATE_DPTO" />
-          <FunctionImportMapping FunctionImportName="SP_CREATE_ITEM" FunctionName="Model.Store.SP_CREATE_ITEM" />
-          <FunctionImportMapping FunctionImportName="SP_CREATE_MANTEN" FunctionName="Model.Store.SP_CREATE_MANTEN" />
-          <FunctionImportMapping FunctionImportName="SP_CREATE_SERVICIO" FunctionName="Model.Store.SP_CREATE_SERVICIO" />
-          <FunctionImportMapping FunctionImportName="SP_LOGIN" FunctionName="Model.Store.SP_LOGIN" />
-          <FunctionImportMapping FunctionImportName="SP_UPDATE_DISP_SERVICIO" FunctionName="Model.Store.SP_UPDATE_DISP_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_SERVICIO" FunctionName="Model.Store.SP_UPDATE_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_UPDATE_USUARIO" FunctionName="Model.Store.SP_UPDATE_USUARIO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

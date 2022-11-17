@@ -1,4 +1,6 @@
 ﻿@model TurismoRealWeb.BLL.Arriendo
+
+
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
@@ -14,13 +16,16 @@
                 dateFormat: "dd/mm/yy",
                 changeMonth: true,
                 changeYear: true,
-                yearRange: "-60:+0"
+                yearRange: "-60:+0",
+                minDate: new Date()
             });
 
         });
     </script>
-
 }
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -241,51 +246,48 @@
 </head>
 <body>
     <div class="testbox">
-        <form>
+        <div style="flex">
             <div class="banner">
                 <h1>Arriendo de Departamento</h1>
             </div>
             <br />
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Create","Arriendo"))
             {
-                <fieldset>
-                    @Html.ValidationSummary()
-                    <legend>Detalles de Arriendo</legend>
-                    <div class="columns">
-                        @Html.HiddenFor(arriendo => arriendo.ClienteId)
-                        @Html.HiddenFor(arriendo => arriendo.FecReserva)
-                        @Html.HiddenFor(arriendo => arriendo.ValReserva)
-                        @Html.HiddenFor(arriendo => arriendo.ResPago)
-                        @Html.HiddenFor(arriendo => arriendo.CheckIn)
-                        @Html.HiddenFor(arriendo => arriendo.Checkout)
-                        <div class="item form-floating col-10">
-                            @Html.DropDownListFor(arriendo => arriendo.DptoId, new SelectList(ViewBag.departamentos, "Id", "Nombre"), new { @placeholder = "Departamento", @class = "form-control" })
-                            <label for="Nombre">Departamento</label>
-                        </div><br />
-                        <div class="item form-floating col-10">
-                            @Html.DropDownListFor(arriendo => arriendo.Total, new SelectList(ViewBag.departamentos, "Id", "Precio"), new { @placeholder = "Departamento", @class = "form-control" })
-                            <label for="Nombre">Valor</label>
-                        </div><br />
-                        <div class="item form-floating">
-                            @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha Inicio Arriendo", @readonly = "true" } })
-                            <label for="Nombre">Fecha de Inicio</label>
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="item form-floating">
-                            @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha Fin Arriendo", @readonly = "true" } })
-                            <label for="Direccion">Fecha Termino</label>
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="row" style="margin-top:12px;text-align:center;">
-                            <button type="submit" value="Guardar" class="btn btn-primary">Siguiente</button>
-                        </div>
+            @Html.ValidationSummary()
+            <a>Detalles de Arriendo</a>
+            <div class="columns">
+                @Html.HiddenFor(arriendo => arriendo.DptoId)
+                @Html.TextBoxFor(arriendo =>arriendo.ClienteId)
 
+                <div class="item form-floating col-10">
+                    @Html.DisplayFor(arriendo => arriendo.Departamento.Nombre, new { @placeholder = "Departamento", @class = "form-control", @readonly = "true" })
+                    <label for="Nombre">Departamento</label>
+                </div><br />
+                      <div class="item form-floating col-10">
+                          @Html.TextBoxFor(arriendo => arriendo.Total, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
+                          <label for="Precio">Valor</label>
+                      </div><br />
+                <div class="item form-floating ">
+                    <div class="form-floating">
+                        @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Entrada", @readonly = "true" } })
+                        <label for="FecIni">Fecha de Entrada</label>
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
+                    <div class="form-floating col-10">
+                        @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Salida", @readonly = "true" } })
+                        <label for="FecFin">Fecha de Salida</label>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                </div><br />
 
-                </fieldset>
+            </div>
+            <div class="row" style="margin-top:12px;text-align:center;">
+                <button type="submit" value="Guardar" class="btn btn-primary">Arrendar</button>
+            </div>
+                
             }
             <br />
-        </form>
+        </div>
     </div>
 </body>
 </html>

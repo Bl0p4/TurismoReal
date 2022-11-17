@@ -54,9 +54,6 @@
     <Compile Include="ARRIENDO.cs">
       <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="ARRIENDO_AMIGO.cs">
-      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="CIUDAD.cs">
       <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
@@ -98,6 +95,9 @@
       <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="SERVICIO_EXTRA.cs">
+      <DependentUpon>TurismoRealEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SOLICITUD_TRANSPORTE.cs">
       <DependentUpon>TurismoRealEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="TIPO_USUARIO.cs">

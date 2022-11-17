@@ -66,8 +66,32 @@ namespace TurismoRealWeb.BLL
                 .FirstOrDefault() != null;            
         }
 
+        public Usuario Buscar(string usern)
+        {
+            return this.db.USUARIO.Select(u => new Usuario()
+            {
+                Id = u.ID_USUARIO,
+                Nombre = u.NOMBRE,
+                Paterno = u.APE_PAT,
+                Materno = u.APE_MAT,
+                Rut = u.RUT,
+                Dv = u.DV,
+                Direccion = u.DIRECCION,
+                Ciudad = u.CIUDAD,
+                Telefono = u.TELEFONO,
+                Email = u.EMAIL,
+                Area = u.AREA_FUNCIONARIO,
+                Username = u.USERNAME,
+                Password = u.PASSWORD,
+                Id_tipo = u.ID_TIPOUSUARIO,
+                Tipo = new Tipo_usuario()
+                {
+                    Id = u.ID_TIPOUSUARIO,
+                    Descripcion = u.TIPO_USUARIO.DESCRIPCION
+                }
 
-        
+            }).Where(u => u.Username == usern).FirstOrDefault();
+        }
 
         public List<Usuario> ReadAll()
         {

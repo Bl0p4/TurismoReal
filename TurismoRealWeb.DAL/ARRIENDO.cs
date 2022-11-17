@@ -16,31 +16,29 @@ namespace TurismoRealWeb.DAL
     {
         public ARRIENDO()
         {
-            this.ARRIENDO_AMIGO = new HashSet<ARRIENDO_AMIGO>();
             this.MULTA = new HashSet<MULTA>();
-            this.SERVICIO_CONTRATADO = new HashSet<SERVICIO_CONTRATADO>();
-            this.TRANSPORTE_REALIZADO = new HashSet<TRANSPORTE_REALIZADO>();
             this.RESERVA = new HashSet<RESERVA>();
+            this.SERVICIO_CONTRATADO = new HashSet<SERVICIO_CONTRATADO>();
+            this.SOLICITUD_TRANSPORTE = new HashSet<SOLICITUD_TRANSPORTE>();
+            this.AMIGO = new HashSet<AMIGO>();
         }
     
         public decimal ID_ARRIENDO { get; set; }
         public decimal ID_CLIENTE { get; set; }
         public decimal ID_DPTO { get; set; }
-        public System.DateTime FECHA_RESERVA { get; set; }
-        public decimal VALOR_RESERVA { get; set; }
-        public string RESERVA_PAGADA { get; set; }
         public System.DateTime FECHA_INICIO { get; set; }
         public System.DateTime FECHA_FIN { get; set; }
         public string CHECK_IN { get; set; }
         public string CHECK_OUT { get; set; }
         public decimal TOTAL_ARRIENDO { get; set; }
+        public decimal TOTAL_SERVICIOS { get; set; }
     
-        public virtual USUARIO USUARIO { get; set; }
-        public virtual ICollection<ARRIENDO_AMIGO> ARRIENDO_AMIGO { get; set; }
-        public virtual ICollection<MULTA> MULTA { get; set; }
-        public virtual ICollection<SERVICIO_CONTRATADO> SERVICIO_CONTRATADO { get; set; }
-        public virtual ICollection<TRANSPORTE_REALIZADO> TRANSPORTE_REALIZADO { get; set; }
-        public virtual ICollection<RESERVA> RESERVA { get; set; }
         public virtual DEPARTAMENTO DEPARTAMENTO { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
+        public virtual ICollection<MULTA> MULTA { get; set; }
+        public virtual ICollection<RESERVA> RESERVA { get; set; }
+        public virtual ICollection<SERVICIO_CONTRATADO> SERVICIO_CONTRATADO { get; set; }
+        public virtual ICollection<SOLICITUD_TRANSPORTE> SOLICITUD_TRANSPORTE { get; set; }
+        public virtual ICollection<AMIGO> AMIGO { get; set; }
     }
 }

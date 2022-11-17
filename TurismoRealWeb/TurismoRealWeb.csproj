@@ -253,6 +253,8 @@
     <Compile Include="Controllers\ArriendoController.cs" />
     <Compile Include="Controllers\SitioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Filters\AuthorizeUser.cs" />
+    <Compile Include="Filters\VerificarSesion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

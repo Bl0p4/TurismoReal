@@ -32,7 +32,7 @@ namespace TurismoRealWeb.BLL
             {
                 Id = a.ID_RESERVA,
                 NomPersona = a.NOM_PERSONA,
-                Fech = a.FECH_ARRIENDO,
+                Fech = a.FECHA_RESERVA,
                 ArriendoId = a.ID_ARRIENDO,
                 Acomp = a.ACOMPANANTES,
                 Valor = a.COSTO_RESERVA,
@@ -43,14 +43,12 @@ namespace TurismoRealWeb.BLL
                     Id = a.ID_ARRIENDO,
                     ClienteId = a.ARRIENDO.ID_CLIENTE,
                     DptoId = a.ARRIENDO.ID_DPTO,
-                    FecReserva = a.ARRIENDO.FECHA_RESERVA,
-                    ValReserva = a.ARRIENDO.VALOR_RESERVA,
-                    ResPago = a.ARRIENDO.RESERVA_PAGADA,
                     FecIni = a.ARRIENDO.FECHA_INICIO,
                     FecFin = a.ARRIENDO.FECHA_FIN,
                     CheckIn = a.ARRIENDO.CHECK_IN,
                     Checkout = a.ARRIENDO.CHECK_OUT,
-                    Total = a.ARRIENDO.TOTAL_ARRIENDO
+                    Total = a.ARRIENDO.TOTAL_ARRIENDO,
+                    total_serv = a.ARRIENDO.TOTAL_SERVICIOS
                 }
 
             }).ToList();
@@ -85,7 +83,7 @@ namespace TurismoRealWeb.BLL
             {
                 Id = a.ID_RESERVA,
                 NomPersona = a.NOM_PERSONA,
-                Fech = a.FECH_ARRIENDO,
+                Fech = a.FECHA_RESERVA,
                 ArriendoId = a.ID_ARRIENDO,
                 Acomp = a.ACOMPANANTES,
                 Valor = a.COSTO_RESERVA,
@@ -96,14 +94,12 @@ namespace TurismoRealWeb.BLL
                     Id = a.ID_ARRIENDO,
                     ClienteId = a.ARRIENDO.ID_CLIENTE,
                     DptoId = a.ARRIENDO.ID_DPTO,
-                    FecReserva = a.ARRIENDO.FECHA_RESERVA,
-                    ValReserva = a.ARRIENDO.VALOR_RESERVA,
-                    ResPago = a.ARRIENDO.RESERVA_PAGADA,
                     FecIni = a.ARRIENDO.FECHA_INICIO,
                     FecFin = a.ARRIENDO.FECHA_FIN,
                     CheckIn = a.ARRIENDO.CHECK_IN,
                     Checkout = a.ARRIENDO.CHECK_OUT,
-                    Total = a.ARRIENDO.TOTAL_ARRIENDO
+                    Total = a.ARRIENDO.TOTAL_ARRIENDO,
+                    total_serv = a.ARRIENDO.TOTAL_SERVICIOS
                 }
 
 
@@ -123,7 +119,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
 
-                db.SP_UPDATE_RESERVA(this.Id,this.NomPersona, this.Fech, this.ArriendoId, this.Acomp);
+                db.SP_UPDATE_RESERVA(this.Id,this.NomPersona, this.Fech, this.ArriendoId, this.Acomp, this.Valor, this.Vigente);
                 return true;
             }
             catch (Exception)

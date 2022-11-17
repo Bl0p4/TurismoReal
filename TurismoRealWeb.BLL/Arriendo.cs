@@ -13,17 +13,13 @@ namespace TurismoRealWeb.BLL
         public decimal Id { get; set; }
         public decimal ClienteId { get; set; }
         public decimal DptoId { get; set; }
-        public string Nombre { get; set; }
-        
-        public DateTime FecReserva { get; set; }
-        public decimal ValReserva { get; set; }
-        public Boolean IsResPago { get; set; }
-        public string ResPago { get; set; }        
+        public string Nombre { get; set; }     
         public DateTime FecIni { get; set; }        
         public DateTime FecFin { get; set; }
         public string CheckIn { get; set; }
         public string Checkout { get; set; }
         public decimal Total { get; set; }
+        public decimal total_serv { get; set; }
 
         public Usuario Cliente { get; set; }
         public Departamento Departamento { get; set; }
@@ -40,14 +36,12 @@ namespace TurismoRealWeb.BLL
                 Id = a.ID_ARRIENDO,
                 ClienteId = a.ID_CLIENTE,
                 DptoId = a.ID_DPTO,
-                FecReserva = a.FECHA_RESERVA,
-                ValReserva = a.VALOR_RESERVA,
-                ResPago = a.RESERVA_PAGADA,
                 FecIni = a.FECHA_INICIO,
                 FecFin = a.FECHA_FIN,
                 CheckIn = a.CHECK_IN,
                 Checkout = a.CHECK_OUT,
                 Total = a.TOTAL_ARRIENDO,
+                total_serv = a.TOTAL_SERVICIOS,
 
                 Cliente = new Usuario()
                 {
@@ -84,16 +78,64 @@ namespace TurismoRealWeb.BLL
             }).ToList();
         }
 
+        public List<Arriendo> ArriendosPorUser(int id)        
+        {
+            var arr = db.ARRIENDO.Select(
+                a => new Arriendo()
+                {
+                    Id = a.ID_ARRIENDO,
+                    ClienteId = a.ID_CLIENTE,
+                    DptoId = a.ID_DPTO,
+                    FecIni = a.FECHA_INICIO,
+                    FecFin = a.FECHA_FIN,
+                    CheckIn = a.CHECK_IN,
+                    Checkout = a.CHECK_OUT,
+                    Total = a.TOTAL_ARRIENDO,
+                    total_serv = a.TOTAL_SERVICIOS,
+
+                    Cliente = new Usuario()
+                    {
+                        Id = a.USUARIO.ID_USUARIO,
+                        Nombre = a.USUARIO.NOMBRE,
+                        Paterno = a.USUARIO.APE_PAT,
+                        Materno = a.USUARIO.APE_MAT,
+                        Rut = a.USUARIO.RUT,
+                        Dv = a.USUARIO.DV,
+                        Direccion = a.USUARIO.DIRECCION,
+                        Ciudad = a.USUARIO.CIUDAD,
+                        Telefono = a.USUARIO.TELEFONO,
+                        Email = a.USUARIO.EMAIL,
+                        Area = a.USUARIO.AREA_FUNCIONARIO,
+                        Username = a.USUARIO.USERNAME,
+                        Password = a.USUARIO.PASSWORD,
+                        Id_tipo = a.USUARIO.ID_TIPOUSUARIO,
+                    },
+
+                    Departamento = new Departamento()
+                    {
+                        Id = a.ID_DPTO,
+                        CiudadId = a.DEPARTAMENTO.ID_CIUDAD,
+                        Nombre = a.DEPARTAMENTO.NOMBRE,
+                        Direccion = a.DEPARTAMENTO.DIRECCION,
+                        Superficie = a.DEPARTAMENTO.SUPERFICIE_DPTO,
+                        Precio = a.DEPARTAMENTO.PRECIO_DPTO,
+                        Disponible = a.DEPARTAMENTO.DISPONIBLE,
+                        Condicion = a.DEPARTAMENTO.CONDICION,
+                        NumDpto = a.DEPARTAMENTO.NRO_DPTO,
+                    }
+                }).Where(a => a.Id == id).ToList();
+            return arr;
+        }
+
+
         public bool Save()
         {
             try
             {
-                //Total = Departamento.Precio;
-                //ResPago = "1";                
-                //FecReserva = DateTime.Today;
-                //ValReserva = (Total / 20)*100;
-                //Procedimiento almacenaao
-                db.SP_CREATE_ARRIENDO(this.ClienteId,this.DptoId,this.FecReserva, this.ValReserva,this.ResPago,this.FecIni,this.FecFin,this.Total);
+                ClienteId = 1;
+                total_serv = 0;
+                //Procedimiento almacenado
+                db.SP_CREATE_ARRIENDO(this.ClienteId,this.DptoId,this.FecIni,this.FecFin,this.Total, this.total_serv);
                 return true;
             }
             catch (Exception)
@@ -110,14 +152,12 @@ namespace TurismoRealWeb.BLL
                 Id = a.ID_ARRIENDO,
                 ClienteId = a.ID_CLIENTE,
                 DptoId = a.ID_DPTO,
-                FecReserva = a.FECHA_RESERVA,
-                ValReserva = a.VALOR_RESERVA,
-                ResPago = a.RESERVA_PAGADA,
                 FecIni = a.FECHA_INICIO,
                 FecFin = a.FECHA_FIN,
                 CheckIn = a.CHECK_IN,
                 Checkout = a.CHECK_OUT,
                 Total = a.TOTAL_ARRIENDO,
+                total_serv = a.TOTAL_SERVICIOS,
 
                 Cliente = new Usuario()
                 {
@@ -159,7 +199,7 @@ namespace TurismoRealWeb.BLL
             try
             {
                 
-                db.SP_UPDATE_ARRIENDO(this.Id,this.ClienteId, this.DptoId, this.FecReserva, this.ValReserva, this.ResPago, this.FecIni, this.FecFin, this.Total);
+                db.SP_UPDATE_ARRIENDO(this.Id,this.ClienteId, this.DptoId, this.FecIni, this.FecFin, this.Total, this.total_serv);
                 return true;
             }
             catch (Exception)

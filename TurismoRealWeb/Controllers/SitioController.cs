@@ -9,6 +9,7 @@ namespace TurismoRealWeb.Controllers
 {
     public class SitioController : Controller
     {
+        
         // GET: Sitio
         public ActionResult Home()
         {
@@ -31,30 +32,32 @@ namespace TurismoRealWeb.Controllers
             ViewBag.ciudades = new Ciudad().ReadAll();
         }
 
-        public ActionResult Reserva(int id)
-        {            
-            EnviarCiudades();
+        public ActionResult Reserva()
+        {
+            int userId = Convert.ToInt32(Session["id"]);
+            ViewBag.arriendos = new Arriendo().ArriendosPorUser(userId);
+            //ViewBag.arriendos = new Arriendo().ReadAll();
             return View();
         }
 
         [HttpPost]
-        public ActionResult Reserva(Departamento departamento, Usuario usuario)
+        public ActionResult Reserva(Arriendo arriendo)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
                     EnviarCiudades();
-                    return View(departamento);
+                    return View(arriendo);
                 }
                 // TODO: Add update logic here
-                departamento.Update();
-                TempData["SuccessMessage"] = departamento.Nombre + "  Reservado Correctamente";
+                arriendo.Update();
+                TempData["SuccessMessage"] = arriendo.Nombre + "  Reservado Correctamente";
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(departamento);
+                return View(arriendo);
             }
         }
 
