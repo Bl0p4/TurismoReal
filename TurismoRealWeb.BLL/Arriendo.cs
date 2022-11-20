@@ -78,7 +78,7 @@ namespace TurismoRealWeb.BLL
             }).ToList();
         }
 
-        public List<Arriendo> ArriendosPorUser(int id)        
+        public List<Arriendo> ArriendosPorUser(decimal id)        
         {
             var arr = db.ARRIENDO.Select(
                 a => new Arriendo()
@@ -123,7 +123,7 @@ namespace TurismoRealWeb.BLL
                         Condicion = a.DEPARTAMENTO.CONDICION,
                         NumDpto = a.DEPARTAMENTO.NRO_DPTO,
                     }
-                }).Where(a => a.Id == id).ToList();
+                }).Where(a => a.ClienteId == id).ToList();
             return arr;
         }
 

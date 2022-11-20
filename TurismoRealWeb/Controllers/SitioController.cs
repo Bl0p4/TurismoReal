@@ -32,9 +32,10 @@ namespace TurismoRealWeb.Controllers
             ViewBag.ciudades = new Ciudad().ReadAll();
         }
 
+        [Authorize]
         public ActionResult Reserva()
         {
-            int userId = Convert.ToInt32(Session["id"]);
+            decimal userId = (decimal)Session["id"];
             ViewBag.arriendos = new Arriendo().ArriendosPorUser(userId);
             //ViewBag.arriendos = new Arriendo().ReadAll();
             return View();

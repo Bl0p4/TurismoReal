@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace TurismoRealWeb.Controllers
 {
+    [Authorize]
     public class ArriendoController : Controller
     {
         // GET: Arriendo
@@ -23,15 +24,15 @@ namespace TurismoRealWeb.Controllers
             return View();
         }
 
+        
         // GET: Arriendo/Create
         public ActionResult Create(int id)
         {
+            
             Arriendo arriendo = new Arriendo();
             arriendo.Departamento = new Departamento().Find(id);
-            arriendo.ClienteId = 1;
+            arriendo.ClienteId = (decimal)Session["id"];
             arriendo.total_serv = 0;
-            arriendo.CheckIn = null;
-            arriendo.Checkout = null;
             arriendo.DptoId = arriendo.Departamento.Id;
             arriendo.Total = arriendo.Departamento.Precio;
             return View(arriendo);

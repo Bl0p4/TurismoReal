@@ -257,29 +257,29 @@
             <a>Detalles de Arriendo</a>
             <div class="columns">
                 @Html.HiddenFor(arriendo => arriendo.DptoId)
-                @Html.TextBoxFor(arriendo =>arriendo.ClienteId)
-
+                @Html.HiddenFor(arriendo => arriendo.ClienteId)
+                @Html.HiddenFor(arriendo => arriendo.Departamento.Direccion)
+                @Html.HiddenFor(arriendo => arriendo.Departamento.Superficie)
+                @Html.HiddenFor(arriendo => arriendo.Departamento.Precio)
+                @Html.HiddenFor(arriendo => arriendo.Departamento.Condicion)
                 <div class="item form-floating col-10">
-                    @Html.DisplayFor(arriendo => arriendo.Departamento.Nombre, new { @placeholder = "Departamento", @class = "form-control", @readonly = "true" })
+                    @Html.TextBoxFor(arriendo => arriendo.Departamento.Nombre, new { @placeholder = "Departamento", @class = "form-control", @readonly = "true" })
                     <label for="Nombre">Departamento</label>
-                </div><br />
-                      <div class="item form-floating col-10">
-                          @Html.TextBoxFor(arriendo => arriendo.Total, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
-                          <label for="Precio">Valor</label>
-                      </div><br />
-                <div class="item form-floating ">
-                    <div class="form-floating">
-                        @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Entrada", @readonly = "true" } })
-                        <label for="FecIni">Fecha de Entrada</label>
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="form-floating col-10">
-                        @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Salida", @readonly = "true" } })
-                        <label for="FecFin">Fecha de Salida</label>
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                </div><br />
-
+                </div>
+                <div class="item form-floating col-10">
+                    @Html.TextBoxFor(arriendo => arriendo.Total, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
+                    <label for="Precio">Valor por Día</label>
+                </div>
+                <div class="item form-floating col-10">
+                    @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Entrada", @readonly = "true" } })
+                    <label for="FecIni">Fecha de Entrada</label>
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="item form-floating col-10">
+                    @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Salida", @readonly = "true" } })
+                    <label for="FecFin">Fecha de Salida</label>
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
             </div>
             <div class="row" style="margin-top:12px;text-align:center;">
                 <button type="submit" value="Guardar" class="btn btn-primary">Arrendar</button>

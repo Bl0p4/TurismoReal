@@ -19,7 +19,9 @@ namespace TurismoRealWeb.Controllers
         [HttpPost]
         public ActionResult Login(Usuario usuario, string ReturnUrl)
         {
-
+            Session["User"] = null;
+            Session["id"] = null;
+            Session["username"] = null;
             if (IsValid(usuario))
             {
                 
@@ -27,6 +29,11 @@ namespace TurismoRealWeb.Controllers
 
                 if (ReturnUrl != null)
                 {
+                    usuario = usuario.Buscar(usuario.Username);
+                    Session["User"] = usuario;
+                    Session["id"] = usuario.Id;
+                    Session["username"] = usuario.Username;
+
                     return Redirect(ReturnUrl);
                 }
                 usuario = usuario.Buscar(usuario.Username);
@@ -63,12 +70,16 @@ namespace TurismoRealWeb.Controllers
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            Session.Abandon();
+            Session.RemoveAll();
+            return RedirectToAction("Home", "Sitio");
         }
 
         public ActionResult LogOut2()
         {
             FormsAuthentication.SignOut();
+            Session.Abandon();
+            Session.RemoveAll();
             return RedirectToAction("Home", "Sitio");
         }
 
@@ -86,12 +97,17 @@ namespace TurismoRealWeb.Controllers
                 {                    
                     return View(usuario);
                 }
-
+                FormsAuthentication.SetAuthCookie(usuario.Username, false);
                 usuario.Password = TR_Recursos.ConvertirSha256(usuario.Password);
                 usuario.Id_tipo = 1;
 
                 // TODO: Add insert logic here
                 usuario.Reg();
+
+                Session["User"] = usuario;
+                Session["id"] = usuario.Id;
+                Session["username"] = usuario.Username;
+
 
                 TempData["mensaje"] = "Registrado Correctamente";
 
