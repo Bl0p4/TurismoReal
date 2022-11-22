@@ -1,6 +1,6 @@
-﻿
+﻿@using TurismoRealWeb.BLL;
 @{
-    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -11,7 +11,46 @@
     <title>Index</title>
 </head>
 <body>
-    <div>
+    @{ List<Arriendo> arriendos = (List<Arriendo>)ViewBag.arriendos;}
+    <br />
+    <div class="card mb-2">
+        <div class="card-header">
+            <i class="fas fa-list me-1"></i>
+            Historial de Arriendos
+        </div>
+        <div class="card-body">
+            <div>
+                <table id="tabla" class="table table-hover table-striped table-bordered" style="width: 100%">
+                    <tr>
+                        <th>Id</th>
+                        <th>Cliente</th>
+                        <th>Fecha Entrada</th>
+                        <th>Fecha Salida</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Total Arriendo</th>
+                        <th>Total Servicios</th>
+
+                    </tr>
+                    @foreach (var arriendo in arriendos)
+                    {
+                        <tr>
+                            <td>@arriendo.Id</td>
+                            <td>@arriendo.Cliente.Nombre @arriendo.Cliente.Paterno @arriendo.Cliente.Materno</td>
+                            <td>@arriendo.FecIni.ToShortDateString()</td>
+                            <td>@arriendo.FecFin.ToShortDateString()</td>
+                            <td>@(arriendo.CheckIn == "Y" ? "Si":"No")</td>
+                            <td>@(arriendo.Checkout == "Y" ? "Si":"No")</td>
+                            <td>@arriendo.Total</td>
+                            <td>@arriendo.total_serv</td>
+                            @*<td>@(inventario.Disponible == "1" ? "Disponible":"No Disponible")</td>*@
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

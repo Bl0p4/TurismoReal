@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
 </head>
-<body>
+<body >
     <!-- Navigation-->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" id="mainNav">
         <!-- Navbar Brand-->
@@ -29,7 +29,7 @@
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>@User.Identity.Name</a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     @*<li><a class="dropdown-item" href="#!">Settings</a></li>
                         <li><a class="dropdown-item" href="#!">Activity Log</a></li>
@@ -40,9 +40,9 @@
         </ul>
     </nav>
 
-<div id="layoutSidenav"">
+<div id="layoutSidenav" >
     <div id="layoutSidenav_nav">        
-            <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+            <nav class="sb-sidenav accordion sb-sidenav-light" style="background-image: url('../../Img/hotel-wallpaper.png')" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     @*<div class="nav">
                         <div class="sb-sidenav-menu-heading">Resumen</div>

@@ -37,9 +37,9 @@
             <td>@inventario.Valor</td>
             <td>@inventario.Dpto.Nombre</td>
             <td>@(inventario.Disponible == "1" ? "Disponible":"No Disponible")</td>
-            <td>@inventario.FechComp</td>
+            <td>@inventario.FechComp.ToShortDateString()</td>
             <td>
-                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Inventario", new { id = inventario.Id })'"><i class="fas fa-file"></i></button>
+                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Inventario", new { id = inventario.Id })'"><i class="fas fa-search"></i></button>
                 <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Inventario", new { id = inventario.Id })'"><i class="fas fa-pen"></i></button>
                 <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Inventario", new { id = inventario.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>
 

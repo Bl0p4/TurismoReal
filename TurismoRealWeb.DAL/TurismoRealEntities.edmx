@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AMIGO">
           <Key>
             <PropertyRef Name="ID_AMIGO" />
@@ -612,13 +612,7 @@
           <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="P_ID" Type="number" Mode="In" />
-          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
-          <Parameter Name="P_FECH" Type="date" Mode="In" />
           <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
-          <Parameter Name="P_ACOMP" Type="number" Mode="In" />
-          <Parameter Name="P_COSTO" Type="number" Mode="In" />
-          <Parameter Name="P_VIG" Type="char" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_ID" Type="number" Mode="In" />
@@ -736,8 +730,7 @@
             <End Role="USUARIO" EntitySet="USUARIO" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1287,13 +1280,13 @@
             <Parameter Name="P_DISPONIBLE" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CANCEL_RESERVA">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CHECKIN">
-            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+          <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CHECKOUT">
-            <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+          <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CREATE_ARRIENDO">
             <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
@@ -1369,29 +1362,29 @@
             <Parameter Name="PASS" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_ARRIENDO">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_DISP_SERVICIO">
             <Parameter Name="P_ID_DPTO" Mode="In" Type="Decimal" />
             <Parameter Name="P_ID_SERV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_DPTO">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_IMAGEN">
-            <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
+          <Parameter Name="P_ID_IMAGEN" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_ITEM">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_MANTEN">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_MULTA">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_DELETE_USUARIO">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_LOGIN">
             <Parameter Name="P_USER" Mode="In" Type="String" />
@@ -1443,13 +1436,7 @@
             <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_RESERVA">
-            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
-            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
-            <Parameter Name="P_FECH" Mode="In" Type="DateTime" />
             <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_ACOMP" Mode="In" Type="Decimal" />
-            <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
-            <Parameter Name="P_VIG" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_SERVICIO">
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />

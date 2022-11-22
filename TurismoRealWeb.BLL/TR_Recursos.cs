@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace TurismoRealWeb.BLL
 {
@@ -23,6 +26,7 @@ namespace TurismoRealWeb.BLL
             }
 
             return Sb.ToString();
-        }
+        }        
+
     }
 }

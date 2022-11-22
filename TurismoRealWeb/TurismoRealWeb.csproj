@@ -248,6 +248,7 @@
     <Compile Include="Controllers\DatePickerController.cs" />
     <Compile Include="Controllers\DepartamentoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MantencionController.cs" />
     <Compile Include="Controllers\ArriendoController.cs" />
@@ -517,6 +518,7 @@
     <Content Include="Img\assets\img\team\3.jpg" />
     <Content Include="Img\assets\img\TR_header.jpg" />
     <Content Include="Img\assets\img\Turismo_real_logo_.svg" />
+    <Content Include="Img\hotel-wallpaper.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -708,10 +710,11 @@
     <Content Include="Views\Shared\_LayoutUsuario.cshtml" />
     <Content Include="Views\Sitio\Departamentos.cshtml" />
     <Content Include="Views\Sitio\Reserva.cshtml" />
-    <Content Include="Views\Sitio\DescDpto.cshtml">
+    <Content Include="Views\Sitio\ConfirmReserva.cshtml">
       <BrowseToURL>~/Sitio/Arriendo</BrowseToURL>
     </Content>
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
+    <Content Include="Views\Imagen\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

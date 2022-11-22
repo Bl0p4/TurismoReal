@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace TurismoRealWeb.BLL
 {
-    class Conductor
+    public class Conductor
     {
+        public decimal Id { get; set; }
+        public string Nombre { get; set; }
+        public string Paterno { get; set; }
+        public string Materno { get; set; }
+        public string Licencia { get; set; }
+        public DateTime FecNac { get; set; }
     }
 }

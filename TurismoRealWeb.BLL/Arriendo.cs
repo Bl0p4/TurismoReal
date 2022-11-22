@@ -13,12 +13,14 @@ namespace TurismoRealWeb.BLL
         public decimal Id { get; set; }
         public decimal ClienteId { get; set; }
         public decimal DptoId { get; set; }
-        public string Nombre { get; set; }     
-        public DateTime FecIni { get; set; }        
+        public string Nombre { get; set; } 
+        public DateTime FecIni { get; set; }
         public DateTime FecFin { get; set; }
         public string CheckIn { get; set; }
         public string Checkout { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
         public decimal Total { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
         public decimal total_serv { get; set; }
 
         public Usuario Cliente { get; set; }
@@ -132,8 +134,9 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                ClienteId = 1;
-                total_serv = 0;
+                TimeSpan ts = FecFin - FecIni;
+                decimal diferencia = ts.Days;
+                Total = Total * diferencia;
                 //Procedimiento almacenado
                 db.SP_CREATE_ARRIENDO(this.ClienteId,this.DptoId,this.FecIni,this.FecFin,this.Total, this.total_serv);
                 return true;

@@ -3,10 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TurismoRealWeb.DAL;
 
 namespace TurismoRealWeb.BLL
 {
-    class Servicio
+    public class Servicio
     {
+        public decimal Id { get; set; }
+        public string Descripcion { get; set; }
+        public decimal Costo { get; set; }
+
+        TurismoRealEntities db = new TurismoRealEntities();
+
+        public List<Servicio> ReadAll()
+        {
+            return db.SERVICIO_EXTRA.Select(s => new Servicio()
+            {
+                Id = s.ID_SERVICIO,
+                Descripcion = s.DESCRIPCION,
+                Costo = s.COSTO_ACTUAL
+            }).ToList();
+        }
     }
 }

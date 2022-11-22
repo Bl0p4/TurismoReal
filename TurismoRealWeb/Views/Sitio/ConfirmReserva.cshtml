@@ -1,31 +1,14 @@
-﻿@model TurismoRealWeb.BLL.Arriendo
-
+﻿@model TurismoRealWeb.BLL.Reserva
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Arriendo";
     Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
 }
 
-@section scripts{
-    @Scripts.Render("~/bundles/jquery")
-    @Styles.Render("~/Content/css")
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('input[type=datetime]').datepicker({
-                dateFormat: "dd/mm/yy",
-                changeMonth: true,
-                changeYear: true,
-                yearRange: "-60:+0",
-                minDate: new Date()
-            });
-
-        });
-    </script>
-}
+<h2></h2>
 
 
-
+<!--Detalle Depa-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +18,7 @@
     <style>
         html, body {
             min-height: 100%;
+            background-image: url('../../Img/hotel-wallpaper.png');
         }
 
         body, div, form, input, select, textarea, label {
@@ -131,17 +115,17 @@
             }
 
 
-        .item i, input[type="date"]::-webkit-calendar-picker-indicator {
-            position: absolute;
-            font-size: 20px;
-            color: #00b33c;
-        }
+            .item i, input[type="date"]::-webkit-calendar-picker-indicator {
+                position: absolute;
+                font-size: 20px;
+                color: #00b33c;
+            }
 
-        .item i {
-            right: 1%;
-            top: 30px;
-            z-index: 1;
-        }
+            .item i {
+                right: 1%;
+                top: 30px;
+                z-index: 1;
+            }
 
         .week {
             display: flex;
@@ -248,50 +232,37 @@
     <div class="testbox">
         <div style="flex">
             <div class="banner">
-                <h1>Arriendo de Departamento</h1>
+                <h1>Confirmar Reserva</h1>
             </div>
             <br />
-            @using (Html.BeginForm("Create", "Arriendo"))
+            @using (Html.BeginForm("ConfirmReserva", "Sitio"))
             {
                 @Html.ValidationSummary()
                 <a>Detalles de Arriendo</a>
                 <div class="columns">
-                    @Html.HiddenFor(arriendo => arriendo.DptoId)
-                    @Html.HiddenFor(arriendo => arriendo.ClienteId)
-                    @Html.HiddenFor(arriendo => arriendo.Departamento.Direccion)
-                    @Html.HiddenFor(arriendo => arriendo.Departamento.Superficie)
-                    @Html.HiddenFor(arriendo => arriendo.Departamento.Precio)
-                    @Html.HiddenFor(arriendo => arriendo.Departamento.Condicion)
+                    @Html.HiddenFor(reserva => reserva.ArriendoId)
+                    @Html.HiddenFor(reserva => reserva.Fech)
                     <div class="item form-floating col-10">
-                        @Html.TextBoxFor(arriendo => arriendo.Departamento.Nombre, new { @placeholder = "Departamento", @class = "form-control", @readonly = "true" })
-                        <label for="Nombre">Departamento</label>
+                        @Html.TextBoxFor(reserva => reserva.NomPersona, new { @placeholder = "Solicitante", @class = "form-control", @readonly = "true" })
+                        <label for="Nombre">Solicitante</label>
                     </div>
                     <div class="item form-floating col-10">
-                        @Html.TextBoxFor(arriendo => arriendo.Total, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
-                        <label for="Precio">Valor por Día</label>
+                        @Html.TextBoxFor(reserva => reserva.Valor, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
+                        <label for="Precio">Valor Reserva</label>
                     </div>
                     <div class="item form-floating col-10">
-                        @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Entrada", @readonly = "true" } })
-                        <label for="FecIni">Fecha de Entrada</label>
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <div class="item form-floating col-10">
-                        @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Salida", @readonly = "true" } })
-                        <label for="FecFin">Fecha de Salida</label>
-                        <i class="fas fa-calendar-alt"></i>
+                        @Html.TextBoxFor(reserva => reserva.Acomp, new { @class = "form-control", placeholder = "Acompañantes" })
+                        <label for="FecFin">N° Acompañantes</label>
                     </div>
                 </div>
                 <div class="row" style="margin-top:12px;text-align:center;">
-                    <button type="submit" value="Guardar" class="btn btn-primary">Arrendar</button>
+                    <button type="submit" value="Guardar" class="btn btn-primary">Continuar a WebPay</button>
                 </div>
 
             }
-            <br />            
+            <br />
+            @Html.ActionLink("Volver", "Reserva","Sitio", null, new { btn5 = "back", @class = "btn btn-danger" })
         </div>
     </div>
 </body>
 </html>
-
-
-
-

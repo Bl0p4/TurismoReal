@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TurismoRealWeb.BLL;
 
 namespace TurismoRealWeb.Controllers
 {
@@ -11,6 +12,7 @@ namespace TurismoRealWeb.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.arriendos = new Arriendo().ReadAll();
             return View();
         }
 

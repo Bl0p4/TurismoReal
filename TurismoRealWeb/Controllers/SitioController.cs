@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TurismoRealWeb.BLL;
 
 namespace TurismoRealWeb.Controllers
@@ -35,10 +36,21 @@ namespace TurismoRealWeb.Controllers
         [Authorize]
         public ActionResult Reserva()
         {
-            decimal userId = (decimal)Session["id"];
-            ViewBag.arriendos = new Arriendo().ArriendosPorUser(userId);
-            //ViewBag.arriendos = new Arriendo().ReadAll();
-            return View();
+
+            if (Session["id"] != null)
+            {
+                decimal userId = (decimal)Session["id"];
+                ViewBag.arriendos = new Arriendo().ArriendosPorUser(userId);
+                //ViewBag.arriendos = new Arriendo().ReadAll();
+                return View();
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                Session.Abandon();
+                Session.RemoveAll();
+                return RedirectToAction("Departamentos");
+            }     
         }
 
         [HttpPost]
@@ -63,11 +75,36 @@ namespace TurismoRealWeb.Controllers
         }
 
 
-        public ActionResult DescDpto(int id)
+        public ActionResult ConfirmReserva(int id)
         {
-            Departamento dpto = new Departamento().Find(id);
-            EnviarCiudades();
-            return View(dpto);
+            Reserva reserva = new Reserva();
+            reserva.Arriendo = new Arriendo().Find(id);
+            reserva.ArriendoId = reserva.Arriendo.Id;
+            reserva.NomPersona = reserva.Arriendo.Cliente.Nombre + reserva.Arriendo.Cliente.Paterno + reserva.Arriendo.Cliente.Materno;
+            reserva.Valor = 2* reserva.Arriendo.Total / 10;
+            reserva.Fech = DateTime.Today;
+            return View(reserva);
+        }
+
+        [HttpPost]
+        public ActionResult ConfirmReserva(Reserva reserva)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View(reserva);
+                }
+
+                reserva.Save();
+                TempData["SuccessMessage"] = "Pago Realizado Correctamente";
+                return RedirectToAction("Reserva");
+            }
+            catch
+            {
+                return View(reserva);
+            }
+
         }
 
     }

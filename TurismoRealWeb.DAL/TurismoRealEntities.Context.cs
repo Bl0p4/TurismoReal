@@ -589,37 +589,13 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_MANTEN", p_IDParameter, p_ID_DPTOParameter, p_FEC_INIParameter, p_FEC_TERMParameter, p_DESCRIPCIONParameter, p_COSTOParameter);
         }
     
-        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> p_ID, string p_NOMBRE, Nullable<System.DateTime> p_FECH, Nullable<decimal> p_ID_ARRIENDO, Nullable<decimal> p_ACOMP, Nullable<decimal> p_COSTO, string p_VIG)
+        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> p_ID_ARRIENDO)
         {
-            var p_IDParameter = p_ID.HasValue ?
-                new ObjectParameter("P_ID", p_ID) :
-                new ObjectParameter("P_ID", typeof(decimal));
-    
-            var p_NOMBREParameter = p_NOMBRE != null ?
-                new ObjectParameter("P_NOMBRE", p_NOMBRE) :
-                new ObjectParameter("P_NOMBRE", typeof(string));
-    
-            var p_FECHParameter = p_FECH.HasValue ?
-                new ObjectParameter("P_FECH", p_FECH) :
-                new ObjectParameter("P_FECH", typeof(System.DateTime));
-    
             var p_ID_ARRIENDOParameter = p_ID_ARRIENDO.HasValue ?
                 new ObjectParameter("P_ID_ARRIENDO", p_ID_ARRIENDO) :
                 new ObjectParameter("P_ID_ARRIENDO", typeof(decimal));
     
-            var p_ACOMPParameter = p_ACOMP.HasValue ?
-                new ObjectParameter("P_ACOMP", p_ACOMP) :
-                new ObjectParameter("P_ACOMP", typeof(decimal));
-    
-            var p_COSTOParameter = p_COSTO.HasValue ?
-                new ObjectParameter("P_COSTO", p_COSTO) :
-                new ObjectParameter("P_COSTO", typeof(decimal));
-    
-            var p_VIGParameter = p_VIG != null ?
-                new ObjectParameter("P_VIG", p_VIG) :
-                new ObjectParameter("P_VIG", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", p_IDParameter, p_NOMBREParameter, p_FECHParameter, p_ID_ARRIENDOParameter, p_ACOMPParameter, p_COSTOParameter, p_VIGParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", p_ID_ARRIENDOParameter);
         }
     
         public virtual int SP_UPDATE_SERVICIO(Nullable<decimal> p_ID, string p_DESC, Nullable<decimal> p_COSTO)

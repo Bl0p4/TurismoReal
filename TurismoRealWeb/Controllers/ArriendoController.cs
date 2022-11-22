@@ -15,6 +15,7 @@ namespace TurismoRealWeb.Controllers
         // GET: Arriendo
         public ActionResult Index()
         {
+            ViewBag.arriendos = new Arriendo().ReadAll();
             return View();
         }
 
@@ -60,6 +61,7 @@ namespace TurismoRealWeb.Controllers
                     return View(arriendo);
                 }                
                 arriendo.Save();
+                TempData["SuccessMessage"] = arriendo.Departamento.Nombre + "  Reservado Correctamente";
                 return RedirectToAction("Reserva", "Sitio");
             }
             catch

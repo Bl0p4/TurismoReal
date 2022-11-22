@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TurismoRealWeb.BLL
 {
-    class Multa
+    public class Multa
     {
+        public decimal Id { get; set; }
+        public decimal ArriendoId { get; set; }
+        public decimal Monto { get; set; }
+        public string Descripcion { get; set; }
     }
 }

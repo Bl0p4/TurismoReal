@@ -42,6 +42,7 @@
                 <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li class="nav-item"><a class="nav-link" href="@Url.Action("Reserva", "Sitio")">Tus Arriendos</a></li>
                         <li class="nav-item"><a class="nav-link">@User.Identity.Name</a></li>
                         <li class="nav-item"><a class="nav-link" href="@Url.Action("LogOut2", "Auth")">Cerrar Sesion</a></li>
                     }

@@ -11,16 +11,18 @@ namespace TurismoRealWeb.BLL
     public class Reserva
     {
         public decimal Id { get; set; }
-        public string NomPersona { get; set; }
-        [DataType(DataType.Date)]
+        public string NomPersona { get; set; }        
         public DateTime Fech { get; set; }
         public decimal ArriendoId { get; set; }
+        [Required, Range(0, 5, ErrorMessage = "El {0} debe estar entre {1} y {2}")]
         public decimal Acomp { get; set; }
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
         public decimal Valor { get; set; }
         public Boolean IsVig { get; set; }
         public string Vigente { get; set; }
 
         public Arriendo Arriendo { get; set; }
+
 
 
         TurismoRealEntities db = new TurismoRealEntities();
@@ -58,6 +60,7 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                IsVig = true;
                 if (IsVig == true)
                 {
                     Vigente = "1";
@@ -67,6 +70,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
                 //Procedimiento almacenado
+                db.SP_UPDATE_RESERVA(this.ArriendoId);
                 db.SP_CREATE_RESERVA(this.NomPersona, this.Fech, this.ArriendoId, this.Acomp, this.Valor, this.Vigente);
                 return true;
             }
@@ -110,6 +114,7 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                IsVig = true;
                 if (IsVig == true)
                 {
                     Vigente = "1";
@@ -119,7 +124,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
 
-                db.SP_UPDATE_RESERVA(this.Id,this.NomPersona, this.Fech, this.ArriendoId, this.Acomp, this.Valor, this.Vigente);
+                db.SP_UPDATE_RESERVA(this.ArriendoId);
                 return true;
             }
             catch (Exception)

@@ -17,7 +17,7 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gradient">
-    <div id="layoutAuthentication">
+    <div id="layoutAuthentication" style="background-image: url('../../Img/hotel-wallpaper.png')">
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
@@ -26,7 +26,7 @@
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Registro</h3></div>
 
-                                @using (Html.BeginForm("Create", "Arriendo"))
+                                @using (Html.BeginForm("Registro", "Auth"))
                                 {
                                     <div class="card-body">
                                         <div class="row mb-3">

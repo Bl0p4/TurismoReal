@@ -34,10 +34,12 @@
     <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,11 +49,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acompanante.cs" />
+    <Compile Include="AcompViewModel.cs" />
     <Compile Include="Arriendo.cs" />
     <Compile Include="Ciudad.cs" />
     <Compile Include="Conductor.cs" />
     <Compile Include="Datepicker.cs" />
     <Compile Include="Departamento.cs" />
+    <Compile Include="Imagen.cs" />
     <Compile Include="Inventario.cs" />
     <Compile Include="Mantencion.cs" />
     <Compile Include="Multa.cs" />

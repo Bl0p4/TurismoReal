@@ -8,43 +8,67 @@
 
 
 @{ List<Arriendo> arriendos = (List<Arriendo>)ViewBag.arriendos; }
-<!--Datepicker-->
+
+
+
+
 <!--Descripcion Depa-->
+<div>
+    <table id="tabla" class="table table-hover table-striped" style="width: 100%">
+        <tr>
+            <th>N° Arriendo</th>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Fecha Entrada</th>
+            <th>Fecha Salida</th>
+            <th>Estado</th>
+            <th>Valor Arriendo</th>
+            <th>Valor Servicios</th>
+            <th>Contratar</th>
+
+        </tr>
+        @foreach (var arriendo in arriendos)
+        {
+            <tr>
+                <td>@arriendo.Id</td>
+                <td>@arriendo.Cliente.Nombre  @arriendo.Cliente.Paterno @arriendo.Cliente.Materno</td>
+                <td>@arriendo.Departamento.Nombre</td>
+                <td>@arriendo.FecIni.ToShortDateString()</td>
+                <td>@arriendo.FecFin.ToShortDateString()</td>
+                <td>@(arriendo.CheckIn == "P" ? "Pago Pendiente": "Pagado")</td>
+                <td>@arriendo.Total</td>
+                <td>@arriendo.total_serv</td>
+                <td>
+                    <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("ConfirmReserva","Sitio", new { id = arriendo.Id })'"><i class="fas fa-check"></i> Pagar Reserva</button>
+                    <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("ConfirmReserva","Sitio", new { id = arriendo.Id })'"><i class="fas fa-concierge-bell"></i> Agregar Servicio</button>
+                    <button class="btn btn-danger btn-sm-2" onclick="location.href='@Url.Action("ConfirmReserva","Sitio", new { id = arriendo.Id })'"><i class="fas fa-close"></i> Cancelar Reserva</button>
+                    @*<button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Departamento", new { id = departamento.Id })'"><i class="fas fa-pen"></i></button>
+                        <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Departamento", new { id = departamento.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>*@
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+@section scripts{
+    <script type="text/javascript">
+
+        function openSuccessModal(strMessage) {
+            var myDiv = document.getElementById("myModalSuccessAlertBody");
+            myDiv.innerHTML = strMessage;
+
+            $('#myModalSuccess').modal("show");
+        }
 
 
-<table id="tabla" class="table table-hover table-striped" style="width: 100%">
-    <tr>
-        <th>N° Arriendo</th>
-        <th>Nombre</th>
-        <th>Departamento</th>
-        <th>Fecha Entrada</th>
-        <th>Fecha Salida</th>
-        <th>CheckIn</th>
-        <th>CheckOut</th>
-        <th>Valor Arriendo</th>
-        <th>Valor Servicios</th>
-        <th>Opciones</th>
+        $(document).ready(function () {
+            var msg = "@TempData["SuccessMessage"]";
+            if (msg)
+                openSuccessModal(msg);
+        });
 
-    </tr>
-    @foreach (var arriendo in arriendos)
-    {
-<tr>    
-    <td>@arriendo.Id</td>
-    <td>@arriendo.Cliente.Nombre  @arriendo.Cliente.Paterno @arriendo.Cliente.Materno</td>
-    <td>@arriendo.Departamento.Nombre</td>
-    <td>@arriendo.FecIni</td>
-    <td>@arriendo.FecFin</td>
-    <td>@arriendo.CheckIn</td>
-    <td>@arriendo.Checkout</td>
-    <td>@arriendo.Total</td>
-    <td>@arriendo.total_serv</td>
-    <td>
-        <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("DescDpto","Sitio", new { id = arriendo.Id })'"><i class="fas fa-search"></i></button>
-            @*<button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Departamento", new { id = departamento.Id })'"><i class="fas fa-pen"></i></button>
-            <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Departamento", new { id = departamento.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>*@
 
-    </td>
-</tr>
-    }
 
-</table>
+    </script>
+}

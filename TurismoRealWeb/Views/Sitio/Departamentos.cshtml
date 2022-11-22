@@ -11,29 +11,31 @@
 
 
 
-<div class="d-grid mb-5 mt-4 ">
-    <div class="row row-cols-1 row-cols-md-6 g-5">
+<body style="background-image: url('../../Img/hotel-wallpaper.png')">
+    <div class="d-grid mb-5 mt-2 ">
+        <div class="row row-cols-1 row-cols-md-3 g-5">
 
-        @if (departamentos != null)
-        {
-            foreach (var dpto in departamentos)
+            @if (departamentos != null)
             {
-                <div class="col">
-                    <div class="card">
-                        <img src="https://imgclasificados3.emol.com/Proyectos/imagenes//PR_FOTO_4484_1.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">@dpto.Nombre</h5>
-                            <p class="card-text">@dpto.Ciudad.Nombre</p>
-                            <p class="card-text"><small>@Html.DisplayFor(modelItem => dpto.Precio)</small></p>
-                            <a class="btn btn-primary" href="@Url.Action("Create","Arriendo", new { id = dpto.Id })">Reserva</a>
+                foreach (var dpto in departamentos)
+                {
+                    <div class="col">
+                        <div class="card">
+                            <img src="https://imgclasificados3.emol.com/Proyectos/imagenes//PR_FOTO_4484_1.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">@dpto.Nombre</h5>
+                                <p class="card-text">@dpto.Ciudad.Nombre</p>
+                                <p class="card-text"><small>@Html.DisplayFor(modelItem => dpto.Precio)</small></p>
+                                <a class="btn btn-primary" href="@Url.Action("Create","Arriendo", new { id = dpto.Id })">Reserva</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
 
-        }
+            }
+        </div>
     </div>
-</div>
+</body>
 
 
 
