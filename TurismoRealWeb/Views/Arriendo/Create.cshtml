@@ -21,6 +21,7 @@
             });
 
         });
+
     </script>
 }
 
@@ -271,12 +272,12 @@
                         <label for="Precio">Valor por Día</label>
                     </div>
                     <div class="item form-floating col-10">
-                        @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Entrada", @readonly = "true" } })
+                        @Html.EditorFor(arriendo => arriendo.FecIni, new { htmlAttributes = new { @class = "form-control", @name = "fromDate", placeholder = "Fecha de Entrada", @readonly = "true" } })
                         <label for="FecIni">Fecha de Entrada</label>
                         <i class="fas fa-calendar-alt"></i>
                     </div>
                     <div class="item form-floating col-10">
-                        @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Salida", @readonly = "true" } })
+                        @Html.EditorFor(arriendo => arriendo.FecFin, new { htmlAttributes = new { @class = "form-control", @name = "toDate", placeholder = "Fecha de Salida", @readonly = "true" } })
                         <label for="FecFin">Fecha de Salida</label>
                         <i class="fas fa-calendar-alt"></i>
                     </div>

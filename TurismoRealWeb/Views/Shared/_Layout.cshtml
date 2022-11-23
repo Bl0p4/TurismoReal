@@ -87,12 +87,12 @@
 
                     <!--Success Dialog Start-->
                     <div id="myModalSuccess" class="modal fade fa-text-width: 30%;" tabindex="-1" role="dialog">
-                        <div class="modal-dialog" role="document"> 
+                        <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h2 class="modal-title">Correcto!</h2>
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div id="myModalSuccessAlertBody" class="modal-body alert alert-success">
@@ -105,10 +105,29 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <!--Success Dialog End-->
+                    <!--Failure Dialog Start-->
+                    @*<div id="myModalFailure" class="modal fade fa-text-width: 30%;" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title">Error!</h2>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div id="myModalFailureAlertBody" class="modal-body alert alert-danger">
+                                    This is a modal body. our msessage will appear here.
+                                </div>
+                                <div class="modal-footer">
+                                    &nbsp;
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <!--Failure Dialog End-->
+
 
                     @RenderBody()
                 </div>
@@ -150,5 +169,6 @@
     @Scripts.Render("~/bundles/complementos")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @RenderSection("scripts2", required: false)
 </body>
 </html>

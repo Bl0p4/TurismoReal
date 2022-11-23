@@ -70,7 +70,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
                 //Procedimiento almacenado
-                db.SP_UPDATE_RESERVA(this.ArriendoId);
+                db.SP_ESTADO_RESERVA(this.ArriendoId);
                 db.SP_CREATE_RESERVA(this.NomPersona, this.Fech, this.ArriendoId, this.Acomp, this.Valor, this.Vigente);
                 return true;
             }
@@ -107,7 +107,7 @@ namespace TurismoRealWeb.BLL
                 }
 
 
-            }).Where(d => d.Id == id).FirstOrDefault();
+            }).Where(a => a.ArriendoId == id).FirstOrDefault();
         }
 
         public bool Update()
@@ -124,7 +124,7 @@ namespace TurismoRealWeb.BLL
                     Vigente = "0";
                 }
 
-                db.SP_UPDATE_RESERVA(this.ArriendoId);
+                db.SP_UPDATE_RESERVA(this.Id,this.NomPersona, this.Fech ,this.ArriendoId, this.Acomp);
                 return true;
             }
             catch (Exception)
@@ -138,6 +138,7 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                db.SP_CANCEL_ARRIENDO(id);
                 db.SP_CANCEL_RESERVA(id);
                 return true;
             }

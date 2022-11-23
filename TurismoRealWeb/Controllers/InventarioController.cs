@@ -53,7 +53,7 @@ namespace TurismoRealWeb.Controllers
                 }
 
                 inventario.Save();
-                TempData["mensaje"] = "Guardado Correctamente";
+                TempData["SuccessMessage"] = inventario.Item + " Guardado Correctamente";
                 
                 return RedirectToAction("Index");
             }
@@ -70,7 +70,7 @@ namespace TurismoRealWeb.Controllers
 
             if (inv == null)
             {
-                TempData["mensaje"] = "El Objeto no existe";
+                TempData["SuccessMessage"] = "El Objeto no existe";
                 return RedirectToAction("Index");
             }
 
@@ -100,7 +100,7 @@ namespace TurismoRealWeb.Controllers
                 }
                 // TODO: Add update logic here
                 inventario.Update();
-                TempData["mensaje"] = "Modificado Correctamente";
+                TempData["SuccessMessage"] = inventario.Item +" Modificado Correctamente";
                 return RedirectToAction("Index");
             }
             catch
@@ -114,19 +114,19 @@ namespace TurismoRealWeb.Controllers
         {
             if (new Inventario().Find(id) == null)
             {
-                TempData["mensaje"] = "No existe el Objeto";
+                TempData["SuccessMessage"] = "No existe el Objeto";
                 return RedirectToAction("Index");
             }
 
 
             if (new Inventario().Delete(id))
             {
-                TempData["mensaje"] = "Eliminado Correctamente";
+                TempData["SuccessMessage"] = "Eliminado Correctamente";
                 return RedirectToAction("Index");
             }
 
 
-            TempData["mensaje"] = "No se ha podido eliminar";
+            TempData["SuccessMessage"] = "No se ha podido eliminar";
             return RedirectToAction("Index");
         }
 

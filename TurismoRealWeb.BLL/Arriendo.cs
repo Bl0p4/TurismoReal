@@ -18,9 +18,9 @@ namespace TurismoRealWeb.BLL
         public DateTime FecFin { get; set; }
         public string CheckIn { get; set; }
         public string Checkout { get; set; }
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal Total { get; set; }
-        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = false)]
+        [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
         public decimal total_serv { get; set; }
 
         public Usuario Cliente { get; set; }
@@ -134,8 +134,13 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                TimeSpan ts = FecFin - FecIni;
+                TimeSpan ts = FecFin - FecIni;                
                 decimal diferencia = ts.Days;
+                if (diferencia < 0)
+                {
+                    diferencia = 1;
+                }
+
                 Total = Total * diferencia;
                 //Procedimiento almacenado
                 db.SP_CREATE_ARRIENDO(this.ClienteId,this.DptoId,this.FecIni,this.FecFin,this.Total, this.total_serv);

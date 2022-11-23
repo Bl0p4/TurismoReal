@@ -29,14 +29,25 @@ namespace TurismoRealWeb.Controllers
         // GET: Arriendo/Create
         public ActionResult Create(int id)
         {
-            
-            Arriendo arriendo = new Arriendo();
-            arriendo.Departamento = new Departamento().Find(id);
-            arriendo.ClienteId = (decimal)Session["id"];
-            arriendo.total_serv = 0;
-            arriendo.DptoId = arriendo.Departamento.Id;
-            arriendo.Total = arriendo.Departamento.Precio;
-            return View(arriendo);
+            if (Session["id"] != null)
+            {
+                Arriendo arriendo = new Arriendo();
+                arriendo.Departamento = new Departamento().Find(id);
+                arriendo.ClienteId = (decimal)Session["id"];
+                arriendo.total_serv = 0;
+                arriendo.DptoId = arriendo.Departamento.Id;
+                arriendo.Total = arriendo.Departamento.Precio;
+                return View(arriendo);
+            }
+
+            else
+            {
+                FormsAuthentication.SignOut();
+                Session.Abandon();
+                Session.RemoveAll();
+                return RedirectToAction("Departamentos");
+            }
+
         }       
 
         private void EnviarCiudades()

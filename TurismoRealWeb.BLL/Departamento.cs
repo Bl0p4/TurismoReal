@@ -134,7 +134,6 @@ namespace TurismoRealWeb.BLL
             }
             catch (Exception)
             {
-
                 return false;
             }
         }

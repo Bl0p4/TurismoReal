@@ -28,11 +28,7 @@ namespace TurismoRealWeb.Controllers
         // GET: Mantencion/Create
         public ActionResult Create()
         {
-            //Mantencion manten = new Mantencion()
-            //{
-            //    Fech_ini = DateTime.MinValue,
-            //    Fech_term = DateTime.MinValue
-            //};
+            
 
             EnviarDptos();
             return View();
@@ -57,7 +53,7 @@ namespace TurismoRealWeb.Controllers
                 }
 
                 mantencion.Save();
-                TempData["mensaje"] = "Guardado Correctamente";
+                TempData["SuccessMessage"] = "Mantención Creada Correctamente";
 
                 return RedirectToAction("Index");
             }
@@ -74,7 +70,7 @@ namespace TurismoRealWeb.Controllers
 
             if (man == null)
             {
-                TempData["mensaje"] = "El Objeto no existe";
+                TempData["SuccessMessage"] = "La Mantención no existe";
                 return RedirectToAction("Index");
             }
 
@@ -99,7 +95,7 @@ namespace TurismoRealWeb.Controllers
                 }
                 // TODO: Add update logic here
                 mantencion.Update();
-                TempData["mensaje"] = "Modificado correctamente";
+                TempData["SuccessMessage"] = "Mantención modificada correctamente";
                 return RedirectToAction("Index");
             }
             catch
@@ -113,16 +109,17 @@ namespace TurismoRealWeb.Controllers
         {
             if (new Mantencion().Find(id) == null)
             {
-                TempData["mensaje"] = "No existe del objeto";
+                TempData["SuccessMessage"] = "Mantención no existe";
                 return RedirectToAction("Index");
             }
 
             if (new Mantencion().Delete(id))
             {
-                TempData["mensaje"] = "Eliminado Correctamente";
+                TempData["SuccessMessage"] = "Mantención eliminada Correctamente";
+                return RedirectToAction("Index");
             }
 
-            TempData["mensaje"] = "No se ha podido Eliminar";
+            TempData["SuccessMessage"] = "No se ha podido Eliminar";
             return RedirectToAction("Index");
         }
 

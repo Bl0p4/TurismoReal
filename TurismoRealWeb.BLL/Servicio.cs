@@ -24,5 +24,23 @@ namespace TurismoRealWeb.BLL
                 Costo = s.COSTO_ACTUAL
             }).ToList();
         }
+
+        public Servicio Find(decimal id)
+        {
+            return db.SERVICIO_EXTRA.Select(s => new Servicio()
+            {
+                Id = s.ID_SERVICIO,
+                Descripcion = s.DESCRIPCION,
+                Costo = s.COSTO_ACTUAL
+            }).Where(s => s.Id == id).FirstOrDefault();
+        }
+
+        public Servicio GetCosto(decimal id)
+        {
+            return db.SERVICIO_EXTRA.Select(s => new Servicio()
+            {
+                Costo = s.COSTO_ACTUAL
+            }).Where(s => s.Id == id).FirstOrDefault();
+        }
     }
 }

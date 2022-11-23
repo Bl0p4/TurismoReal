@@ -252,6 +252,7 @@
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\MantencionController.cs" />
     <Compile Include="Controllers\ArriendoController.cs" />
+    <Compile Include="Controllers\ServicioContratadoController.cs" />
     <Compile Include="Controllers\SitioController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Filters\AuthorizeUser.cs" />
@@ -715,10 +716,12 @@
     </Content>
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Imagen\Create.cshtml" />
+    <Content Include="Views\Sitio\Servicios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\ServicioContratado\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -27,17 +27,26 @@
                 </div>
             </form>*@
         <!-- Navbar-->
-        <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>@User.Identity.Name</a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    @*<li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>*@
-                    <li><a class="dropdown-item" href="@Url.Action("LogOut", "Auth")">Cerrar Sesión</a></li>
-                </ul>
-            </li>
-        </ul>
+    <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li><a class="nav-link" href="@Url.Action("Reserva", "Sitio")">Tus Arriendos</a></li>
+        }        
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i>@User.Identity.Name</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a class="dropdown-item" href="@Url.Action("LogOut2", "Auth")">Cerrar Sesion</a></li>
+                }
+                else
+                {
+                    <li ><a class="dropdown-item" href="@Url.Action("Login","Auth")">Inicia Sesion</a></li>
+                    <li ><a class="dropdown-item" href="@Url.Action("Registro","Auth")">Registrate</a></li>
+                }
+            </ul>
+        </li>
+    </ul>
     </nav>
 
 <div id="layoutSidenav" >

@@ -41,7 +41,6 @@ namespace TurismoRealWeb.Controllers
             {
                 decimal userId = (decimal)Session["id"];
                 ViewBag.arriendos = new Arriendo().ArriendosPorUser(userId);
-                //ViewBag.arriendos = new Arriendo().ReadAll();
                 return View();
             }
             else
@@ -106,6 +105,84 @@ namespace TurismoRealWeb.Controllers
             }
 
         }
+
+        public ActionResult Delete(int id)
+        {
+            if (new Reserva().Find(id) == null)
+            {
+                TempData["SuccessMessage"] = "Reserva no existe";
+                return RedirectToAction("Reserva");
+            }
+
+
+            if (new Reserva().Cancelar(id))
+            {
+                TempData["SuccessMessage"] = "Reserva Cancelada Correctamente";
+                return RedirectToAction("Reserva");
+            }
+
+
+            TempData["SuccessMessage"] = "No se ha podido cancelar";
+            return RedirectToAction("Reserva");
+        }
+
+        [Authorize]
+        public ActionResult Servicios(int id)
+        {
+            Servicio_Contratado servs = new Servicio_Contratado();
+            servs.Arriendo = new Arriendo().Find(id);
+            servs.ArriendoId = servs.Arriendo.Id;
+            ViewBag.Servicios = new Servicio().ReadAll();
+
+            return View(servs);
+        }
+
+        [HttpPost]
+        public ActionResult Servicios(Servicio_Contratado servicio_Contratado)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    ViewBag.Servicios = new Servicio().ReadAll();
+                    return View(servicio_Contratado);
+                }
+                Servicio servicio = new Servicio().Find(servicio_Contratado.ServicioId);
+                servicio_Contratado.Costo = servicio.Costo;
+                servicio_Contratado.Realizado = "N";
+                servicio_Contratado.PostChk = "N";
+
+                servicio_Contratado.Save();
+                TempData["SuccessMessage"] = "Servicios Contratados Satisfactoriamente";
+                return RedirectToAction("Reserva");
+            }
+            catch 
+            {
+                return View(servicio_Contratado);
+            }      
+        }
+
+        public ActionResult CancelarReserva(int id)
+        {
+            if (new Reserva().Find(id) == null)
+            {
+                TempData["SuccessMessage"] = "Reserva no existe";
+                return RedirectToAction("Reserva");
+            }
+
+
+            if (new Reserva().Cancelar(id))
+            {
+                TempData["SuccessMessage"] = "Reserva Cancelada Correctamente";
+                return RedirectToAction("Reserva");
+            }
+
+
+            TempData["SuccessMessage"] = "No se ha podido cancelar la Reserva";
+            return RedirectToAction("Reserva");
+        }
+
+
 
     }
 }

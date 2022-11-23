@@ -1,0 +1,79 @@
+﻿@model TurismoRealWeb.BLL.Servicio_Contratado
+
+@{
+    ViewBag.Title = "Contratar Servicios";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+<h2>Contrata Servicios para tu Arriendo</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4></h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(Servicio_Contratado => Servicio_Contratado.ArriendoId)
+    <h4>Tabla de Precios</h4>
+    
+        <table id="tabla" class="table table-hover table-bordered" style="width: 20%">
+            <tr>
+                <th>Servicio</th>
+                <th>Valor</th>
+            </tr>
+            @foreach (var servicio in ViewBag.Servicios)
+            { 
+                <tr>
+                    <td>@servicio.Descripcion</td>
+                    <td>$@servicio.Costo</td>
+                </tr>
+            }
+
+        </table>
+    
+    <div class="row" style="width: 20%">
+        <div class="form-floating mb-3" style="padding:10px">
+            @Html.DropDownListFor(Servicio_Contratado => Servicio_Contratado.ServicioId, new SelectList(ViewBag.Servicios, "Id", "Descripcion"), new { @placeholder = "Servicio", @class = "form-control" })
+            <label for="FecIni">Servicio</label>
+        </div>
+    </div>
+
+
+    <div class="form-group" style="width: 20%">
+        @Html.EditorFor(Servicio_Contratado => Servicio_Contratado.Fecha, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Servicio", @readonly = "true" } })
+        <label for="FecIni">Fecha a Contratar</label>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Continuar a WebPay" class="btn btn-warning" />
+        </div>
+    </div>
+</div>
+}
+<br />
+<div>
+    @Html.ActionLink("Volver", "Reserva", null, new { btn5 = "back", @class = "btn btn-danger" })
+</div>
+
+@section Scripts {    
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0",
+                minDate: new Date()
+            });
+
+        });
+    </script>
+}

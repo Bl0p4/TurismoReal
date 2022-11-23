@@ -589,13 +589,29 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_MANTEN", p_IDParameter, p_ID_DPTOParameter, p_FEC_INIParameter, p_FEC_TERMParameter, p_DESCRIPCIONParameter, p_COSTOParameter);
         }
     
-        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> p_ID_ARRIENDO)
+        public virtual int SP_UPDATE_RESERVA(Nullable<decimal> p_ID, string p_NOMBRE, Nullable<System.DateTime> p_FECH, Nullable<decimal> p_ID_ARRIENDO, Nullable<decimal> p_ACOMP)
         {
+            var p_IDParameter = p_ID.HasValue ?
+                new ObjectParameter("P_ID", p_ID) :
+                new ObjectParameter("P_ID", typeof(decimal));
+    
+            var p_NOMBREParameter = p_NOMBRE != null ?
+                new ObjectParameter("P_NOMBRE", p_NOMBRE) :
+                new ObjectParameter("P_NOMBRE", typeof(string));
+    
+            var p_FECHParameter = p_FECH.HasValue ?
+                new ObjectParameter("P_FECH", p_FECH) :
+                new ObjectParameter("P_FECH", typeof(System.DateTime));
+    
             var p_ID_ARRIENDOParameter = p_ID_ARRIENDO.HasValue ?
                 new ObjectParameter("P_ID_ARRIENDO", p_ID_ARRIENDO) :
                 new ObjectParameter("P_ID_ARRIENDO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", p_ID_ARRIENDOParameter);
+            var p_ACOMPParameter = p_ACOMP.HasValue ?
+                new ObjectParameter("P_ACOMP", p_ACOMP) :
+                new ObjectParameter("P_ACOMP", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_RESERVA", p_IDParameter, p_NOMBREParameter, p_FECHParameter, p_ID_ARRIENDOParameter, p_ACOMPParameter);
         }
     
         public virtual int SP_UPDATE_SERVICIO(Nullable<decimal> p_ID, string p_DESC, Nullable<decimal> p_COSTO)
@@ -674,6 +690,66 @@ namespace TurismoRealWeb.DAL
                 new ObjectParameter("P_PASS", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_USUARIO", p_IDParameter, p_ID_TIPOParameter, p_NOMBREParameter, p_PATERNOParameter, p_MATERNOParameter, p_RUTParameter, p_DVParameter, p_DIRECCIONParameter, p_CIUDADParameter, p_TELEFONOParameter, p_EMAILParameter, p_AREAParameter, p_USUARIOParameter, p_PASSParameter);
+        }
+    
+        public virtual int SP_CONTRATA_SERVICIO(Nullable<decimal> iD_ARRI, Nullable<decimal> iD_SERV, Nullable<decimal> s_COSTO, Nullable<System.DateTime> fECHA, string rEALIZADO, string pOSTCHK)
+        {
+            var iD_ARRIParameter = iD_ARRI.HasValue ?
+                new ObjectParameter("ID_ARRI", iD_ARRI) :
+                new ObjectParameter("ID_ARRI", typeof(decimal));
+    
+            var iD_SERVParameter = iD_SERV.HasValue ?
+                new ObjectParameter("ID_SERV", iD_SERV) :
+                new ObjectParameter("ID_SERV", typeof(decimal));
+    
+            var s_COSTOParameter = s_COSTO.HasValue ?
+                new ObjectParameter("S_COSTO", s_COSTO) :
+                new ObjectParameter("S_COSTO", typeof(decimal));
+    
+            var fECHAParameter = fECHA.HasValue ?
+                new ObjectParameter("FECHA", fECHA) :
+                new ObjectParameter("FECHA", typeof(System.DateTime));
+    
+            var rEALIZADOParameter = rEALIZADO != null ?
+                new ObjectParameter("REALIZADO", rEALIZADO) :
+                new ObjectParameter("REALIZADO", typeof(string));
+    
+            var pOSTCHKParameter = pOSTCHK != null ?
+                new ObjectParameter("POSTCHK", pOSTCHK) :
+                new ObjectParameter("POSTCHK", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CONTRATA_SERVICIO", iD_ARRIParameter, iD_SERVParameter, s_COSTOParameter, fECHAParameter, rEALIZADOParameter, pOSTCHKParameter);
+        }
+    
+        public virtual int SP_MONTO_SERVICIOS(Nullable<decimal> p_ID, Nullable<decimal> p_TOTAL_SERV)
+        {
+            var p_IDParameter = p_ID.HasValue ?
+                new ObjectParameter("P_ID", p_ID) :
+                new ObjectParameter("P_ID", typeof(decimal));
+    
+            var p_TOTAL_SERVParameter = p_TOTAL_SERV.HasValue ?
+                new ObjectParameter("P_TOTAL_SERV", p_TOTAL_SERV) :
+                new ObjectParameter("P_TOTAL_SERV", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_MONTO_SERVICIOS", p_IDParameter, p_TOTAL_SERVParameter);
+        }
+    
+        public virtual int SP_CANCEL_ARRIENDO(Nullable<decimal> iD)
+        {
+            var iDParameter = iD.HasValue ?
+                new ObjectParameter("ID", iD) :
+                new ObjectParameter("ID", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CANCEL_ARRIENDO", iDParameter);
+        }
+    
+        public virtual int SP_ESTADO_RESERVA(Nullable<decimal> p_ID_ARRIENDO)
+        {
+            var p_ID_ARRIENDOParameter = p_ID_ARRIENDO.HasValue ?
+                new ObjectParameter("P_ID_ARRIENDO", p_ID_ARRIENDO) :
+                new ObjectParameter("P_ID_ARRIENDO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ESTADO_RESERVA", p_ID_ARRIENDOParameter);
         }
     }
 }

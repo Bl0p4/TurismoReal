@@ -455,6 +455,9 @@
           <Parameter Name="P_ID_DPTO" Type="number" Mode="In" />
           <Parameter Name="P_DISPONIBLE" Type="char" Mode="In" />
         </Function>
+        <Function Name="SP_CANCEL_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="ID" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_CANCEL_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
@@ -463,6 +466,14 @@
         </Function>
         <Function Name="SP_CHECKOUT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SP_CONTRATA_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="ID_ARRI" Type="number" Mode="In" />
+          <Parameter Name="ID_SERV" Type="number" Mode="In" />
+          <Parameter Name="S_COSTO" Type="number" Mode="In" />
+          <Parameter Name="FECHA" Type="date" Mode="In" />
+          <Parameter Name="REALIZADO" Type="char" Mode="In" />
+          <Parameter Name="POSTCHK" Type="char" Mode="In" />
         </Function>
         <Function Name="SP_CREATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_CLI" Type="number" Mode="In" />
@@ -562,6 +573,9 @@
         <Function Name="SP_DELETE_USUARIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_ESTADO_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
+        </Function>
         <Function Name="SP_LOGIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_USER" Type="varchar2" Mode="In" />
           <Parameter Name="P_PASS" Type="varchar2" Mode="In" />
@@ -569,6 +583,10 @@
           <Parameter Name="P_APE_PAT" Type="varchar2" Mode="Out" />
           <Parameter Name="P_ID_USUARIO" Type="number" Mode="Out" />
           <Parameter Name="P_TIPO_USUARIO" Type="varchar2" Mode="Out" />
+        </Function>
+        <Function Name="SP_MONTO_SERVICIOS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_TOTAL_SERV" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_ARRIENDO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_ID" Type="number" Mode="In" />
@@ -612,7 +630,11 @@
           <Parameter Name="P_COSTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_RESERVA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
+          <Parameter Name="P_ID" Type="number" Mode="In" />
+          <Parameter Name="P_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="P_FECH" Type="date" Mode="In" />
           <Parameter Name="P_ID_ARRIENDO" Type="number" Mode="In" />
+          <Parameter Name="P_ACOMP" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_UPDATE_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="P_ID" Type="number" Mode="In" />
@@ -1436,7 +1458,11 @@
             <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_RESERVA">
+          <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="P_FECH" Mode="In" Type="DateTime" />
             <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ACOMP" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_SERVICIO">
             <Parameter Name="P_ID" Mode="In" Type="Decimal" />
@@ -1458,6 +1484,24 @@
             <Parameter Name="P_AREA" Mode="In" Type="String" />
             <Parameter Name="P_USUARIO" Mode="In" Type="String" />
             <Parameter Name="P_PASS" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CONTRATA_SERVICIO">
+            <Parameter Name="ID_ARRI" Mode="In" Type="Decimal" />
+            <Parameter Name="ID_SERV" Mode="In" Type="Decimal" />
+            <Parameter Name="S_COSTO" Mode="In" Type="Decimal" />
+            <Parameter Name="FECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="REALIZADO" Mode="In" Type="String" />
+            <Parameter Name="POSTCHK" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MONTO_SERVICIOS">
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CANCEL_ARRIENDO">
+            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ESTADO_RESERVA">
+            <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -1745,6 +1789,10 @@
           <FunctionImportMapping FunctionImportName="SP_UPDATE_RESERVA" FunctionName="Model.Store.SP_UPDATE_RESERVA" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_SERVICIO" FunctionName="Model.Store.SP_UPDATE_SERVICIO" />
           <FunctionImportMapping FunctionImportName="SP_UPDATE_USUARIO" FunctionName="Model.Store.SP_UPDATE_USUARIO" />
+          <FunctionImportMapping FunctionImportName="SP_CONTRATA_SERVICIO" FunctionName="Model.Store.SP_CONTRATA_SERVICIO" />
+          <FunctionImportMapping FunctionImportName="SP_MONTO_SERVICIOS" FunctionName="Model.Store.SP_MONTO_SERVICIOS" />
+          <FunctionImportMapping FunctionImportName="SP_CANCEL_ARRIENDO" FunctionName="Model.Store.SP_CANCEL_ARRIENDO" />
+          <FunctionImportMapping FunctionImportName="SP_ESTADO_RESERVA" FunctionName="Model.Store.SP_ESTADO_RESERVA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
