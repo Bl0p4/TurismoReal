@@ -71,22 +71,22 @@ namespace TurismoRealWeb.DAL
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CANCEL_RESERVA", iDParameter);
         }
     
-        public virtual int SP_CHECKIN(Nullable<decimal> iD_CLI)
+        public virtual int SP_CHECKIN(Nullable<decimal> iD_DTO)
         {
-            var iD_CLIParameter = iD_CLI.HasValue ?
-                new ObjectParameter("ID_CLI", iD_CLI) :
-                new ObjectParameter("ID_CLI", typeof(decimal));
+            var iD_DTOParameter = iD_DTO.HasValue ?
+                new ObjectParameter("ID_DTO", iD_DTO) :
+                new ObjectParameter("ID_DTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKIN", iD_CLIParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKIN", iD_DTOParameter);
         }
     
-        public virtual int SP_CHECKOUT(Nullable<decimal> iD_CLI)
+        public virtual int SP_CHECKOUT(Nullable<decimal> iD_DTO)
         {
-            var iD_CLIParameter = iD_CLI.HasValue ?
-                new ObjectParameter("ID_CLI", iD_CLI) :
-                new ObjectParameter("ID_CLI", typeof(decimal));
+            var iD_DTOParameter = iD_DTO.HasValue ?
+                new ObjectParameter("ID_DTO", iD_DTO) :
+                new ObjectParameter("ID_DTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_CLIParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CHECKOUT", iD_DTOParameter);
         }
     
         public virtual int SP_CREATE_ARRIENDO(Nullable<decimal> iD_CLI, Nullable<decimal> iD_DPTO, Nullable<System.DateTime> fEC_INI, Nullable<System.DateTime> fEC_FIN, Nullable<decimal> tOTAL_ARRI, Nullable<decimal> tOTAL_SERV)

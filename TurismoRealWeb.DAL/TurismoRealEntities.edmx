@@ -198,6 +198,7 @@
           <Property Name="KMS_DISTANCIA" Type="number" Precision="38" Scale="0" />
           <Property Name="ACEPTADA" Type="char" MaxLength="1" />
           <Property Name="COSTO" Type="number" Precision="38" Scale="0" />
+          <Property Name="SENTIDO_VIAJE" Type="varchar2" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="TIPO_USUARIO">
           <Key>
@@ -462,10 +463,10 @@
           <Parameter Name="ID" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CHECKIN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID_CLI" Type="number" Mode="In" />
+          <Parameter Name="ID_DTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CHECKOUT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
-          <Parameter Name="ID_CLI" Type="number" Mode="In" />
+          <Parameter Name="ID_DTO" Type="number" Mode="In" />
         </Function>
         <Function Name="SP_CONTRATA_SERVICIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="ASD">
           <Parameter Name="ID_ARRI" Type="number" Mode="In" />
@@ -970,6 +971,7 @@
           <Property Name="COSTO" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="ARRIENDO" Relationship="Self.SOLICITUD_ARRIENDO_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="ARRIENDO" />
           <NavigationProperty Name="TRANSPORTE_REALIZADO" Relationship="Self.SOLICITUD_TRANSPORTES_FK" FromRole="SOLICITUD_TRANSPORTE" ToRole="TRANSPORTE_REALIZADO" />
+          <Property Name="SENTIDO_VIAJE" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="TIPO_USUARIO">
           <Key>
@@ -1305,10 +1307,10 @@
           <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CHECKIN">
-          <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+          <Parameter Name="ID_DTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CHECKOUT">
-          <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
+          <Parameter Name="ID_DTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CREATE_ARRIENDO">
             <Parameter Name="ID_CLI" Mode="In" Type="Decimal" />
@@ -1458,7 +1460,7 @@
             <Parameter Name="P_COSTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_UPDATE_RESERVA">
-          <Parameter Name="P_ID" Mode="In" Type="Decimal" />
+            <Parameter Name="P_ID" Mode="In" Type="Decimal" />
             <Parameter Name="P_NOMBRE" Mode="In" Type="String" />
             <Parameter Name="P_FECH" Mode="In" Type="DateTime" />
             <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
@@ -1498,10 +1500,10 @@
             <Parameter Name="P_TOTAL_SERV" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_CANCEL_ARRIENDO">
-            <Parameter Name="ID" Mode="In" Type="Decimal" />
+          <Parameter Name="ID" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="SP_ESTADO_RESERVA">
-            <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
+          <Parameter Name="P_ID_ARRIENDO" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -1699,6 +1701,7 @@
           <EntitySetMapping Name="SOLICITUD_TRANSPORTE">
             <EntityTypeMapping TypeName="Model.SOLICITUD_TRANSPORTE">
               <MappingFragment StoreEntitySet="SOLICITUD_TRANSPORTE">
+                <ScalarProperty Name="SENTIDO_VIAJE" ColumnName="SENTIDO_VIAJE" />
                 <ScalarProperty Name="ID_SOLICITUD" ColumnName="ID_SOLICITUD" />
                 <ScalarProperty Name="ID_ARRIENDO" ColumnName="ID_ARRIENDO" />
                 <ScalarProperty Name="FECHA_INICIO" ColumnName="FECHA_INICIO" />

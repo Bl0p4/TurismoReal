@@ -10,6 +10,13 @@ namespace TurismoRealWeb.Controllers
     [Authorize]
     public class HomeController : Controller
     {
+        public ActionResult Home()
+        {
+            ViewBag.arriendos = new Arriendo().ReadAll();
+            return View("Index");
+        }
+
+
         public ActionResult Index()
         {
             ViewBag.arriendos = new Arriendo().ReadAll();

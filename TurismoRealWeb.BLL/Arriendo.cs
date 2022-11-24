@@ -129,6 +129,55 @@ namespace TurismoRealWeb.BLL
             return arr;
         }
 
+        public List<Arriendo> BuscarPorCliente(string texto)
+        {
+            var arr = db.ARRIENDO.Select(
+                a => new Arriendo()
+                {
+                    Id = a.ID_ARRIENDO,
+                    ClienteId = a.ID_CLIENTE,
+                    DptoId = a.ID_DPTO,
+                    FecIni = a.FECHA_INICIO,
+                    FecFin = a.FECHA_FIN,
+                    CheckIn = a.CHECK_IN,
+                    Checkout = a.CHECK_OUT,
+                    Total = a.TOTAL_ARRIENDO,
+                    total_serv = a.TOTAL_SERVICIOS,
+
+                    Cliente = new Usuario()
+                    {
+                        Id = a.USUARIO.ID_USUARIO,
+                        Nombre = a.USUARIO.NOMBRE,
+                        Paterno = a.USUARIO.APE_PAT,
+                        Materno = a.USUARIO.APE_MAT,
+                        Rut = a.USUARIO.RUT,
+                        Dv = a.USUARIO.DV,
+                        Direccion = a.USUARIO.DIRECCION,
+                        Ciudad = a.USUARIO.CIUDAD,
+                        Telefono = a.USUARIO.TELEFONO,
+                        Email = a.USUARIO.EMAIL,
+                        Area = a.USUARIO.AREA_FUNCIONARIO,
+                        Username = a.USUARIO.USERNAME,
+                        Password = a.USUARIO.PASSWORD,
+                        Id_tipo = a.USUARIO.ID_TIPOUSUARIO,
+                    },
+
+                    Departamento = new Departamento()
+                    {
+                        Id = a.ID_DPTO,
+                        CiudadId = a.DEPARTAMENTO.ID_CIUDAD,
+                        Nombre = a.DEPARTAMENTO.NOMBRE,
+                        Direccion = a.DEPARTAMENTO.DIRECCION,
+                        Superficie = a.DEPARTAMENTO.SUPERFICIE_DPTO,
+                        Precio = a.DEPARTAMENTO.PRECIO_DPTO,
+                        Disponible = a.DEPARTAMENTO.DISPONIBLE,
+                        Condicion = a.DEPARTAMENTO.CONDICION,
+                        NumDpto = a.DEPARTAMENTO.NRO_DPTO,
+                    }
+                }).Where(a => a.Cliente.Nombre == texto).ToList();
+            return arr;
+        }
+
 
         public bool Save()
         {
@@ -222,6 +271,34 @@ namespace TurismoRealWeb.BLL
             try
             {
                 db.SP_DELETE_ARRIENDO(id);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public bool Check_In(int id)
+        {
+            try
+            {
+                db.SP_CHECKIN(id);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+        }
+
+        public bool Check_Out(int id)
+        {
+            try
+            {
+                db.SP_CHECKOUT(id);
                 return true;
             }
             catch (Exception)

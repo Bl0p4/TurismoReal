@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <a class="small text-white stretched-link" href="@Url.Action("Index","Reserva")">Administrar</a>
+                <a class="small text-white stretched-link" href="@Url.Action("Index","Arriendo")">Administrar</a>
                 <div class="small text-white"><i class="fas fa-angle-right"></i></div>
             </div>
         </div>
@@ -119,8 +119,6 @@
                     <th>Cliente</th>
                     <th>Fecha Entrada</th>
                     <th>Fecha Salida</th>
-                    <th>Total Arriendo</th>
-                    <th>Total Servicios</th>
 
                 </tr>
                 @foreach (var arriendo in arriendos)
@@ -130,9 +128,6 @@
                         <td>@arriendo.Cliente.Nombre @arriendo.Cliente.Paterno @arriendo.Cliente.Materno</td>
                         <td>@arriendo.FecIni.ToShortDateString()</td>
                         <td>@arriendo.FecFin.ToShortDateString()</td>
-                        <td>@arriendo.Total</td>
-                        <td>@arriendo.total_serv</td>
-                        @*<td>@(inventario.Disponible == "1" ? "Disponible":"No Disponible")</td>*@
                     </tr>
                 }
 

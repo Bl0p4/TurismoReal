@@ -25,7 +25,13 @@ namespace TurismoRealWeb.Controllers
             return View();
         }
 
-        
+        public ActionResult Buscar(string texto)
+        {
+            ViewBag.arriendos = new Arriendo().BuscarPorCliente(texto);
+            return View();
+        }
+
+
         // GET: Arriendo/Create
         public ActionResult Create(int id)
         {
@@ -138,6 +144,50 @@ namespace TurismoRealWeb.Controllers
                 return View();
             }
         }
+
+        
+        public ActionResult CheckIn(int id)
+        {
+
+            if (new Arriendo().Find(id) == null)
+            {
+                TempData["SuccessMessage"] = "No existe el arriendo";
+                return RedirectToAction("Index");
+            }
+
+
+            if (new Arriendo().Check_In(id))
+            {
+                TempData["SuccessMessage"] = "Check-In Correcto";
+                return RedirectToAction("Index");
+            }
+
+
+            TempData["SuccessMessage"] = "No se ha podido realizar Check-In";
+            return RedirectToAction("Index");
+        }
+                
+
+        public ActionResult CheckOut(int id)
+        {
+            if (new Arriendo().Find(id) == null)
+            {
+                TempData["SuccessMessage"] = "No existe el arriendo";
+                return RedirectToAction("Index");
+            }
+
+
+            if (new Arriendo().Check_Out(id))
+            {
+                TempData["SuccessMessage"] = "Check-Out Correcto";
+                return RedirectToAction("Index");
+            }
+
+
+            TempData["SuccessMessage"] = "No se ha podido realizar Check-Out";
+            return RedirectToAction("Index");
+        }
+                
     }
 }
 //TempData["SuccessMessage"]

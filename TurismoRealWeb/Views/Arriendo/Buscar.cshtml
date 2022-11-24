@@ -18,13 +18,13 @@
             <i class="fas fa-list me-1"></i>
             Historial de Arriendos
         </div>
-        @using (Html.BeginForm("Buscar","Arriendo"))
-            {    
+        @using (Html.BeginForm("Buscar", "Arriendo"))
+        {
             <div style="padding: 25px">
-                <input id="texto" type="text" name="texto"/>
+                <input type="text" name="txtBuscar" value="" />
                 <input type="submit" value="Buscar" />
             </div>
-            }
+        }
         <div class="card-body">
             <div>
                 <table id="tabla" class="table table-hover table-striped table-bordered" style="width: 100%">
@@ -54,12 +54,14 @@
                             <td>
                                 @if (arriendo.CheckIn == "0")
                                 {
-                                    <button class="btn btn-primary btn-sm-2" onclick="location.href='@Url.Action("CheckIn","Arriendo", new { id = arriendo.Id })'"><i class="fas fa-clipboard-check"></i>Check In </button>
+                                   <button class="btn btn-primary btn-sm-2" onclick="location.href='@Url.Action("CheckIn","Arriendo", new { id = arriendo.Id })'"><i class="fas fa-clipboard-check"></i>Check In </button>
                                 }
                                 @if (arriendo.Checkout != "1" && arriendo.CheckIn == "1")
                                 {
                                     <button class="btn btn-danger btn-sm-2" onclick="location.href='@Url.Action("CheckOut","Arriendo", new { id = arriendo.Id })'"><i class="fas fa-clipboard-check"></i>Check Out </button>
                                 }
+                                
+
                             </td>
                         </tr>
                     }
