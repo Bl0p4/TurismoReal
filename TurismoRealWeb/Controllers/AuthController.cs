@@ -104,6 +104,7 @@ namespace TurismoRealWeb.Controllers
                 // TODO: Add insert logic here
                 usuario.Reg();
 
+                usuario = usuario.Buscar(usuario.Username);
                 Session["User"] = usuario;
                 Session["id"] = usuario.Id;
                 Session["username"] = usuario.Username;

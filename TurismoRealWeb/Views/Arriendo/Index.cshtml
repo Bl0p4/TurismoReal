@@ -30,6 +30,7 @@
                         <th>Check Out</th>
                         <th>Total Arriendo</th>
                         <th>Total Servicios</th>
+                        <th>Opciones</th>
 
                     </tr>
                     @foreach (var arriendo in arriendos)
@@ -43,7 +44,10 @@
                             <td>@(arriendo.Checkout == "Y" ? "Si":"No")</td>
                             <td>@arriendo.Total</td>
                             <td>@arriendo.total_serv</td>
-                            @*<td>@(inventario.Disponible == "1" ? "Disponible":"No Disponible")</td>*@
+                            <td>
+                                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Inventario", new { id = arriendo.Id })'"><i class="fas fa-search"></i></button>
+                                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Details","Inventario", new { id = arriendo.Id })'"><i class="fas fa-search"></i></button>
+                            </td>
                         </tr>
                     }
 

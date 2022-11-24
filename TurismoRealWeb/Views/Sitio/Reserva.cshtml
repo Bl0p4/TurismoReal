@@ -57,8 +57,7 @@
 
             <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Servicios","Sitio", new { id = arriendo.Id })'"><i class="fas fa-concierge-bell"></i> Agregar Servicio</button>
             <a class="btn btn-danger btn-sm-2" href="@Url.Action("CancelarReserva", "Sitio", new { id = arriendo.Id })" onclick="return confirm('Está seguro que quiere cancelar su reserva?')"><i class="fas fa-close"></i> Cancelar Reserva</a>
-            @*<button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("Edit","Departamento", new { id = departamento.Id })'"><i class="fas fa-pen"></i></button>
-            <a class="btn btn-danger btn-sm-2" href="@Url.Action("Delete", "Departamento", new { id = departamento.Id })" onclick="return confirm('Are you sure you want to delete?')"><i class="fas fa-trash"></i></a>*@
+            
 
         </td>
     </tr>
