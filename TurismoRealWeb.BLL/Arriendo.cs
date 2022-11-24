@@ -153,7 +153,7 @@ namespace TurismoRealWeb.BLL
             }
         }
 
-        public Arriendo Find(int id)
+        public Arriendo Find(decimal id)
         {
             return this.db.ARRIENDO.Select(a => new Arriendo()
             {

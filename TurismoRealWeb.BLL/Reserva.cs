@@ -69,7 +69,12 @@ namespace TurismoRealWeb.BLL
                 {
                     Vigente = "0";
                 }
+
+                Arriendo arri = new Arriendo().Find(this.ArriendoId);
+                decimal IdDpto = arri.DptoId;
+                string Disp = "0";
                 //Procedimiento almacenado
+                //db.SP_ALTERNAR_DISP_DPTO(IdDpto, Disp);
                 db.SP_ESTADO_RESERVA(this.ArriendoId);
                 db.SP_CREATE_RESERVA(this.NomPersona, this.Fech, this.ArriendoId, this.Acomp, this.Valor, this.Vigente);
                 return true;
@@ -138,6 +143,10 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
+                Reserva res = new Reserva().Find(id);
+                decimal IdDpto = res.Arriendo.DptoId;
+                string Disp = "1";
+                //db.SP_ALTERNAR_DISP_DPTO(IdDpto, Disp);
                 db.SP_CANCEL_ARRIENDO(id);
                 db.SP_CANCEL_RESERVA(id);
                 return true;

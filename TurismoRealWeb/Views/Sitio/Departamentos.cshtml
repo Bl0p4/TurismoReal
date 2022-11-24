@@ -26,6 +26,16 @@
                                 <h5 class="card-title">@dpto.Nombre</h5>
                                 <p class="card-text">@dpto.Ciudad.Nombre</p>
                                 <p class="card-text"><small>@Html.DisplayFor(modelItem => dpto.Precio)</small></p>
+                                @*@if (dpto.Disponible == "1")
+                                {
+                                  <span class="badge rounded-pill text-bg-primary">Disponible</span>
+                                }
+                                else
+                                {
+                                    <p>@(dpto.Disponible == "1" ? "Disponible": "No Disponible")</p>
+                                }*@
+                                
+                                
                                 <a class="btn btn-primary" href="@Url.Action("Create","Arriendo", new { id = dpto.Id })">Reserva</a>
                             </div>
                         </div>

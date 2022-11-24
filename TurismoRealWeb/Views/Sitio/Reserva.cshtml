@@ -14,7 +14,7 @@
 
 <!--Descripcion Depa-->
 <div>
-    <table id="tabla" class="table table-hover table-striped" style="width: 100%">
+    <table id="tabla" class="table table-hover table-striped table-bordered" style="width: 100%">
         <tr>
             <th>N° Arriendo</th>
             <th>Nombre</th>
@@ -36,28 +36,31 @@
         <td>@arriendo.Departamento.Nombre</td>
         <td>@arriendo.FecIni.ToShortDateString()</td>
         <td>@arriendo.FecFin.ToShortDateString()</td>
-        <td>@(arriendo.CheckIn == "P" ? "Pago Pendiente": "Reserva Pagada")</td>
-        @if (arriendo.Checkout == "Y")
+        <td>@(arriendo.CheckIn == "3" ? "Pago Pendiente": "Reserva Pagada")</td>
+        @if (arriendo.Checkout == "1")
         {
-            <td>@(arriendo.Checkout == "Y" ? "Terminada" : "Activa")</td>
+            <td>@(arriendo.Checkout == "1" ? "Terminada" : "Activa")</td>
         }
         else
         {
-            <td>@(arriendo.Checkout == "C" ? "Cancelada" : "Activa")</td>
+            <td>@(arriendo.Checkout == "3" ? "Cancelada" : "Activa")</td>
             
         }
 
         <td>@Html.DisplayFor(x => arriendo.Total)</td>
         <td>@Html.DisplayFor(x => arriendo.total_serv)</td>
         <td>
-            @if (arriendo.CheckIn == "P")
+            @if (arriendo.CheckIn == "3")
             {
                 <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("ConfirmReserva","Sitio", new { id = arriendo.Id })'"><i class="fas fa-check"></i> Pagar Reserva</button>
             }
 
-            <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Servicios","Sitio", new { id = arriendo.Id })'"><i class="fas fa-concierge-bell"></i> Agregar Servicio</button>
-            <a class="btn btn-danger btn-sm-2" href="@Url.Action("CancelarReserva", "Sitio", new { id = arriendo.Id })" onclick="return confirm('Está seguro que quiere cancelar su reserva?')"><i class="fas fa-close"></i> Cancelar Reserva</a>
-            
+            @if (arriendo.Checkout == "0")
+            {
+                <button class="btn btn-warning btn-sm-2" onclick="location.href='@Url.Action("Servicios","Sitio", new { id = arriendo.Id })'"><i class="fas fa-concierge-bell"></i> Agregar Servicio</button>
+                <a class="btn btn-danger btn-sm-2" href="@Url.Action("CancelarReserva", "Sitio", new { id = arriendo.Id })" onclick="return confirm('Está seguro que quiere cancelar su reserva?')"><i class="fas fa-close"></i> Cancelar Reserva</a>
+            }
+
 
         </td>
     </tr>
