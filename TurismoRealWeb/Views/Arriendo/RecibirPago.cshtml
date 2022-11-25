@@ -1,8 +1,7 @@
-﻿@model TurismoRealWeb.BLL.Reserva
-
+﻿@model TurismoRealWeb.BLL.Arriendo
 @{
-    ViewBag.Title = "Arriendo";
-    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+    ViewBag.Title = "RecibirPago";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2></h2>
@@ -12,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Reserva Arriendo</title>
+    <title>Recepción de Pago de Arriendo</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <style>
@@ -232,37 +231,48 @@
     <div class="testbox">
         <div style="flex">
             <div class="banner">
-                <h1>Confirmar Reserva</h1>
+                <h1>Recibir Pago de Arriendo</h1>
             </div>
             <br />
-            @using (Html.BeginForm("ConfirmReserva", "Sitio"))
+            @using (Html.BeginForm("RecibirPago", "Arriendo"))
             {
                 @Html.ValidationSummary()
                 <a>Detalles de Arriendo</a>
                 <div class="columns">
-                    @Html.HiddenFor(reserva => reserva.ArriendoId)
-                    @Html.HiddenFor(reserva => reserva.Acomp)
+                    @Html.HiddenFor(arriendo => arriendo.Id)
+                    @Html.HiddenFor(arriendo => arriendo.ClienteId)
+                    @Html.HiddenFor(arriendo => arriendo.DptoId)
+                    @Html.HiddenFor(arriendo => arriendo.CheckIn)
+                    @Html.HiddenFor(arriendo => arriendo.Checkout)
+                    @Html.HiddenFor(arriendo => arriendo.total_serv)
                     <div class="item form-floating col-10">
-                        @Html.TextBoxFor(reserva => reserva.NomPersona, new { @placeholder = "Solicitante", @class = "form-control", @readonly = "true" })
+                        @Html.TextBoxFor(arriendo => arriendo.Departamento.Nombre, new { @placeholder = "Solicitante", @class = "form-control", @readonly = "true" })
                         <label for="Nombre">Solicitante</label>
                     </div>
                     <div class="item form-floating col-10">
-                        @Html.TextBoxFor(reserva => reserva.Fech, new { @class = "form-control", placeholder = "Acompañantes", @readonly = "true" })
-                        <label for="FecFin">Fecha Reserva</label>
+                        @Html.TextBoxFor(arriendo => arriendo.FecIni, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
+                        <label for="Precio">Valor Reserva</label>
                     </div>
                     <div class="item form-floating col-10">
-                        @Html.TextBoxFor(reserva => reserva.Valor, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
+                        @Html.TextBoxFor(arriendo => arriendo.FecFin, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
                         <label for="Precio">Valor Reserva</label>
+                    </div>
+                    <div class="item form-floating col-10">
+                        @Html.TextBoxFor(arriendo => arriendo.Total, new { @class = "form-control", placeholder = "Acompañantes", @readonly = "true" })
+                        <label for="FecFin">Monto a Pagar</label>
                     </div>
                 </div>
                 <div class="row" style="margin-top:12px;text-align:center;">
-                    <button type="submit" value="Guardar" class="btn btn-primary">Continuar a WebPay</button>
+                    <button type="submit" value="Guardar" class="btn btn-primary">Pago Tarjeta Bancaria</button>
                 </div>
-
+                <div class="row" style="margin-top:12px;text-align:center;">
+                    <button type="submit" value="Guardar" class="btn btn-primary">Pago Efectivo</button>
+                </div>
             }
             <br />
-            @Html.ActionLink("Volver", "Reserva","Sitio", null, new { btn5 = "back", @class = "btn btn-danger" })
+            @Html.ActionLink("Volver", "Reserva", "Sitio", null, new { btn5 = "back", @class = "btn btn-danger" })
         </div>
     </div>
 </body>
 </html>
+

@@ -79,9 +79,11 @@ namespace TurismoRealWeb.Controllers
             Reserva reserva = new Reserva();
             reserva.Arriendo = new Arriendo().Find(id);
             reserva.ArriendoId = reserva.Arriendo.Id;
-            reserva.NomPersona = reserva.Arriendo.Cliente.Nombre + reserva.Arriendo.Cliente.Paterno + reserva.Arriendo.Cliente.Materno;
+            reserva.NomPersona = reserva.Arriendo.Cliente.Nombre +" "+reserva.Arriendo.Cliente.Paterno +" "+ reserva.Arriendo.Cliente.Materno;
             reserva.Valor = 2* reserva.Arriendo.Total / 10;
             reserva.Fech = DateTime.Today;
+            reserva.Fech.ToShortDateString();
+            reserva.Acomp = 0;
             return View(reserva);
         }
 

@@ -280,11 +280,11 @@ namespace TurismoRealWeb.BLL
             }
         }
 
-        public bool Check_In(int id)
+        public bool Check_In()
         {
             try
             {
-                db.SP_CHECKIN(id);
+                db.SP_CHECKIN(this.Id);
                 return true;
             }
             catch (Exception)
