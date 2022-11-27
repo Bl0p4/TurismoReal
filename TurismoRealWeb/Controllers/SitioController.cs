@@ -10,7 +10,7 @@ namespace TurismoRealWeb.Controllers
 {
     public class SitioController : Controller
     {
-        
+
         // GET: Sitio
         public ActionResult Home()
         {
@@ -49,7 +49,7 @@ namespace TurismoRealWeb.Controllers
                 Session.Abandon();
                 Session.RemoveAll();
                 return RedirectToAction("Departamentos");
-            }     
+            }
         }
 
         [HttpPost]
@@ -79,8 +79,8 @@ namespace TurismoRealWeb.Controllers
             Reserva reserva = new Reserva();
             reserva.Arriendo = new Arriendo().Find(id);
             reserva.ArriendoId = reserva.Arriendo.Id;
-            reserva.NomPersona = reserva.Arriendo.Cliente.Nombre +" "+reserva.Arriendo.Cliente.Paterno +" "+ reserva.Arriendo.Cliente.Materno;
-            reserva.Valor = 2* reserva.Arriendo.Total / 10;
+            reserva.NomPersona = reserva.Arriendo.Cliente.Nombre + " " + reserva.Arriendo.Cliente.Paterno + " " + reserva.Arriendo.Cliente.Materno;
+            reserva.Valor = 2 * reserva.Arriendo.Total / 10;
             reserva.Fech = DateTime.Today;
             reserva.Fech.ToShortDateString();
             reserva.Acomp = 0;
@@ -151,19 +151,20 @@ namespace TurismoRealWeb.Controllers
                 }
                 Servicio servicio = new Servicio().Find(servicio_Contratado.ServicioId);
                 servicio_Contratado.Costo = servicio.Costo;
-                servicio_Contratado.Realizado = "N";
-                servicio_Contratado.PostChk = "N";
+                servicio_Contratado.Realizado = "0";
+                servicio_Contratado.PostChk = "0";
 
                 servicio_Contratado.Save();
                 TempData["SuccessMessage"] = "Servicios Contratados Satisfactoriamente";
                 return RedirectToAction("Reserva");
             }
-            catch 
+            catch
             {
                 return View(servicio_Contratado);
-            }      
+            }
         }
 
+        [Authorize]
         public ActionResult CancelarReserva(int id)
         {
             if (new Reserva().Find(id) == null)
@@ -182,6 +183,37 @@ namespace TurismoRealWeb.Controllers
 
             TempData["SuccessMessage"] = "No se ha podido cancelar la Reserva";
             return RedirectToAction("Reserva");
+        }
+
+        [Authorize]
+        public ActionResult Transporte(int id) 
+        {
+            Transporte trans = new Transporte();
+            trans.Arriendo = new Arriendo().Find(id);
+            trans.ArriendoId = trans.Arriendo.Id;
+
+            return View(trans);
+        }
+
+
+        [HttpPost]
+        public ActionResult Transporte(Transporte transporte)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {                    
+                    return View();
+                }                
+                
+                transporte.Save();
+                TempData["SuccessMessage"] = "Solicitud de Transporte Creada Satisfactoriamente";
+                return RedirectToAction("Reserva");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
 

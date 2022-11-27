@@ -36,10 +36,10 @@ namespace TurismoRealWeb.BLL
                 Pasajeros = a.PASAJEROS,
                 Origen = a.DIR_INICIO,
                 Destino = a.DIR_DESTINO,
+                Sentido = a.SENTIDO_VIAJE,
                 Distancia = (decimal)a.KMS_DISTANCIA,
                 Aceptada = a.ACEPTADA,
                 Costo = (decimal)a.COSTO,
-                Sentido = a.SENTIDO_VIAJE,
 
 
                 Arriendo = new Arriendo()
@@ -63,16 +63,16 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                if (IsDisp == true)
-                {
-                    Disponible = "1";
-                }
-                else if (IsDisp == false)
-                {
-                    Disponible = "0";
-                }
+                //    if (IsAceptada == true)
+                //    {
+                //        Aceptada = "1";
+                //    }
+                //    else if (IsAceptada == false)
+                //    {
+                //       Aceptada = "0";
+                //    }
                 //Procedimiento almacenado
-                db.SP_CREATE_DPTO(this.CiudadId, this.Nombre, this.Direccion, this.Superficie, this.Precio, this.Disponible, this.Condicion, this.NumDpto);
+                db.SP_CREATE_SOLTRANSPORT(this.ArriendoId, this.Fecha, this.Pasajeros, this.Origen, this.Destino, this.Distancia, this.Costo, this.Sentido);
                 return true;
             }
             catch (Exception)
@@ -82,27 +82,70 @@ namespace TurismoRealWeb.BLL
             }
         }
 
-        public Departamento Find(int id)
+        public Transporte Find(int id)
         {
-            return this.db.DEPARTAMENTO.Select(d => new Departamento()
+            return this.db.SOLICITUD_TRANSPORTE.Select(a => new Transporte()
             {
-                Id = d.ID_DPTO,
-                CiudadId = d.ID_CIUDAD,
-                Nombre = d.NOMBRE,
-                Direccion = d.DIRECCION,
-                Superficie = d.SUPERFICIE_DPTO,
-                Precio = d.PRECIO_DPTO,
-                Disponible = d.DISPONIBLE,
-                Condicion = d.CONDICION,
-                NumDpto = d.NRO_DPTO,
-                Ciudad = new Ciudad()
+                Id = a.ID_SOLICITUD,
+                ArriendoId = a.ID_ARRIENDO,
+                Fecha = a.FECHA_INICIO,
+                Pasajeros = a.PASAJEROS,
+                Origen = a.DIR_INICIO,
+                Destino = a.DIR_DESTINO,
+                Sentido = a.SENTIDO_VIAJE,
+                Distancia = (decimal)a.KMS_DISTANCIA,
+                Aceptada = a.ACEPTADA,
+                Costo = (decimal)a.COSTO,
+
+
+                Arriendo = new Arriendo()
                 {
-                    Id = d.ID_CIUDAD,
-                    Nombre = d.CIUDAD.NOMBRE
+                    Id = a.ID_ARRIENDO,
+                    ClienteId = a.ARRIENDO.ID_CLIENTE,
+                    DptoId = a.ARRIENDO.ID_DPTO,
+                    FecIni = a.ARRIENDO.FECHA_INICIO,
+                    FecFin = a.ARRIENDO.FECHA_FIN,
+                    CheckIn = a.ARRIENDO.CHECK_IN,
+                    Checkout = a.ARRIENDO.CHECK_OUT,
+                    Total = a.ARRIENDO.TOTAL_ARRIENDO,
+                    total_serv = a.ARRIENDO.TOTAL_SERVICIOS
                 }
 
 
-            }).Where(d => d.Id == id).FirstOrDefault();
+            }).Where(a => a.Id == id).FirstOrDefault();
+        }
+
+
+        public List<Transporte> BuscarPorArriendo(int id)
+        {
+            return this.db.SOLICITUD_TRANSPORTE.Select(a => new Transporte()
+            {
+                Id = a.ID_SOLICITUD,
+                ArriendoId = a.ID_ARRIENDO,
+                Fecha = a.FECHA_INICIO,
+                Pasajeros = a.PASAJEROS,
+                Origen = a.DIR_INICIO,
+                Destino = a.DIR_DESTINO,
+                Sentido = a.SENTIDO_VIAJE,
+                Distancia = (decimal)a.KMS_DISTANCIA,
+                Aceptada = a.ACEPTADA,
+                Costo = (decimal)a.COSTO,
+
+
+                Arriendo = new Arriendo()
+                {
+                    Id = a.ID_ARRIENDO,
+                    ClienteId = a.ARRIENDO.ID_CLIENTE,
+                    DptoId = a.ARRIENDO.ID_DPTO,
+                    FecIni = a.ARRIENDO.FECHA_INICIO,
+                    FecFin = a.ARRIENDO.FECHA_FIN,
+                    CheckIn = a.ARRIENDO.CHECK_IN,
+                    Checkout = a.ARRIENDO.CHECK_OUT,
+                    Total = a.ARRIENDO.TOTAL_ARRIENDO,
+                    total_serv = a.ARRIENDO.TOTAL_SERVICIOS
+                }
+
+            }).Where(a => a.ArriendoId == id).ToList();
         }
 
 
@@ -110,17 +153,17 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                if (IsDisp == true)
-                {
-                    Disponible = "1";
-                }
-                else
-                {
-                    Disponible = "0";
-                }
+                //if (IsAceptada == true)
+                //    {
+                //        Aceptada = "1";
+                //    }
+                //    else if (IsAceptada == false)
+                //    {
+                //       Aceptada = "0";
+                //    }
 
-                db.SP_UPDATE_DPTO(this.Id, this.CiudadId, this.Nombre, this.Direccion,
-                                this.Superficie, this.NumDpto, this.Precio, this.Disponible, this.Condicion);
+                db.SP_UPDATE_SOLTRANSPORT(this.Id, this.ArriendoId, this.Fecha, this.Pasajeros, this.Origen, this.Destino, this.Sentido, this.Distancia, this.Aceptada, this.Costo);
+                
                 return true;
             }
             catch (Exception)
@@ -135,7 +178,7 @@ namespace TurismoRealWeb.BLL
         {
             try
             {
-                db.SP_DELETE_DPTO(id);
+                db.SP_CANCEL_SOLTRANSPORT(id);
                 return true;
             }
             catch (Exception)

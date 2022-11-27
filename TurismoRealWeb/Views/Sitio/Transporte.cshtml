@@ -1,0 +1,102 @@
+﻿@model TurismoRealWeb.BLL.Transporte
+
+@{
+    ViewBag.Title = "Contratar Transporte";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({
+                dateFormat: "dd/mm/yy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0",
+                minDate: new Date()
+            });
+
+        });
+
+    </script>
+}
+
+
+<html>
+    <body>
+        <h2 class="mt-3">Solicitar Transporte</h2>
+
+        <div class="testbox">
+            <div style="flex:auto">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="testbox">
+                    <h4></h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(transporte => transporte.ArriendoId)
+
+
+                    @Html.HiddenFor(transporte => transporte.Fecha)
+
+                    <div class="form-floating  mb-3" style="width: 20%">
+                        @Html.TextBoxFor(transporte => transporte.Origen, new { @placeholder = "Departamento", @class = "form-control" })
+                        <label for="Origen">Dirección Origen</label>
+                    </div>
+
+                    <div class="form-floating  mb-3" style="width: 20%">
+                        @Html.TextBoxFor(transporte => transporte.Destino, new { @placeholder = "Departamento", @class = "form-control" })
+                        <label for="Destino">Dirección Destino</label>
+                    </div>
+
+                    <div class="item form-floating col-10">
+                        @Html.EditorFor(transporte => transporte.Fecha, new { htmlAttributes = new { @class = "form-control", @name = "fromDate", placeholder = "Fecha de Entrada", @readonly = "true" } })
+                        <label for="FecIni">Fecha de Entrada</label>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+
+
+                    <div class="form-floating  mb-3" style="width: 20%">
+                        @Html.EditorFor(transporte => transporte.Fecha, new { htmlAttributes = new { @class = "form-control", placeholder = "Fecha de Servicio", @readonly = "true" } })
+                        <label for="FecIni">Fecha de Traslado </label>
+                    </div>
+
+                    <div class="form-floating  mb-3" style="width: 20%">
+                        @Html.TextBoxFor(transporte => transporte.Pasajeros, new { @placeholder = "Departamento", @class = "form-control" })
+                        <label for="Pasajeros">N° Pasajeros</label>
+                    </div>
+
+                    <div class=" mb-3" style="width: 20%">
+                        <label for="Sentido">Sentido</label>
+                        <div class="form-check" style="width: 60%">
+                            @Html.RadioButtonFor(transporte => transporte.Sentido, "IDA") PARTIDA <br />
+                            @Html.RadioButtonFor(transporte => transporte.Sentido, "VUELTA") REGRESO
+                        </div>
+
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Solicitar" class="btn btn-warning" />
+                            @Html.ActionLink("Volver", "Reserva", null, new { btn5 = "back", @class = "btn btn-danger" })
+                        </div>
+                        <br />
+
+                    </div>
+
+
+                </div>
+                }
+            </div>
+        </div>
+    </body>
+</html>
+
+
+

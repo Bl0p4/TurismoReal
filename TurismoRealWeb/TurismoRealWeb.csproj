@@ -719,6 +719,7 @@
     <Content Include="Views\Sitio\Servicios.cshtml" />
     <Content Include="Views\Arriendo\Buscar.cshtml" />
     <Content Include="Views\Arriendo\RecibirPago.cshtml" />
+    <Content Include="Views\Sitio\Transporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

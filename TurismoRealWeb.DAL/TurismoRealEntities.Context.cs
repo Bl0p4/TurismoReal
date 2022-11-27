@@ -751,5 +751,96 @@ namespace TurismoRealWeb.DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ESTADO_RESERVA", p_ID_ARRIENDOParameter);
         }
+    
+        public virtual int SP_CANCEL_SOLTRANSPORT(Nullable<decimal> p_ID_SOLICITUD)
+        {
+            var p_ID_SOLICITUDParameter = p_ID_SOLICITUD.HasValue ?
+                new ObjectParameter("P_ID_SOLICITUD", p_ID_SOLICITUD) :
+                new ObjectParameter("P_ID_SOLICITUD", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CANCEL_SOLTRANSPORT", p_ID_SOLICITUDParameter);
+        }
+    
+        public virtual int SP_CREATE_SOLTRANSPORT(Nullable<decimal> p_ID_ARRI, Nullable<System.DateTime> p_FECH_INI, Nullable<decimal> p_PASAJEROS, string p_DIR_INI, string p_DIR_DESTINO, Nullable<decimal> p_KMS, Nullable<decimal> p_COSTO, string p_SENTIDO)
+        {
+            var p_ID_ARRIParameter = p_ID_ARRI.HasValue ?
+                new ObjectParameter("P_ID_ARRI", p_ID_ARRI) :
+                new ObjectParameter("P_ID_ARRI", typeof(decimal));
+    
+            var p_FECH_INIParameter = p_FECH_INI.HasValue ?
+                new ObjectParameter("P_FECH_INI", p_FECH_INI) :
+                new ObjectParameter("P_FECH_INI", typeof(System.DateTime));
+    
+            var p_PASAJEROSParameter = p_PASAJEROS.HasValue ?
+                new ObjectParameter("P_PASAJEROS", p_PASAJEROS) :
+                new ObjectParameter("P_PASAJEROS", typeof(decimal));
+    
+            var p_DIR_INIParameter = p_DIR_INI != null ?
+                new ObjectParameter("P_DIR_INI", p_DIR_INI) :
+                new ObjectParameter("P_DIR_INI", typeof(string));
+    
+            var p_DIR_DESTINOParameter = p_DIR_DESTINO != null ?
+                new ObjectParameter("P_DIR_DESTINO", p_DIR_DESTINO) :
+                new ObjectParameter("P_DIR_DESTINO", typeof(string));
+    
+            var p_KMSParameter = p_KMS.HasValue ?
+                new ObjectParameter("P_KMS", p_KMS) :
+                new ObjectParameter("P_KMS", typeof(decimal));
+    
+            var p_COSTOParameter = p_COSTO.HasValue ?
+                new ObjectParameter("P_COSTO", p_COSTO) :
+                new ObjectParameter("P_COSTO", typeof(decimal));
+    
+            var p_SENTIDOParameter = p_SENTIDO != null ?
+                new ObjectParameter("P_SENTIDO", p_SENTIDO) :
+                new ObjectParameter("P_SENTIDO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CREATE_SOLTRANSPORT", p_ID_ARRIParameter, p_FECH_INIParameter, p_PASAJEROSParameter, p_DIR_INIParameter, p_DIR_DESTINOParameter, p_KMSParameter, p_COSTOParameter, p_SENTIDOParameter);
+        }
+    
+        public virtual int SP_UPDATE_SOLTRANSPORT(Nullable<decimal> p_ID_SOL, Nullable<decimal> p_ID_ARRI, Nullable<System.DateTime> p_FECH_INI, Nullable<decimal> p_PASAJEROS, string p_DIR_INI, string p_DIR_DESTINO, string p_SENTIDO, Nullable<decimal> p_KMS, string p_ACEPTADA, Nullable<decimal> p_COSTO)
+        {
+            var p_ID_SOLParameter = p_ID_SOL.HasValue ?
+                new ObjectParameter("P_ID_SOL", p_ID_SOL) :
+                new ObjectParameter("P_ID_SOL", typeof(decimal));
+    
+            var p_ID_ARRIParameter = p_ID_ARRI.HasValue ?
+                new ObjectParameter("P_ID_ARRI", p_ID_ARRI) :
+                new ObjectParameter("P_ID_ARRI", typeof(decimal));
+    
+            var p_FECH_INIParameter = p_FECH_INI.HasValue ?
+                new ObjectParameter("P_FECH_INI", p_FECH_INI) :
+                new ObjectParameter("P_FECH_INI", typeof(System.DateTime));
+    
+            var p_PASAJEROSParameter = p_PASAJEROS.HasValue ?
+                new ObjectParameter("P_PASAJEROS", p_PASAJEROS) :
+                new ObjectParameter("P_PASAJEROS", typeof(decimal));
+    
+            var p_DIR_INIParameter = p_DIR_INI != null ?
+                new ObjectParameter("P_DIR_INI", p_DIR_INI) :
+                new ObjectParameter("P_DIR_INI", typeof(string));
+    
+            var p_DIR_DESTINOParameter = p_DIR_DESTINO != null ?
+                new ObjectParameter("P_DIR_DESTINO", p_DIR_DESTINO) :
+                new ObjectParameter("P_DIR_DESTINO", typeof(string));
+    
+            var p_SENTIDOParameter = p_SENTIDO != null ?
+                new ObjectParameter("P_SENTIDO", p_SENTIDO) :
+                new ObjectParameter("P_SENTIDO", typeof(string));
+    
+            var p_KMSParameter = p_KMS.HasValue ?
+                new ObjectParameter("P_KMS", p_KMS) :
+                new ObjectParameter("P_KMS", typeof(decimal));
+    
+            var p_ACEPTADAParameter = p_ACEPTADA != null ?
+                new ObjectParameter("P_ACEPTADA", p_ACEPTADA) :
+                new ObjectParameter("P_ACEPTADA", typeof(string));
+    
+            var p_COSTOParameter = p_COSTO.HasValue ?
+                new ObjectParameter("P_COSTO", p_COSTO) :
+                new ObjectParameter("P_COSTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_SOLTRANSPORT", p_ID_SOLParameter, p_ID_ARRIParameter, p_FECH_INIParameter, p_PASAJEROSParameter, p_DIR_INIParameter, p_DIR_DESTINOParameter, p_SENTIDOParameter, p_KMSParameter, p_ACEPTADAParameter, p_COSTOParameter);
+        }
     }
 }
