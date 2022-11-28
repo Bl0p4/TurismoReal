@@ -842,5 +842,48 @@ namespace TurismoRealWeb.DAL
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_SOLTRANSPORT", p_ID_SOLParameter, p_ID_ARRIParameter, p_FECH_INIParameter, p_PASAJEROSParameter, p_DIR_INIParameter, p_DIR_DESTINOParameter, p_SENTIDOParameter, p_KMSParameter, p_ACEPTADAParameter, p_COSTOParameter);
         }
+    
+        public virtual int SP_DELETE_TRANSP_REALIZADO(Nullable<decimal> p_ID_SOLI)
+        {
+            var p_ID_SOLIParameter = p_ID_SOLI.HasValue ?
+                new ObjectParameter("P_ID_SOLI", p_ID_SOLI) :
+                new ObjectParameter("P_ID_SOLI", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DELETE_TRANSP_REALIZADO", p_ID_SOLIParameter);
+        }
+    
+        public virtual int SP_UPDATE_ESTADO_SOL_TRANSP(Nullable<decimal> p_ID_SOLI, string p_NUEVO_ESTADO)
+        {
+            var p_ID_SOLIParameter = p_ID_SOLI.HasValue ?
+                new ObjectParameter("P_ID_SOLI", p_ID_SOLI) :
+                new ObjectParameter("P_ID_SOLI", typeof(decimal));
+    
+            var p_NUEVO_ESTADOParameter = p_NUEVO_ESTADO != null ?
+                new ObjectParameter("P_NUEVO_ESTADO", p_NUEVO_ESTADO) :
+                new ObjectParameter("P_NUEVO_ESTADO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_ESTADO_SOL_TRANSP", p_ID_SOLIParameter, p_NUEVO_ESTADOParameter);
+        }
+    
+        public virtual int SP_UPDATE_TRANSP_REALIZADO(Nullable<decimal> p_ID_SOLICITUD, Nullable<decimal> p_ID_CONDUCTOR, string p_DESC_VEHICULO, string p_PATENTE)
+        {
+            var p_ID_SOLICITUDParameter = p_ID_SOLICITUD.HasValue ?
+                new ObjectParameter("P_ID_SOLICITUD", p_ID_SOLICITUD) :
+                new ObjectParameter("P_ID_SOLICITUD", typeof(decimal));
+    
+            var p_ID_CONDUCTORParameter = p_ID_CONDUCTOR.HasValue ?
+                new ObjectParameter("P_ID_CONDUCTOR", p_ID_CONDUCTOR) :
+                new ObjectParameter("P_ID_CONDUCTOR", typeof(decimal));
+    
+            var p_DESC_VEHICULOParameter = p_DESC_VEHICULO != null ?
+                new ObjectParameter("P_DESC_VEHICULO", p_DESC_VEHICULO) :
+                new ObjectParameter("P_DESC_VEHICULO", typeof(string));
+    
+            var p_PATENTEParameter = p_PATENTE != null ?
+                new ObjectParameter("P_PATENTE", p_PATENTE) :
+                new ObjectParameter("P_PATENTE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_UPDATE_TRANSP_REALIZADO", p_ID_SOLICITUDParameter, p_ID_CONDUCTORParameter, p_DESC_VEHICULOParameter, p_PATENTEParameter);
+        }
     }
 }
