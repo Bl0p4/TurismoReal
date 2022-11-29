@@ -38,6 +38,11 @@
         <label for="Pasajeros">N° Pasajeros</label>
     </div>
 
+    <div class="form-floating  mb-3" style="width: 20%">
+        @Html.TextBoxFor(transporte => transporte.Costo, new { @placeholder = "Departamento", @class = "form-control", @readonly = "true" })
+        <label for="Pasajeros">Costo</label>
+    </div>
+
     <div class=" mb-3" style="width: 20%">
         <label for="Sentido">Sentido</label>
         <div class="form-check" style="width: 60%">

@@ -191,7 +191,7 @@ namespace TurismoRealWeb.Controllers
             Transporte trans = new Transporte();
             trans.Arriendo = new Arriendo().Find(id);
             trans.ArriendoId = trans.Arriendo.Id;
-
+            trans.Costo = 20000;
             return View(trans);
         }
 
