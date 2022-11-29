@@ -62,7 +62,10 @@
                 <button class="btn btn-info btn-sm-2" onclick="location.href='@Url.Action("Transporte","Sitio", new { id = arriendo.Id })'"><i class="fas fa-taxi"></i> Solicitar Transporte</button>
                 <a class="btn btn-danger btn-sm-2" href="@Url.Action("CancelarReserva", "Sitio", new { id = arriendo.Id })" onclick="return confirm('Está seguro que quiere cancelar su reserva?')"><i class="fas fa-close"></i> Cancelar Reserva</a>
             }
-
+            @if (arriendo.Checkout == "3")
+            {
+        <div style="color:red"> Reserva Cancelada</div>
+            }
 
         </td>
     </tr>

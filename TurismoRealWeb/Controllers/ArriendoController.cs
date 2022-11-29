@@ -155,6 +155,8 @@ namespace TurismoRealWeb.Controllers
         {
             Arriendo arri = new Arriendo().Find(id);
             arri.Total = 4 * arri.Total / 5;
+            arri.FecIni.ToShortDateString();
+            arri.FecFin.ToShortDateString();
             return View(arri);
         }
 

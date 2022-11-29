@@ -54,26 +54,34 @@
                     }
                     else
                     {
-                    <td>@(arriendo.CheckIn == "1" ? "Si":"No")</td>
+                    <td>@(arriendo.CheckIn == "1" ? "CheckIn Realizado": "CheckIn Pendiente")</td>
                     }
                     @if (arriendo.Checkout == "3")
                     {
-                        <td>@(arriendo.Checkout == "3" ? "Cancelada":"Cancelada")</td>
+                        <td>@(arriendo.Checkout == "3" ? "Arriendo Cancelado": "Arriendo Cancelado")</td>
                     }
                     else
                     {
-                        <td>@(arriendo.Checkout == "1" ? "Si":"No")</td>
+                        <td>@(arriendo.Checkout == "1" ? "CheckOut Realizado":"CheckOut Pendiente")</td>
                     }
                     <td>@arriendo.Total</td>
                     <td>@arriendo.total_serv</td>
                     <td>
-                        @if (arriendo.CheckIn == "0")
+                        @if (arriendo.CheckIn == "0" && arriendo.Checkout == "0")
                         {
                             <button class="btn btn-success btn-sm-2" onclick="location.href='@Url.Action("RecibirPago","Arriendo", new { id = arriendo.Id })'"><i class="fas fa-clipboard-check"></i>Pago y Check In </button>
                         }
                         @if (arriendo.Checkout == "0" && arriendo.CheckIn == "1")
                         {
                             <button class="btn btn-danger btn-sm-2" onclick="location.href='@Url.Action("CheckOut","Arriendo", new { id = arriendo.Id })'"><i class="fas fa-clipboard-check"></i>Check Out </button>
+                        }
+                        @if (arriendo.Checkout == "1" && arriendo.CheckIn == "1")
+                        {
+                            <div style="color:green"> Arriendo Terminado</div>
+                        }
+                        @if (arriendo.Checkout == "3")
+                        {
+                            <div style="color:red"> Arriendo Cancelado</div>
                         }
                     </td>
                 </tr>

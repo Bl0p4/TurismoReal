@@ -251,11 +251,11 @@
                     </div>
                     <div class="item form-floating col-10">
                         @Html.TextBoxFor(arriendo => arriendo.FecIni, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
-                        <label for="Precio">Valor Reserva</label>
+                        <label for="Precio">Fecha Entrada</label>
                     </div>
                     <div class="item form-floating col-10">
                         @Html.TextBoxFor(arriendo => arriendo.FecFin, new { @placeholder = "Precio", @class = "form-control", @readonly = "true" })
-                        <label for="Precio">Valor Reserva</label>
+                        <label for="Precio">Fecha Salida</label>
                     </div>
                     <div class="item form-floating col-10">
                         @Html.TextBoxFor(arriendo => arriendo.Total, new { @class = "form-control", placeholder = "Acompañantes", @readonly = "true" })
@@ -270,7 +270,7 @@
                 </div>
             }
             <br />
-            @Html.ActionLink("Volver", "Reserva", "Sitio", null, new { btn5 = "back", @class = "btn btn-danger" })
+            @Html.ActionLink("Volver", "Index", "Arriendo", null, new { btn5 = "back", @class = "btn btn-danger" })
         </div>
     </div>
 </body>
